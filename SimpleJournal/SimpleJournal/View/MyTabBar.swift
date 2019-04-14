@@ -1,5 +1,5 @@
 //
-//  JournalListScreen.swift
+//  MyTabBar.swift
 //  SimpleJournal
 //
 //  Created by yinzixie on 14/4/19.
@@ -8,11 +8,16 @@
 
 import UIKit
 
-class JournalListScreen: UIViewController {
+class MyTabBar: UITabBarController {
 
+
+    @IBOutlet var MytabBar: UITabBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+     
         // Do any additional setup after loading the view.
     }
     
@@ -28,17 +33,3 @@ class JournalListScreen: UIViewController {
     */
 
 }
-
-
-/*extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        #warning("记得修改这里 table的元素数量")
-        return 1
-    }
-    
-    //configure each cell
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var journal = journas[indexPath.row]
-    }
-}*/

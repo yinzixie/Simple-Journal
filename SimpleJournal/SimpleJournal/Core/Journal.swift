@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-class journal {
+/*class journal {
     var ID:Int
     
     
 }
+*/

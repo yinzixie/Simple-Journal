@@ -19,6 +19,8 @@
 		2DFF15D62263137600A70E33 /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D52263137600A70E33 /* JournalCell.swift */; };
 		2DFF15D92263145F00A70E33 /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D82263145F00A70E33 /* Journal.swift */; };
 		2DFF15DB22631BC200A70E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF15DA22631BC100A70E33 /* Assets.xcassets */; };
+		2DFF15DD2263278800A70E33 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15DC2263278800A70E33 /* HomeScreen.swift */; };
+		2DFF15DF226329DE00A70E33 /* MyTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15DE226329DE00A70E33 /* MyTabBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		2DFF15D52263137600A70E33 /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
 		2DFF15D82263145F00A70E33 /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
 		2DFF15DA22631BC100A70E33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2DFF15DC2263278800A70E33 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		2DFF15DE226329DE00A70E33 /* MyTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				2D1116352259FC0300A64523 /* Main.storyboard */,
+				2DFF15DE226329DE00A70E33 /* MyTabBar.swift */,
+				2DFF15DC2263278800A70E33 /* HomeScreen.swift */,
 				2D11163A2259FC0500A64523 /* LaunchScreen.storyboard */,
 				2DFF15D32263083800A70E33 /* JournalListScreen.swift */,
 				2DFF15D52263137600A70E33 /* JournalCell.swift */,
@@ -299,6 +305,8 @@
 				2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */,
 				2D57C5E32261CD520066D713 /* MCTabBar.swift in Sources */,
 				2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */,
+				2DFF15DD2263278800A70E33 /* HomeScreen.swift in Sources */,
+				2DFF15DF226329DE00A70E33 /* MyTabBar.swift in Sources */,
 				2D57C5E42261CD520066D713 /* MCTabBarController.swift in Sources */,
 				2DFF15D92263145F00A70E33 /* Journal.swift in Sources */,
 				2DFF15D62263137600A70E33 /* JournalCell.swift in Sources */,
