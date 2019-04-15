@@ -88,6 +88,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D0329A92264428F00425975 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		2D1116252259FC0300A64523 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +118,7 @@
 		2D1116302259FC0300A64523 /* SimpleJournal */ = {
 			isa = PBXGroup;
 			children = (
+				2D0329A92264428F00425975 /* Extension */,
 				2DFF15D72263143D00A70E33 /* Core */,
 				2D57C5E02261CD520066D713 /* MCTabBarSwift */,
 				2D80438B225F508E00557A3E /* View */,

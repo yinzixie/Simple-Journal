@@ -12,8 +12,11 @@ class JournalListScreen: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        
+        //hidden the navigation bar
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
 
