@@ -10,7 +10,11 @@ import UIKit
 
 class HomeScreen: UIViewController {
 
+   
     @IBOutlet var HeadPhoto: UIImageView!
+    @IBOutlet var UserName: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,7 +22,7 @@ class HomeScreen: UIViewController {
         
         setHeadPhoto()
         //HeadPhoto.cropCornerRadius(radius: 100)
-        
+        UserName.text = "sdfsdfsdfdsfdfdfsdfsdfsd"
 
     }
     
@@ -53,7 +57,7 @@ class HomeScreen: UIViewController {
 
 }
 
-extension UIImageView {
+/*extension UIImageView {
     
     //crop pic from left cornor
     func cropCornerRadius(radius:CGFloat){
@@ -75,7 +79,7 @@ extension UIImageView {
         
         self.image = newImage
     }
-}
+}*/
 
 extension UIImage {
     //生成圆形图片
