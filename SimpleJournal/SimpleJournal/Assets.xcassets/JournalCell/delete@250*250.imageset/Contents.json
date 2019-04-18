@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tab_select_blue@2x.png",
       "scale" : "1x"
     },
     {
@@ -11,7 +10,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "tab_select_blue@3x.png",
+      "filename" : "delete@250*250.png",
       "scale" : "3x"
     }
   ],

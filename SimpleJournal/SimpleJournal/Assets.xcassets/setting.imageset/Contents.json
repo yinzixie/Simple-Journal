@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-删除-500.png",
+      "filename" : "sharp_settings_black_18dp-1.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +11,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "sharp_settings_black_18dp.png",
       "scale" : "3x"
     }
   ],

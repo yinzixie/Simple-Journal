@@ -16,6 +16,10 @@ class HomeScreen: UIViewController {
     @IBOutlet var ShowPicPickerChooseButton: UIButton!
     @IBOutlet var ImagePickerButton: UIButton!
     
+    @IBOutlet var HomeTable: UITableView!
+    
+    
+    
     let screenh = UIScreen.main.bounds.size.height
     let screenw = UIScreen.main.bounds.size.width
     
@@ -28,13 +32,17 @@ class HomeScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(screenh, screenw)
        
         // Do any additional setup after loading the view.
         
         setHeadPhoto()
         
-        //HeadPhoto.translatesAutoresizingMaskIntoConstraints = false //some say we should add this to disable auto layout but we don't need this here
+        //remove seperation from cell which doesn't contain data
+        HomeTable.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+       HomeTable.layer.borderWidth = 1
+       HomeTable.layer.borderColor = UIColor.lightGray .cgColor //HeadPhoto.translatesAutoresizingMaskIntoConstraints = false //some say we should add this to disable auto layout but we don't need this here
         
         let ImagePickerButtonVerticalConstraint = NSLayoutConstraint(item: ImagePickerButton, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 812/screenh*100) //812 iphone x height //set top alignment
        
@@ -132,7 +140,9 @@ class HomeScreen: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+   
 
+    
 }
 
 /*extension UIImageView {
@@ -159,30 +169,7 @@ class HomeScreen: UIViewController {
     }
 }*/
 
-extension UIImage {
-    //生成圆形图片
-    func toCircle() -> UIImage {
-        //取最短边长
-        let shotest = min(self.size.width, self.size.height)
-        //输出尺寸
-        let outputRect = CGRect(x: 0, y: 0, width: shotest, height: shotest)
-        //开始图片处理上下文（由于输出的图不会进行缩放，所以缩放因子等于屏幕的scale即可）
-        UIGraphicsBeginImageContextWithOptions(outputRect.size, false, 0)
-        let context = UIGraphicsGetCurrentContext()!
-        //添加圆形裁剪区域
-        context.addEllipse(in: outputRect)
-        context.clip()
-        //绘制图片
-        self.draw(in: CGRect(x: (shotest-self.size.width)/2,
-                             y: (shotest-self.size.height)/2,
-                             width: self.size.width,
-                             height: self.size.height))
-        //获得处理后的图片
-        let maskedImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return maskedImage
-    }
-}
+
 
 extension HomeScreen:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -201,18 +188,60 @@ extension HomeScreen:UIImagePickerControllerDelegate, UINavigationControllerDele
 
 extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let share = shareAction(at: indexpath)
-        
-        return UISwipeActionsConfiguration([actions: [share,delete,edit]])
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         #warning("记得修改这里 table的元素数量")
-        return 1
+        return 3
     }
     
     //configure each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var journal = journas[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableCell", for: indexPath) as! HomeJournalCell
+       
+         #warning("记得修改这里 table的content")
+        // Configure the cell...
+        if let HomeTableCell = cell as? HomeJournalCell
+        {
+            HomeTableCell.DateLabel.text = "30"
+            HomeTableCell.MonthLabel.text = "Mar"
+            HomeTableCell.TitleLabel.text = "Title"
+            HomeTableCell.ContentLabel.text = "Loeff sdfjh sdfefn sdfsdf..."
+            
+            
+        }
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+       
+        let delete = deleteAction(at: indexPath)
+        let edit = editAction(at: indexPath)
+        return UISwipeActionsConfiguration(actions: [delete,edit])
+    }
+    
+   
+    func deleteAction(at indextPath: IndexPath)->UIContextualAction {
+        let action = UIContextualAction(style:.normal, title: "Delete") {(action, view, completion) in
+            
+            completion(true)
+        }
+        
+        action.image = UIImage(named:"delete@250*250")
+        action.backgroundColor = .red
+        return action
+    }
+    
+    func editAction(at indextPath: IndexPath)->UIContextualAction {
+        let action = UIContextualAction(style:.normal, title: "Edit") {(action, view, completion) in
+            
+            completion(true)
+        }
+        
+        action.image = UIImage(named:"edit@120*120")
+        action.backgroundColor = .blue
+        return action
+    }
+    
+   
 }
