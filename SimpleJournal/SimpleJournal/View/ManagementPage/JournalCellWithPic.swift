@@ -8,11 +8,16 @@
 
 import UIKit
 
-class JournalCell: UITableViewCell {
+class JournalCellWithPic: UITableViewCell {
 
+    @IBOutlet var DateLabel: UILabel!
+    @IBOutlet var MonthLabel: UILabel!
+    @IBOutlet weak var TitleLabel: UILabel!
+    @IBOutlet weak var ContentLabel: UITextView!
+    @IBOutlet var MoodView: UIImageView!
+    @IBOutlet var ImageView: UIImageView!
     
-    
-    
+    @IBOutlet var WeatherView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

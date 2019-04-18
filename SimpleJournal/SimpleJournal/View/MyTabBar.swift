@@ -16,6 +16,9 @@ class MyTabBar: UITabBarController {
     @IBOutlet var MytabBar: UITabBar!
     
     let CreateButton = UIButton.init(type: .custom)
+    let SettingButton = UIButton.init(type: .custom)
+    
+    var ChoosenButton = UIButton.init(type: .custom)
     
     private let radarAnimation = "radarAnimation"
     private var animationLayer: CALayer?
@@ -25,32 +28,9 @@ class MyTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //set button
-     //CreateButton.setTitle("New", for:.normal)
-     //CreateButton.setTitleColor(.black, for: .normal)
-     //CreateButton.setTitleColor(.red, for: .highlighted)
-     //CreateButton.frame = CGRect(x:100, y:0, width: 44, height: 44)
-     //CreateButton.backgroundColor = .blue
-     //CreateButton.layer.borderWidth = 4
-     //CreateButton.layer.borderColor = UIColor.red.cgColor
-        
-        CreateButton.setBackgroundImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
-        //add button to screen
-        self.view.insertSubview(CreateButton, aboveSubview: self.tabBar)
-        //set trigger event add animation when press down
-        CreateButton.addTarget(self, action: #selector(startAction), for: .touchDown)
-        //set trigger event remove animation when realse button
-        CreateButton.addTarget(self, action: #selector(stopAction), for: .touchUpInside)
-        
-        let first = makeRadarAnimation(showRect: CGRect(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 104, width: 64, height: 64), isRound: true)    //位置和大小
-        view.layer.addSublayer(first)
-        self.animationLayer?.removeAnimation(forKey: self.radarAnimation)
-        
-        //disable centre tabbar item
-        if let arrayOfTabBarItems = self.tabBar.items as AnyObject as? NSArray,let
-            tabBarItem = arrayOfTabBarItems[2] as? UITabBarItem {
-            tabBarItem.isEnabled = false
-        }
-     
+        setCretateNewJournalButton()
+        setSettingButton()
+        disableCentreTabBarIteam()
         // Do any additional setup after loading the view.
     }
     
@@ -61,34 +41,74 @@ class MyTabBar: UITabBarController {
         CreateButton.frame = CGRect.init(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 104, width: 64, height: 64)
         CreateButton.layer.cornerRadius = 32
         
-        
+        //
+        SettingButton.frame = CGRect.init(x: self.view.bounds.width-50 , y: 50, width: 32, height: 32)
+        SettingButton.layer.cornerRadius = 16
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    //set Setting Button
+    private func setSettingButton() {
+        SettingButton.setBackgroundImage(UIImage(named:"setting"), for:.normal)
+        //add button to screen
+        self.view.insertSubview(SettingButton, aboveSubview: self.tabBar)
+        
+        //set trigger event go to create journal screen when realse button
+        SettingButton.addTarget(self, action: #selector(goToSettingScreen), for: .touchUpInside)
     }
-    */
+    
+    @objc func goToSettingScreen() {
+    //jump to admin page through segue"goToSettingScreen"
+        self.performSegue(withIdentifier:"goToSettingScreenSegue", sender: self)
+    }
+    
+    //create center button(create a new journal) and add animation
+    private func setCretateNewJournalButton() {
+        //CreateButton.setTitle("New", for:.normal)
+        //CreateButton.setTitleColor(.black, for: .normal)
+        //CreateButton.setTitleColor(.red, for: .highlighted)
+        //CreateButton.frame = CGRect(x:100, y:0, width: 44, height: 44)
+        CreateButton.backgroundColor = .orange
+        //CreateButton.layer.borderWidth = 4
+        //CreateButton.layer.borderColor = UIColor.red.cgColor
+        
+        CreateButton.setBackgroundImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        //add button to screen
+        self.view.insertSubview(CreateButton, aboveSubview: self.tabBar)
+        //set trigger event add animation when press down
+        CreateButton.addTarget(self, action: #selector(startAction), for: .touchDown)
+        //set trigger event go to create journal screen when realse button
+        CreateButton.addTarget(self, action: #selector(goToCreateJournalScreen), for: .touchUpInside)
+        
+        //add animation
+        let first = makeRadarAnimation(showRect: CGRect(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 104, width: 64, height: 64), isRound: true)    //位置和大小
+        view.layer.addSublayer(first)
+        self.animationLayer?.removeAnimation(forKey: self.radarAnimation)
+        
+    }
+    
+    //disable centre tabbar item
+    private func disableCentreTabBarIteam() {
+        if let arrayOfTabBarItems = self.tabBar.items as AnyObject as? NSArray,let
+            tabBarItem = arrayOfTabBarItems[2] as? UITabBarItem {
+            tabBarItem.isEnabled = false
+        }
+    }
 
     //动作-开始
     @objc func startAction() {
         animationLayer?.add(animationGroup!, forKey: radarAnimation)
     }
     //动作-停止
-    @objc func stopAction() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+    @objc func goToCreateJournalScreen() {
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             //jump to admin page through segue"backToPatientTableSegue"
-            self.performSegue(withIdentifier:"CreateNewJournalSegue", sender: self)
+            self.performSegue(withIdentifier:"goToCreateNewJournalSegue", sender: self)
             //self.animationLayer?.removeAnimation(forKey: self.radarAnimation)
-        }
+        //}
         
     }
     
@@ -140,27 +160,38 @@ class MyTabBar: UITabBarController {
     }
 }
 
-extension MyTabBar: UIViewController, UIViewControllerTransitioningDelegate {
+extension MyTabBar: UIViewControllerTransitioningDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let secondVC = segue.destination as! CreateNewJournalScreenViewController
-        secondVC.transitioningDelegate = self
-        secondVC.modalPresentationStyle = .custom
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "goToCreateNewJournalSegue" {
+            ChoosenButton = CreateButton
+            let secondVC = segue.destination as! CreateNewJournalScreen
+            secondVC.transitioningDelegate = self
+            secondVC.modalPresentationStyle = .custom
+        }else if segue.identifier == "goToSettingScreenSegue" {
+            ChoosenButton = SettingButton
+            let secondVC = segue.destination as! SettingScreen
+            secondVC.transitioningDelegate = self
+            secondVC.modalPresentationStyle = .custom
+        }
+       
     }
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
-        transition.startPoint = CreateButton.center
-        transition.circleColor = CreateButton.backgroundColor!
+        transition.startPoint = ChoosenButton.center
+        transition.circleColor = ChoosenButton.backgroundColor ?? UIColor.white
         
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .dismis
-        transition.startPoint = CreateButton.center
-        transition.circleColor = CreateButton.backgroundColor!
-        
+        transition.startPoint = ChoosenButton.center
+        transition.circleColor = ChoosenButton.backgroundColor ??  UIColor.white
+        self.startAction()
         return transition
     }
     

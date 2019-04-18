@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateNewJournalScreenViewController: UIViewController {
+class CreateNewJournalScreen: UIViewController {
 
     
     override func viewDidLoad() {
@@ -21,6 +21,7 @@ class CreateNewJournalScreenViewController: UIViewController {
     @IBAction func BackToTabView(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
+       
         //jump to admin page through segue"BackToTabView"
        // self.performSegue(withIdentifier:"BackToTabView", sender: self)
     }

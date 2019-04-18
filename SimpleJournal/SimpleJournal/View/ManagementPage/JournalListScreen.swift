@@ -11,18 +11,23 @@ import UIKit
 class JournalListScreen: UIViewController {
 
   
+    @IBOutlet var JournalList: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //hidden the navigation bar navigationController?.setNavigationBarHidden(true, animated: false)
         
-        var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "1")!)
+       // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow")!, viewlayer: view)
         
-        emitter!.birthRate = 0
+        //emitter!.birthRate = 0
         
         
-        // Do any additional setup after loading the view, typically from a nib.
+        //remove seperation from cell which doesn't contain data
+        JournalList.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        JournalList.layer.borderWidth = 1
+        JournalList.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,12 +35,12 @@ class JournalListScreen: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func particleEffect(_ image:UIImage) -> CAEmitterLayer {
+    func particleEffect(_ image:UIImage,viewlayer: UIView) -> CAEmitterLayer {
         let rect = CGRect(x: 0.0, y: -70.0, width: view.bounds.width,
                           height: 50.0)
         let emitter = CAEmitterLayer()
         emitter.frame = rect
-        view.layer.addSublayer(emitter)
+        viewlayer.layer.addSublayer(emitter)
         emitter.emitterShape = CAEmitterLayerEmitterShape.rectangle
         
         //kCAEmitterLayerPoint
@@ -48,13 +53,15 @@ class JournalListScreen: UIViewController {
         let emitterCell = CAEmitterCell()
         
         emitterCell.contents = image.resizeImage(30, opaque: true).cgImage
-        emitterCell.birthRate = 120  //每秒产生120个粒子
+        emitterCell.birthRate = 60  //每秒产生120个粒子
         emitterCell.lifetime = 3    //存活1秒
         emitterCell.lifetimeRange = 3.0
         
+        
         emitter.emitterCells = [emitterCell]  //这里可以设置多种粒子 我们以一种为粒子
-        emitterCell.yAcceleration = 70.0  //给Y方向一个加速度
-        emitterCell.xAcceleration = 20.0 //x方向一个加速度
+        
+        emitterCell.yAcceleration = 30.0  //给Y方向一个加速度
+        emitterCell.xAcceleration = 10.0 //x方向一个加速度
         emitterCell.velocity = 20.0 //初始速度
         emitterCell.emissionLongitude = CGFloat(-Double.pi) //向左
         emitterCell.velocityRange = 200.0   //随机速度 -200+20 --- 200+20
@@ -86,15 +93,36 @@ class JournalListScreen: UIViewController {
 }
 
 
-/*extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
+extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         #warning("记得修改这里 table的元素数量")
-        return 1
+        return 3
     }
     
     //configure each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var journal = journas[indexPath.row]
+        //var journal = journas[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JournalCellWithPic", for: indexPath) as! JournalCellWithPic
+        
+        #warning("记得修改这里 table的content")
+        if let JournalListCell = cell as? JournalCellWithPic
+        {
+            JournalListCell.DateLabel.text = "30"
+            JournalListCell.MonthLabel.text = "Mar"
+            JournalListCell.TitleLabel.text = "Travel to China"
+            JournalListCell.ContentLabel.text = "Loeff sdfjh sdfefn sdfsdfdfgdfgsfgsdfgdfsg..."
+            JournalListCell.WeatherView.image = UIImage(named:"cloudly")
+            JournalListCell.ImageView.image = UIImage(named:"2")
+            JournalListCell.MoodView.image = UIImage(named:"333333")
+            
+            JournalListCell.ContentLabel.isUserInteractionEnabled = false
+          //  var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "good")!,viewlayer: JournalListCell)
+            //JournalListCell.allowsTransparency = true
+        }
+        
+        return cell
+        
+        
     }
-}*/
+}

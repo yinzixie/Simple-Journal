@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */; };
-		2D00B7872265E83A007A6097 /* CreateNewJournalScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7862265E83A007A6097 /* CreateNewJournalScreenViewController.swift */; };
+		2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */; };
 		2D00B78A2265ECD0007A6097 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7892265ECD0007A6097 /* CircularTransition.swift */; };
 		2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */; };
 		2D03A37F2265C2C200718D7A /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03A37E2265C2C200718D7A /* ScreenInfo.swift */; };
@@ -18,8 +18,9 @@
 		2D11163C2259FC0500A64523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D11163A2259FC0500A64523 /* LaunchScreen.storyboard */; };
 		2D1116472259FC0600A64523 /* SimpleJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116462259FC0600A64523 /* SimpleJournalTests.swift */; };
 		2D1116522259FC0600A64523 /* SimpleJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */; };
+		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
 		2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D32263083800A70E33 /* JournalListScreen.swift */; };
-		2DFF15D62263137600A70E33 /* JournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D52263137600A70E33 /* JournalCell.swift */; };
+		2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D52263137600A70E33 /* JournalCellWithPic.swift */; };
 		2DFF15D92263145F00A70E33 /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D82263145F00A70E33 /* Journal.swift */; };
 		2DFF15DB22631BC200A70E33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF15DA22631BC100A70E33 /* Assets.xcassets */; };
 		2DFF15DD2263278800A70E33 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15DC2263278800A70E33 /* HomeScreen.swift */; };
@@ -45,7 +46,7 @@
 
 /* Begin PBXFileReference section */
 		2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJournalCell.swift; sourceTree = "<group>"; };
-		2D00B7862265E83A007A6097 /* CreateNewJournalScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournalScreenViewController.swift; sourceTree = "<group>"; };
+		2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournalScreen.swift; sourceTree = "<group>"; };
 		2D00B7892265ECD0007A6097 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
 		2D03A37E2265C2C200718D7A /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
@@ -61,8 +62,9 @@
 		2D11164D2259FC0600A64523 /* SimpleJournalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleJournalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleJournalUITests.swift; sourceTree = "<group>"; };
 		2D1116532259FC0600A64523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
 		2DFF15D32263083800A70E33 /* JournalListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListScreen.swift; sourceTree = "<group>"; };
-		2DFF15D52263137600A70E33 /* JournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCell.swift; sourceTree = "<group>"; };
+		2DFF15D52263137600A70E33 /* JournalCellWithPic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCellWithPic.swift; sourceTree = "<group>"; };
 		2DFF15D82263145F00A70E33 /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
 		2DFF15DA22631BC100A70E33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DFF15DC2263278800A70E33 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -172,16 +174,41 @@
 			path = SimpleJournalUITests;
 			sourceTree = "<group>";
 		};
+		2D70E7F522683B040079D631 /* SettingPage */ = {
+			isa = PBXGroup;
+			children = (
+				2D70E7F622683B230079D631 /* SettingScreen.swift */,
+			);
+			path = SettingPage;
+			sourceTree = "<group>";
+		};
+		2D70E7F8226847880079D631 /* ManagementPage */ = {
+			isa = PBXGroup;
+			children = (
+				2DFF15D32263083800A70E33 /* JournalListScreen.swift */,
+				2DFF15D52263137600A70E33 /* JournalCellWithPic.swift */,
+			);
+			path = ManagementPage;
+			sourceTree = "<group>";
+		};
+		2D70E7F9226847A60079D631 /* LaunchPage */ = {
+			isa = PBXGroup;
+			children = (
+				2D11163A2259FC0500A64523 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchPage;
+			sourceTree = "<group>";
+		};
 		2D80438B225F508E00557A3E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D70E7F9226847A60079D631 /* LaunchPage */,
+				2D70E7F8226847880079D631 /* ManagementPage */,
+				2D70E7F522683B040079D631 /* SettingPage */,
 				2D03A37D2265B55700718D7A /* HomePage */,
 				2D1116352259FC0300A64523 /* Main.storyboard */,
 				2DFF15DE226329DE00A70E33 /* MyTabBar.swift */,
-				2D11163A2259FC0500A64523 /* LaunchScreen.storyboard */,
-				2DFF15D32263083800A70E33 /* JournalListScreen.swift */,
-				2DFF15D52263137600A70E33 /* JournalCell.swift */,
-				2D00B7862265E83A007A6097 /* CreateNewJournalScreenViewController.swift */,
+				2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,7 +354,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */,
-				2D00B7872265E83A007A6097 /* CreateNewJournalScreenViewController.swift in Sources */,
+				2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */,
+				2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */,
 				2D1116342259FC0300A64523 /* ViewController.swift in Sources */,
 				2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */,
 				2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */,
@@ -337,7 +365,7 @@
 				2DFF15DF226329DE00A70E33 /* MyTabBar.swift in Sources */,
 				2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */,
 				2DFF15D92263145F00A70E33 /* Journal.swift in Sources */,
-				2DFF15D62263137600A70E33 /* JournalCell.swift in Sources */,
+				2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
