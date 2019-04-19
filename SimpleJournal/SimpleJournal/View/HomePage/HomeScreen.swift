@@ -26,6 +26,9 @@ class HomeScreen: UIViewController {
         super.viewDidLoad()
         print(screenh, screenw)
        
+       
+        
+        
         // Do any additional setup after loading the view.
         
         setHeadPhoto()
@@ -42,6 +45,19 @@ class HomeScreen: UIViewController {
         
         //hidden the navigation bar
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        //water wave
+        
+       var headerView = ZFJWaveView(frame: CGRect(x: CGFloat(0), y: CGFloat(-20), width: CGFloat(self.view.frame.size.width), height: CGFloat(320)))
+        headerView.backgroundColor =  UIColor(red: 0/255, green: 141/255, blue: 206/255, alpha: 1.0)//UIColor(red: CGFloat(1.000), green: CGFloat(0.318), blue: CGFloat(0.129), alpha: CGFloat(1.00))
+        headerView.waveBlock = {(_ currentY: CGFloat) -> Void in
+            //print(currentY)
+        }
+        headerView.startWaveAnimation()
+        
+        view.addSubview(headerView)
+        view.sendSubviewToBack(headerView)
+        
     }
 
     

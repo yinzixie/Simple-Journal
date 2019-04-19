@@ -265,31 +265,39 @@
                                     <action selector="BackToTabView:" destination="Lqs-fZ-Ty8" eventType="touchUpInside" id="AhI-JA-Kyo"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="ju8-tf-kpI">
-                                <rect key="frame" x="127" y="117" width="120" height="120"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="ju8-tf-kpI">
+                                <rect key="frame" x="127.66666666666669" y="144" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="ADx-Pe-Jij"/>
                                     <constraint firstAttribute="height" constant="120" id="hYZ-bG-o3D"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iP-Yd-W8H">
-                                <rect key="frame" x="172" y="162" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iP-Yd-W8H">
+                                <rect key="frame" x="127.66666666666669" y="144" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="gmM-Rw-Y1L"/>
-                                    <constraint firstAttribute="width" constant="100" id="jd4-6z-xAU"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="Ut2-Oy-ASE"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="ejg-tv-XXQ"/>
                                 </constraints>
                                 <state key="normal" title="Edit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="ShowImagePicker:" destination="Lqs-fZ-Ty8" eventType="touchUpInside" id="fPO-hl-VIi"/>
+                                    <action selector="ShowPicPickerMenu:" destination="Lqs-fZ-Ty8" eventType="touchUpInside" id="djp-il-HIy"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2iP-Yd-W8H" firstAttribute="centerX" secondItem="ju8-tf-kpI" secondAttribute="centerX" id="Af2-6M-8ws"/>
+                            <constraint firstItem="2iP-Yd-W8H" firstAttribute="centerX" secondItem="LMc-xi-Mws" secondAttribute="centerX" id="ZhT-Nm-6D8"/>
+                            <constraint firstItem="ju8-tf-kpI" firstAttribute="top" secondItem="UUt-57-H87" secondAttribute="top" constant="100" id="c0S-51-You"/>
+                            <constraint firstItem="2iP-Yd-W8H" firstAttribute="centerY" secondItem="ju8-tf-kpI" secondAttribute="centerY" id="ieo-O4-gnA"/>
+                            <constraint firstItem="ju8-tf-kpI" firstAttribute="centerX" secondItem="LMc-xi-Mws" secondAttribute="centerX" id="sf0-JH-27v"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="UUt-57-H87"/>
                     </view>
                     <connections>
+                        <outlet property="HeadPhoto" destination="ju8-tf-kpI" id="KgK-S2-bTU"/>
                         <segue destination="0y8-yl-zZ4" kind="show" identifier="fromSettingBackToTabBarSegue" id="9iK-n4-8oj"/>
                     </connections>
                 </viewController>
