@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */; };
 		2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */; };
-		2D00B78A2265ECD0007A6097 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7892265ECD0007A6097 /* CircularTransition.swift */; };
 		2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */; };
-		2D03A37F2265C2C200718D7A /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03A37E2265C2C200718D7A /* ScreenInfo.swift */; };
 		2D06D4792269DADC00C668FC /* PickImageMenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06D4782269DADC00C668FC /* PickImageMenueCell.swift */; };
 		2D0AA8A0226982D0009E88E0 /* ZFJWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AA89F226982D0009E88E0 /* ZFJWaveView.swift */; };
 		2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116312259FC0300A64523 /* AppDelegate.swift */; };
@@ -21,6 +19,8 @@
 		2D1116472259FC0600A64523 /* SimpleJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116462259FC0600A64523 /* SimpleJournalTests.swift */; };
 		2D1116522259FC0600A64523 /* SimpleJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */; };
 		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
+		2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC01939226B2FBD00D13585 /* ScreenInfo.swift */; };
+		2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0193B226B2FD300D13585 /* CircularTransition.swift */; };
 		2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D32263083800A70E33 /* JournalListScreen.swift */; };
 		2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D52263137600A70E33 /* JournalCellWithPic.swift */; };
 		2DFF15D92263145F00A70E33 /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D82263145F00A70E33 /* Journal.swift */; };
@@ -49,9 +49,7 @@
 /* Begin PBXFileReference section */
 		2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJournalCell.swift; sourceTree = "<group>"; };
 		2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournalScreen.swift; sourceTree = "<group>"; };
-		2D00B7892265ECD0007A6097 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
-		2D03A37E2265C2C200718D7A /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		2D06D4782269DADC00C668FC /* PickImageMenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickImageMenueCell.swift; sourceTree = "<group>"; };
 		2D0AA89F226982D0009E88E0 /* ZFJWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFJWaveView.swift; sourceTree = "<group>"; };
 		2D11162E2259FC0300A64523 /* SimpleJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +65,8 @@
 		2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleJournalUITests.swift; sourceTree = "<group>"; };
 		2D1116532259FC0600A64523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
+		2DC01939226B2FBD00D13585 /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
+		2DC0193B226B2FD300D13585 /* CircularTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		2DFF15D32263083800A70E33 /* JournalListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListScreen.swift; sourceTree = "<group>"; };
 		2DFF15D52263137600A70E33 /* JournalCellWithPic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCellWithPic.swift; sourceTree = "<group>"; };
 		2DFF15D82263145F00A70E33 /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				2D0AA89F226982D0009E88E0 /* ZFJWaveView.swift */,
-				2D00B7892265ECD0007A6097 /* CircularTransition.swift */,
+				2DC0193B226B2FD300D13585 /* CircularTransition.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -223,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				2DFF15D82263145F00A70E33 /* Journal.swift */,
-				2D03A37E2265C2C200718D7A /* ScreenInfo.swift */,
+				2DC01939226B2FBD00D13585 /* ScreenInfo.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -368,8 +368,8 @@
 				2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */,
 				2D06D4792269DADC00C668FC /* PickImageMenueCell.swift in Sources */,
 				2DFF15DD2263278800A70E33 /* HomeScreen.swift in Sources */,
-				2D03A37F2265C2C200718D7A /* ScreenInfo.swift in Sources */,
-				2D00B78A2265ECD0007A6097 /* CircularTransition.swift in Sources */,
+				2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */,
+				2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */,
 				2DFF15DF226329DE00A70E33 /* MyTabBar.swift in Sources */,
 				2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */,
 				2DFF15D92263145F00A70E33 /* Journal.swift in Sources */,

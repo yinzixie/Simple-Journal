@@ -181,15 +181,15 @@ extension MyTabBar: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transition.transitionMode = .present
-        transition.startPoint = ChoosenButton.center
+        transition.startingPoint = ChoosenButton.center
         transition.circleColor = ChoosenButton.backgroundColor ?? UIColor.white
         
         return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.transitionMode = .dismis
-        transition.startPoint = ChoosenButton.center
+        transition.transitionMode = .dismiss
+        transition.startingPoint = ChoosenButton.center
         transition.circleColor = ChoosenButton.backgroundColor ??  UIColor.white
         self.startAction()
         return transition
