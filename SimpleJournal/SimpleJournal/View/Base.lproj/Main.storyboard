@@ -282,7 +282,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="ShowPicPickerMenu:" destination="Lqs-fZ-Ty8" eventType="touchUpInside" id="djp-il-HIy"/>
+                                    <action selector="ShowPickerChoices:" destination="Lqs-fZ-Ty8" eventType="touchUpInside" id="jrw-Yy-KC7"/>
                                 </connections>
                             </button>
                         </subviews>

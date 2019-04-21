@@ -9,57 +9,83 @@
 import UIKit
 
 class SettingScreen: UIViewController {
-    @IBOutlet var ShowPicPickerChooseButton: UIButton!
-    @IBOutlet var ImagePickerButton: UIButton!
+   // @IBOutlet var ShowPicPickerChooseButton: UIButton!
+   // @IBOutlet var ImagePickerButton: UIButton!
     @IBOutlet var HeadPhoto: UIImageView!
     
     //变暗
-    var transparentView = UIView()
+   // var transparentView = UIView()
     //picker pic table
-    var pickImageTableView = UITableView()
+  //  var pickImageTableView = UITableView()
     
-    var imagePicker:UIImagePickerController?
-    
-    let PickImageMenuTextArray = ["Take photo","Choose from album"]
+    var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setHeadPhoto()
         
-        pickImageTableView.isScrollEnabled = false
+       /* pickImageTableView.isScrollEnabled = false
         pickImageTableView.delegate = self
         pickImageTableView.dataSource = self
-        pickImageTableView.register(PickImageMenueCell.self, forCellReuseIdentifier: "cell")
+        pickImageTableView.register(PickImageMenueCell.self, forCellReuseIdentifier: "cell")*/
         
    //  ImagePickerButton.addTarget(self, action: #selector(openImagePicker), for: .touchUpInside)
    //
-   //  imagePicker = UIImagePickerController()
-   //  imagePicker?.allowsEditing = true
-   //  imagePicker?.sourceType = .photoLibrary
-   //  imagePicker?.delegate = self
+        
         // Do any additional setup after loading the view.
         
-       // let ImagePickerButtonVerticalConstraint = NSLayoutConstraint(item: ImagePickerButton, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 812/screenh*100) //812 iphone x height //set top alignment
-    
-        
-       // view.addConstraints([ImagePickerButtonVerticalConstraint])
     }
     
     private func setHeadPhoto() {
-        HeadPhoto?.image = UIImage(named:"2")?.toCircle()
-        
+        if(AppFile.isJudgeFileOrFolderExists(folderName: AppFile.HeadPhotoFullPath as String)) {
+            HeadPhoto?.image = UIImage(contentsOfFile: AppFile.HeadPhotoFullPath as String)?.toCircle()
+        }else {
+            HeadPhoto?.image = UIImage(named:"default")?.toCircle()
+            print("n")
+        }
+    
         HeadPhoto?.layer.cornerRadius = HeadPhoto.frame.width/2
         HeadPhoto?.clipsToBounds = true
-        
     }
     
+    // MARK: 用于弹出选择的对话框界面
+    private var selectorController: UIAlertController {
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: "Cancle", style: .cancel, handler: nil)) // 取消按钮
+        controller.addAction(UIAlertAction(title: "Take photo", style: .default) { action in
+            self.selectorSourceType(type: .camera)
+        }) // 拍照选择
+        controller.addAction(UIAlertAction(title: "Choose from album", style: .default) { action in
+            self.selectorSourceType(type: .photoLibrary)
+        }) // 相册选择
+        return controller
+    }
+    
+    @IBAction func ShowPickerChoices(_ sender: Any) {
+         present(selectorController, animated: true, completion: nil)
+    }
+   
+    private func selectorSourceType(type: UIImagePickerController.SourceType) {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        if (UIImagePickerController.isSourceTypeAvailable(type)) {
+            imagePicker.sourceType = type
+            // 打开图片选择器
+            present(imagePicker, animated: true, completion: nil)
+        }else {
+            #warning("如何显示具体的类型， 并弹出警告框")
+            print("Can't access ",imagePicker.sourceType)
+        }
+    }
+
     
     @IBAction func BackToTabView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func ShowPicPickerMenu(_ sender: Any) {
+ /*   @IBAction func ShowPicPickerMenu(_ sender: Any) {
         let window = UIApplication.shared.keyWindow
         
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
@@ -95,11 +121,11 @@ class SettingScreen: UIViewController {
         }, completion: nil)
         
         //transparentView.alpha = 0
-    }
+    }*/
 
 }
 
-extension SettingScreen: UITableViewDataSource, UITableViewDelegate {
+/*extension SettingScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
@@ -130,9 +156,10 @@ extension SettingScreen: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-}
+}*/
 
-extension HomeScreen:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension SettingScreen:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
@@ -140,7 +167,8 @@ extension HomeScreen:UIImagePickerControllerDelegate, UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let pickImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            self.HeadPhoto.image = pickImage
+            AppFile.saveHeadPhoto(image: pickImage)
+            setHeadPhoto()
         }
         
         picker.dismiss(animated: true, completion: nil)
