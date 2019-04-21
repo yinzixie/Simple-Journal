@@ -30,14 +30,23 @@
                                 <rect key="frame" x="0.0" y="768" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem title="Item" id="s5I-fX-Dbs"/>
+                                    <barButtonItem title="Date" id="s5I-fX-Dbs"/>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cw-pu-yup">
+                                <rect key="frame" x="226" y="254" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Test"/>
+                                <connections>
+                                    <action selector="ttt:" destination="f4d-Bh-N81" eventType="touchUpInside" id="Ksx-8e-uBX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="bTY-uP-OeU"/>
                     </view>
                     <connections>
+                        <outlet property="test" destination="5cw-pu-yup" id="ZYR-x8-b79"/>
                         <segue destination="0y8-yl-zZ4" kind="show" identifier="BackToTabView" id="9ga-dO-Z2N"/>
                     </connections>
                 </viewController>
@@ -598,6 +607,6 @@
         <image name="tabbar_me" width="22.666666030883789" height="22.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9iK-n4-8oj"/>
+        <segue reference="9ga-dO-Z2N"/>
     </inferredMetricsTieBreakers>
 </document>

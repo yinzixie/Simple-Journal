@@ -70,8 +70,12 @@ class HomeScreen: UIViewController {
    
     
     
-    private func setHeadPhoto() {
-        HeadPhoto?.image = UIImage(named:"2")?.toCircle()
+    public func setHeadPhoto() {
+        if(AppFile.isJudgeFileOrFolderExists(folderName: AppFile.HeadPhotoFullPath as String)) {
+            HeadPhoto?.image = UIImage(contentsOfFile: AppFile.HeadPhotoFullPath as String)?.toCircle()
+        }else {
+            HeadPhoto?.image = UIImage(named:"default")?.toCircle()
+        }
         
         HeadPhoto?.layer.cornerRadius = HeadPhoto.frame.width/2
         HeadPhoto?.clipsToBounds = true

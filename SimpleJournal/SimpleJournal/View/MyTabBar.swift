@@ -27,6 +27,10 @@ class MyTabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //init file system
+        AppFile.init()
+        
+        
         //set button
         setCretateNewJournalButton()
         setSettingButton()
