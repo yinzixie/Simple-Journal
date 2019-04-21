@@ -16,7 +16,7 @@ class PickImageMenueCell: UITableViewCell {
     }()
     
     lazy var Label: UILabel = {
-        let label = UILabel(frame: CGRect(x:0,y:10,width: self.frame.width, height: 30))
+        let label = UILabel(frame: CGRect(x:(45*screen.screenw)/CGFloat(screen.Xscreenw),y:0,width: self.frame.width, height: 50))
         label.textAlignment = .center
         return label
     }()

@@ -59,7 +59,7 @@ class SettingScreen: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
- /*   @IBAction func ShowPicPickerMenu(_ sender: Any) {
+    @IBAction func ShowPicPickerMenu(_ sender: Any) {
         let window = UIApplication.shared.keyWindow
         
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.8)
@@ -95,7 +95,7 @@ class SettingScreen: UIViewController {
         }, completion: nil)
         
         //transparentView.alpha = 0
-    }*/
+    }
 
 }
 

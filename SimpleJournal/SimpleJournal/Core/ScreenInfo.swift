@@ -6,5 +6,12 @@
 //  Copyright © 2019 UTAS. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
+class screen {
+    static let screenh = UIScreen.main.bounds.size.height
+    static let screenw = UIScreen.main.bounds.size.width
+    
+    static let Xscreenh = 896.0
+    static let Xscreenw = 414.0
+}
