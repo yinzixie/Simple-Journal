@@ -66,3 +66,63 @@ class CreateNewJournalScreen: UIViewController {
     */
 
 }
+
+extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        #warning("记得修改这里 table的元素数量")
+        return 2
+    }
+    
+    //configure each cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell:Any? = nil
+        //title
+        if (indexPath.row == 0) {
+             cell = tableView.dequeueReusableCell(withIdentifier: "TitleCell", for: indexPath) as! TitleCell
+        
+            // Configure the cell...
+            if let TitleCell = cell as? TitleCell
+            {
+                TitleCell.ParentView = self
+                TitleCell.TitleDisplayButton.setTitle("Journal Title", for: .normal)
+            }
+            
+        }
+        //Location
+        else if (indexPath.row == 1) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
+            
+            // Configure the cell...
+            if let LocationCell = cell as? LocationCell
+            {
+                LocationCell.ParentView = self
+                LocationCell.LocationDisplayButton.setTitle("Earth", for: .normal)
+            }
+        }
+        //Date
+        else if(indexPath.row == 1) {
+            
+        }
+        //Moode
+        else if(indexPath.row == 2) {
+        
+        }
+        //Weather
+        else if(indexPath.row == 3) {
+            
+        }
+        //Text
+        else if(indexPath.row == 4) {
+            
+        }
+        //PRecording
+        else if(indexPath.row == 5) {
+            
+        }
+        
+        return cell as! UITableViewCell
+       
+    }
+    
+}

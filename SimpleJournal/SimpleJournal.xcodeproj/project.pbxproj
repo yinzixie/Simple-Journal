@@ -64,6 +64,14 @@
 		2D04E704226C4B8300FA8638 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04E6CF226C4B8300FA8638 /* Label.swift */; };
 		2D04E705226C4B8300FA8638 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04E6D0226C4B8300FA8638 /* SegmentedControl.swift */; };
 		2D04E706226C4B8300FA8638 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04E6D1226C4B8300FA8638 /* TextField.swift */; };
+		2D0567A4226C761F0014A92C /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A3226C761F0014A92C /* TitleCell.swift */; };
+		2D0567A6226C76360014A92C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A5226C76360014A92C /* LocationCell.swift */; };
+		2D0567A8226C76410014A92C /* MoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A7226C76410014A92C /* MoodCell.swift */; };
+		2D0567AA226C764B0014A92C /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A9226C764B0014A92C /* WeatherCell.swift */; };
+		2D0567AC226C76560014A92C /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567AB226C76560014A92C /* TextCell.swift */; };
+		2D0567AE226C765F0014A92C /* PicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567AD226C765F0014A92C /* PicsCell.swift */; };
+		2D0567B0226C76DC0014A92C /* RecordingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567AF226C76DC0014A92C /* RecordingCell.swift */; };
+		2D0567B2226C7EF90014A92C /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567B1226C7EF90014A92C /* DateCell.swift */; };
 		2D06D4792269DADC00C668FC /* PickImageMenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D06D4782269DADC00C668FC /* PickImageMenueCell.swift */; };
 		2D0AA8A0226982D0009E88E0 /* ZFJWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AA89F226982D0009E88E0 /* ZFJWaveView.swift */; };
 		2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116312259FC0300A64523 /* AppDelegate.swift */; };
@@ -158,6 +166,14 @@
 		2D04E6CF226C4B8300FA8638 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		2D04E6D0226C4B8300FA8638 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		2D04E6D1226C4B8300FA8638 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		2D0567A3226C761F0014A92C /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
+		2D0567A5226C76360014A92C /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		2D0567A7226C76410014A92C /* MoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCell.swift; sourceTree = "<group>"; };
+		2D0567A9226C764B0014A92C /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		2D0567AB226C76560014A92C /* TextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
+		2D0567AD226C765F0014A92C /* PicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicsCell.swift; sourceTree = "<group>"; };
+		2D0567AF226C76DC0014A92C /* RecordingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingCell.swift; sourceTree = "<group>"; };
+		2D0567B1226C7EF90014A92C /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		2D06D4782269DADC00C668FC /* PickImageMenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickImageMenueCell.swift; sourceTree = "<group>"; };
 		2D0AA89F226982D0009E88E0 /* ZFJWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFJWaveView.swift; sourceTree = "<group>"; };
 		2D11162E2259FC0300A64523 /* SimpleJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -510,6 +526,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		2D0567A2226C75D30014A92C /* CreateNewJournalPage */ = {
+			isa = PBXGroup;
+			children = (
+				2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */,
+				2D0567A3226C761F0014A92C /* TitleCell.swift */,
+				2D0567A5226C76360014A92C /* LocationCell.swift */,
+				2D0567A7226C76410014A92C /* MoodCell.swift */,
+				2D0567A9226C764B0014A92C /* WeatherCell.swift */,
+				2D0567AB226C76560014A92C /* TextCell.swift */,
+				2D0567AD226C765F0014A92C /* PicsCell.swift */,
+				2D0567AF226C76DC0014A92C /* RecordingCell.swift */,
+				2D0567B1226C7EF90014A92C /* DateCell.swift */,
+			);
+			path = CreateNewJournalPage;
+			sourceTree = "<group>";
+		};
 		2D1116252259FC0300A64523 = {
 			isa = PBXGroup;
 			children = (
@@ -593,13 +625,13 @@
 		2D80438B225F508E00557A3E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D0567A2226C75D30014A92C /* CreateNewJournalPage */,
 				2D70E7F9226847A60079D631 /* LaunchPage */,
 				2D70E7F8226847880079D631 /* ManagementPage */,
 				2D70E7F522683B040079D631 /* SettingPage */,
 				2D03A37D2265B55700718D7A /* HomePage */,
 				2D1116352259FC0300A64523 /* Main.storyboard */,
 				2DFF15DE226329DE00A70E33 /* MyTabBar.swift */,
-				2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -749,6 +781,7 @@
 				2D0AA8A0226982D0009E88E0 /* ZFJWaveView.swift in Sources */,
 				2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */,
 				2D04E6DE226C4B8300FA8638 /* UISegmentedControl+Extensions.swift in Sources */,
+				2D0567AC226C76560014A92C /* TextCell.swift in Sources */,
 				2D04E6DF226C4B8300FA8638 /* UITextField+Extensions.swift in Sources */,
 				2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */,
 				2D04E701226C4B8300FA8638 /* TextViewController.swift in Sources */,
@@ -766,6 +799,7 @@
 				2D04E6F5226C4B8300FA8638 /* Address.swift in Sources */,
 				2D04E6ED226C4B8300FA8638 /* LocaleStore.swift in Sources */,
 				2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */,
+				2D0567AA226C764B0014A92C /* WeatherCell.swift in Sources */,
 				2D04E6F4226C4B8300FA8638 /* SearchHistoryManager.swift in Sources */,
 				2D04E6F7226C4B8300FA8638 /* Assets.swift in Sources */,
 				2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */,
@@ -783,22 +817,27 @@
 				2D04E6F8226C4B8300FA8638 /* PhotoLibraryPickerViewController.swift in Sources */,
 				2D04E6EA226C4B8300FA8638 /* ItemWithImage.swift in Sources */,
 				2D04E705226C4B8300FA8638 /* SegmentedControl.swift in Sources */,
+				2D0567B2226C7EF90014A92C /* DateCell.swift in Sources */,
 				2D04E6DA226C4B8300FA8638 /* UIColor+Extensions.swift in Sources */,
 				2D04E702226C4B8300FA8638 /* Button.swift in Sources */,
+				2D0567A4226C761F0014A92C /* TitleCell.swift in Sources */,
 				2D04E6F1226C4B8300FA8638 /* PhoneCodeCell.swift in Sources */,
 				2D04E6FF226C4B8300FA8638 /* TwoTextFieldsViewController.swift in Sources */,
 				2D04E6F0226C4B8300FA8638 /* CurrencyCell.swift in Sources */,
 				2D04E6D3226C4B8300FA8638 /* Common+Extensions.swift in Sources */,
 				2D04E6D7226C4B8300FA8638 /* String+Extensions.swift in Sources */,
 				2D04E6E5226C4B8300FA8638 /* Contacts.swift in Sources */,
+				2D0567A6226C76360014A92C /* LocationCell.swift in Sources */,
 				2D04E680226C32B600FA8638 /* AppFile.swift in Sources */,
 				2D04E6D9226C4B8300FA8638 /* UIApplication+Extensions.swift in Sources */,
 				2D04E6E6226C4B8300FA8638 /* Contact.swift in Sources */,
+				2D0567A8226C76410014A92C /* MoodCell.swift in Sources */,
 				2D04E6D8226C4B8300FA8638 /* UIAlertController+Extensions.swift in Sources */,
 				2D04E6F2226C4B8300FA8638 /* LocationPickerViewController.swift in Sources */,
 				2D04E6E9226C4B8300FA8638 /* ImagePickerViewController.swift in Sources */,
 				2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */,
 				2D04E703226C4B8300FA8638 /* GradientSlider.swift in Sources */,
+				2D0567B0226C76DC0014A92C /* RecordingCell.swift in Sources */,
 				2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */,
 				2DFF15DF226329DE00A70E33 /* MyTabBar.swift in Sources */,
 				2D04E6E7226C4B8300FA8638 /* ContactCell.swift in Sources */,
@@ -813,6 +852,7 @@
 				2D04E6DB226C4B8300FA8638 /* UIImage+Extensions.swift in Sources */,
 				2D04E6D4226C4B8300FA8638 /* Date+Extension.swift in Sources */,
 				2D04E6FE226C4B8300FA8638 /* OneTextFieldViewController.swift in Sources */,
+				2D0567AE226C765F0014A92C /* PicsCell.swift in Sources */,
 				2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
