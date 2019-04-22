@@ -83,6 +83,8 @@
 		2D1116472259FC0600A64523 /* SimpleJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116462259FC0600A64523 /* SimpleJournalTests.swift */; };
 		2D1116522259FC0600A64523 /* SimpleJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */; };
 		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
+		2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */; };
+		2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D2682226DAC460011B435 /* AddPicsCell.swift */; };
 		2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC01939226B2FBD00D13585 /* ScreenInfo.swift */; };
 		2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0193B226B2FD300D13585 /* CircularTransition.swift */; };
 		2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D32263083800A70E33 /* JournalListScreen.swift */; };
@@ -193,6 +195,8 @@
 		2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleJournalUITests.swift; sourceTree = "<group>"; };
 		2D1116532259FC0600A64523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
+		2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetToUIImage.swift; sourceTree = "<group>"; };
+		2D7D2682226DAC460011B435 /* AddPicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicsCell.swift; sourceTree = "<group>"; };
 		2DC01939226B2FBD00D13585 /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		2DC0193B226B2FD300D13585 /* CircularTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		2DFF15D32263083800A70E33 /* JournalListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListScreen.swift; sourceTree = "<group>"; };
@@ -543,6 +547,7 @@
 				2D0567AD226C765F0014A92C /* PicsCell.swift */,
 				2D0567AF226C76DC0014A92C /* RecordingCell.swift */,
 				2D0567B1226C7EF90014A92C /* DateCell.swift */,
+				2D7D2682226DAC460011B435 /* AddPicsCell.swift */,
 			);
 			path = CreateNewJournalPage;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 		2D1116302259FC0300A64523 /* SimpleJournal */ = {
 			isa = PBXGroup;
 			children = (
+				2D7D267D226DA52A0011B435 /* Tool */,
 				2D04E681226C4B8300FA8638 /* PickerSource */,
 				2D00B7882265ECAE007A6097 /* Animation */,
 				2D0329A92264428F00425975 /* Extension */,
@@ -625,6 +631,14 @@
 				2D11163A2259FC0500A64523 /* LaunchScreen.storyboard */,
 			);
 			path = LaunchPage;
+			sourceTree = "<group>";
+		};
+		2D7D267D226DA52A0011B435 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 		2D80438B225F508E00557A3E /* View */ = {
@@ -804,6 +818,7 @@
 				2D04E6F3226C4B8300FA8638 /* LocationSearchResultsViewController.swift in Sources */,
 				2D04E6F5226C4B8300FA8638 /* Address.swift in Sources */,
 				2D04E6ED226C4B8300FA8638 /* LocaleStore.swift in Sources */,
+				2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */,
 				2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */,
 				2D0567AA226C764B0014A92C /* WeatherCell.swift in Sources */,
 				2D04E6F4226C4B8300FA8638 /* SearchHistoryManager.swift in Sources */,
@@ -814,6 +829,7 @@
 				2D04E6FA226C4B8300FA8638 /* PhotoLayout.swift in Sources */,
 				2D04E6E8226C4B8300FA8638 /* DatePickerViewController.swift in Sources */,
 				2D04E704226C4B8300FA8638 /* Label.swift in Sources */,
+				2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */,
 				2D04E6F9226C4B8300FA8638 /* PickerViewViewController.swift in Sources */,
 				2D04E6D2226C4B8300FA8638 /* Array+Extensions.swift in Sources */,
 				2D04E6FB226C4B8300FA8638 /* TelegramPickerViewController.swift in Sources */,

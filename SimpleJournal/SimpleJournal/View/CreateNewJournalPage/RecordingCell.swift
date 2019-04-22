@@ -9,7 +9,9 @@
 import UIKit
 
 class RecordingCell: UITableViewCell {
-
+    var ParentView:UIViewController? = nil
+    
+    @IBOutlet var ImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

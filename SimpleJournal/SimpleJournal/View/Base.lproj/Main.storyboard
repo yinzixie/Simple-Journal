@@ -34,6 +34,11 @@
                                     <action selector="ttt:" destination="f4d-Bh-N81" eventType="touchUpInside" id="Ksx-8e-uBX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jDo-Dp-0Fc">
+                                <rect key="frame" x="164" y="391" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZN-Qa-JKU">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -242,33 +247,58 @@
                                             <outlet property="TextDisplayField" destination="yuu-Lc-Jw4" id="pme-9S-uyc"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recordingCell" rowHeight="300" id="JiZ-k9-rec" customClass="RecordingCell" customModule="SimpleJournal" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecordingCell" rowHeight="300" id="JiZ-k9-rec" customClass="RecordingCell" customModule="SimpleJournal" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="721" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JiZ-k9-rec" id="fA4-lE-f0c">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="299.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-nM-Lon">
-                                                    <rect key="frame" x="67" y="34" width="240" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="572281" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-nM-Lon">
+                                                    <rect key="frame" x="10" y="10" width="355" height="279.66666666666669"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Qm1-nM-Lon" secondAttribute="trailing" constant="10" id="By2-1J-BWr"/>
+                                                <constraint firstItem="Qm1-nM-Lon" firstAttribute="top" secondItem="fA4-lE-f0c" secondAttribute="top" constant="10" id="TFD-IQ-GTu"/>
+                                                <constraint firstAttribute="bottom" secondItem="Qm1-nM-Lon" secondAttribute="bottom" constant="10" id="XrB-i7-YAM"/>
+                                                <constraint firstItem="Qm1-nM-Lon" firstAttribute="leading" secondItem="fA4-lE-f0c" secondAttribute="leading" constant="10" id="bMP-bB-220"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ImageView" destination="Qm1-nM-Lon" id="Xxq-Zb-x9C"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddPicsCell" id="ont-YI-v9k" customClass="AddPicsCell" customModule="SimpleJournal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1021" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ont-YI-v9k" id="DDd-Zz-lwX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="198" id="nWk-8V-hq4" customClass="PicsCell" customModule="SimpleJournal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1021" width="375" height="198"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PicsCell" rowHeight="198" id="nWk-8V-hq4" customClass="PicsCell" customModule="SimpleJournal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1065" width="375" height="198"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nWk-8V-hq4" id="d3m-wt-TAP">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="197.66666666666666"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Xw-hY-StD">
-                                                    <rect key="frame" x="67" y="34" width="240" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Xw-hY-StD">
+                                                    <rect key="frame" x="18" y="18" width="339" height="161.66666666666666"/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="8Xw-hY-StD" firstAttribute="top" secondItem="d3m-wt-TAP" secondAttribute="topMargin" constant="10" id="CKf-Z7-g6Z"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="8Xw-hY-StD" secondAttribute="trailing" constant="10" id="JMI-ig-k1D"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8Xw-hY-StD" secondAttribute="bottom" constant="10" id="UJO-im-TI4"/>
+                                                <constraint firstItem="8Xw-hY-StD" firstAttribute="leading" secondItem="d3m-wt-TAP" secondAttribute="leadingMargin" constant="10" id="V9h-U1-enU"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ImageView" destination="8Xw-hY-StD" id="PZe-1m-2VC"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -842,6 +872,7 @@
     </scenes>
     <resources>
         <image name="1" width="510" height="722"/>
+        <image name="572281" width="85.333335876464844" height="85.333335876464844"/>
         <image name="delete" width="166.66667175292969" height="166.66667175292969"/>
         <image name="icons8-分享-500" width="120" height="120"/>
         <image name="icons8-编辑-500" width="40" height="40"/>

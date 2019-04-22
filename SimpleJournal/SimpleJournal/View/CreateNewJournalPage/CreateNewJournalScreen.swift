@@ -10,6 +10,7 @@ import UIKit
 
 class CreateNewJournalScreen: UIViewController {
 
+    var pics: [UIImage] = [UIImage(imageLiteralResourceName: "snow")]
     
     @IBOutlet var TableView: UITableView!
     
@@ -47,6 +48,8 @@ class CreateNewJournalScreen: UIViewController {
         super.viewDidLoad()
        // TabelView.rowHeight = UITableView.automaticDimension
         // Do any additional setup after loading the view.
+        
+        
     }
     
 
@@ -73,7 +76,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         #warning("记得修改这里 table的元素数量")
-        return 6
+        return 8 + pics.count
     }
     
     //configure each cell
@@ -89,7 +92,6 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 TitleCell.ParentView = self
                 TitleCell.TitleDisplayButton.setTitle("Journal Title", for: .normal)
             }
-            
         }
         //Location
         else if (indexPath.row == 1) {
@@ -144,23 +146,73 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             if let TextCell = cell as? TextCell
             {
                 TextCell.ParentView = self
-                TextCell.TextDisplayField.delegate = self
-                //TextCell.height = 1000
-                print(TextCell.TextDisplayField.height)
+                TextCell.TextDisplayField.delegate = self //针对下面等扩展，监听输入
             }
             
         }
         //Recording
         else if(indexPath.row == 6) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "RecordingCell", for: indexPath) as! RecordingCell
             
+            // Configure the cell...
+            if let RecordingCell = cell as? RecordingCell
+            {
+                RecordingCell.ParentView = self
+                let TapController = UITapGestureRecognizer(target: self, action: #selector(startRecording))
+                RecordingCell.ImageView.addGestureRecognizer(TapController)
+            }
         }
         //pics
-        else if(indexPath.row == 6) {
+        else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "PicsCell", for: indexPath) as! PicsCell
             
+            // Configure the cell...
+            if let PicsCell = cell as? PicsCell
+            {
+                PicsCell.ParentView = self
+                let TapController = UITapGestureRecognizer(target: self, action: #selector(pickImages))
+                PicsCell.ImageView.addGestureRecognizer(TapController)
+                PicsCell.ImageView.isUserInteractionEnabled = true
+                PicsCell.ImageView.tag = indexPath.row
+                
+                var t = Int(indexPath.row) - 7
+                if(pics.count > 0 && t < pics.count) {
+                    print(indexPath.row)
+                    PicsCell.ImageView.image = pics[indexPath.row - 7]
+                }
+            }
         }
         
         return cell as! UITableViewCell
        
+    }
+    
+    @objc func pickImages() {
+        print("dsd")
+        let alert = UIAlertController(style: .actionSheet)
+        alert.addPhotoLibraryPicker(
+            flow: .vertical,
+            paging: true,
+            selection: .multiple(action: { images in
+                // action with selected image
+                for image in images{
+                    self.pics.append(PHAssetToImage.PHAssetToImage(asset: image)) //append(contentsOf: images)
+                    
+                    let indexPath = IndexPath(row:self.pics.count + 8 - 1, section: 0 )
+                    
+                    self.TableView.beginUpdates()
+                    self.TableView.insertRows(at: [indexPath], with: .automatic)
+                    self.TableView.endUpdates()
+            }
+                
+        }))
+        alert.addAction(title: "Cancel", style: .cancel)
+        self.present(alert, animated: true)
+    }
+    
+    @objc func startRecording() {
+        print("func")
+        
     }
     
 }

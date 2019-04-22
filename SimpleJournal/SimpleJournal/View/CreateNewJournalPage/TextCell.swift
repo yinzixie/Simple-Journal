@@ -18,9 +18,7 @@ class TextCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        //self.TextDisplayField.delegate = self
-       // let TapController = UITapGestureRecognizer(target: self, action: #selector(showText))
-      //  self.TextDisplayField.addGestureRecognizer(TapController)
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

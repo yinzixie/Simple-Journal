@@ -9,10 +9,15 @@
 import UIKit
 
 class PicsCell: UITableViewCell {
-
+    var ParentView:UIViewController? = nil
+    
+    @IBOutlet var ImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        //self.ImageView.delegate = self
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,4 +26,6 @@ class PicsCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    
 }
+
