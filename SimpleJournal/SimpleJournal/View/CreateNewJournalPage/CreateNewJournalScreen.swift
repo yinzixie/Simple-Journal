@@ -71,7 +71,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         #warning("记得修改这里 table的元素数量")
-        return 2
+        return 6
     }
     
     //configure each cell
@@ -101,23 +101,56 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             }
         }
         //Date
-        else if(indexPath.row == 1) {
+        else if(indexPath.row == 2) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "DateCell", for: indexPath) as! DateCell
             
+            // Configure the cell...
+            if let DateCell = cell as? DateCell
+            {
+                DateCell.ParentView = self
+                DateCell.YearDisplayButton.setTitle(String(DateInfo.currentYear()), for: .normal)
+                DateCell.DateDisplayButton.setTitle(DateInfo.dateToDateString(Date(), dateFormat: "MM-dd hh:mm:ss"), for: .normal)
+            }
         }
         //Moode
-        else if(indexPath.row == 2) {
-        
+        else if(indexPath.row == 3) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "MoodCell", for: indexPath) as! MoodCell
+            
+            // Configure the cell...
+            if let MoodCell = cell as? MoodCell
+            {
+               
+            }
+            
         }
         //Weather
-        else if(indexPath.row == 3) {
+        else if(indexPath.row == 4) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as! WeatherCell
+            
+            // Configure the cell...
+            if let WeatherCell = cell as? WeatherCell
+            {
+                
+            }
             
         }
         //Text
-        else if(indexPath.row == 4) {
+        else if(indexPath.row == 5) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "TextCell", for: indexPath) as! TextCell
+            
+            // Configure the cell...
+            if let TextCell = cell as? TextCell
+            {
+                
+            }
             
         }
-        //PRecording
-        else if(indexPath.row == 5) {
+        //Recording
+        else if(indexPath.row == 6) {
+            
+        }
+        //pics
+        else if(indexPath.row == 6) {
             
         }
         
