@@ -11,6 +11,8 @@ import UIKit
 class CreateNewJournalScreen: UIViewController {
 
     
+    @IBOutlet var TableView: UITableView!
+    
     @IBOutlet var test: UIButton!
     
     
@@ -43,7 +45,7 @@ class CreateNewJournalScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       // TabelView.rowHeight = UITableView.automaticDimension
         // Do any additional setup after loading the view.
     }
     
@@ -141,7 +143,10 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             // Configure the cell...
             if let TextCell = cell as? TextCell
             {
-                
+                TextCell.ParentView = self
+                TextCell.TextDisplayField.delegate = self
+                //TextCell.height = 1000
+                print(TextCell.TextDisplayField.height)
             }
             
         }
@@ -159,3 +164,14 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
 }
+
+extension CreateNewJournalScreen: UITextViewDelegate{
+    
+    //每次内容变化时，调用tableView的刷新方法
+    func textViewDidChange(_ textView: UITextView) {
+        //print("textViewDidChange")
+        TableView.beginUpdates()
+        TableView.endUpdates()
+    }
+}
+

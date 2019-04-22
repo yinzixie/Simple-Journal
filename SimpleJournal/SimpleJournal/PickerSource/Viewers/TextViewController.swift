@@ -24,7 +24,7 @@ final class TextViewerViewController: UIViewController {
     fileprivate var text: [AttributedTextBlock] = []
     
     fileprivate lazy var textView: UITextView = {
-        $0.isEditable = false
+        $0.isEditable = true
         $0.isSelectable = true
         $0.backgroundColor = nil
         return $0
