@@ -10,6 +10,9 @@ import UIKit
 
 class CreateNewJournalScreen: UIViewController {
     
+     var imagePicker = UIImagePickerController()
+    
+    
     public var EditMode:String!
     
     var pics: [UIImage] = []//[UIImage(imageLiteralResourceName: "snow")]
@@ -40,6 +43,21 @@ class CreateNewJournalScreen: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+       
+    }
+    
+    @IBAction func ttt(_ sender: Any) {
+      
+    
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+       // TabelView.rowHeight = UITableView.automaticDimension
+        // Do any additional setup after loading the view.
+        setMenuButtons()
+        
         // safe place to set the frame of button manually
         MenuButton.frame = CGRect(x:ButtonX ,y: ButtonY , width: 2*ButtonRadius, height: 2*ButtonRadius)
         MenuButton.layer.cornerRadius = CGFloat(ButtonRadius)
@@ -62,20 +80,6 @@ class CreateNewJournalScreen: UIViewController {
         AddPicsButton.center = MenuButton.center
         AddRecordingButton.center = MenuButton.center
         AddVideosButton.center = MenuButton.center
-    }
-    
-    @IBAction func ttt(_ sender: Any) {
-      
-    
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       // TabelView.rowHeight = UITableView.automaticDimension
-        // Do any additional setup after loading the view.
-        setMenuButtons()
-        
         
         
     }
@@ -128,6 +132,18 @@ class CreateNewJournalScreen: UIViewController {
     
     //show pics picker
     @objc func showPicsPicker(_ sender:UIButton) {
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
+            imagePicker.sourceType = .photoLibrary
+            // 打开图片选择器
+            present(imagePicker, animated: true, completion: nil)
+        }else {
+            #warning("如何显示具体的类型， 并弹出警告框")
+            print("Can't access ",imagePicker.sourceType)
+        }
        /* let alert = UIAlertController(style: .actionSheet)
         alert.addPhotoLibraryPicker(
             flow: .vertical,
@@ -209,8 +225,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             if let DateCell = cell as? DateCell
             {
                 DateCell.ParentView = self
-                DateCell.YearDisplayButton.setTitle(String(DateInfo.currentYear()), for: .normal)
-                DateCell.DateDisplayButton.setTitle(DateInfo.dateToDateString(Date(), dateFormat: "MM-dd hh:mm:ss"), for: .normal)
+                DateCell.DateTextField.text = DateInfo.dateToDateString(Date(), dateFormat: "MM-dd-yyyy hh:mm:ss")
             }
         }
         //Moode
@@ -323,7 +338,26 @@ extension CreateNewJournalScreen: UITextViewDelegate{
     }
 }
 
-
+extension CreateNewJournalScreen:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.pics.append(pickImage)
+            let indexPath = IndexPath(row:self.pics.count + 7 - 1, section: 0 )
+            
+            self.TableView.beginUpdates()
+            self.TableView.insertRows(at: [indexPath], with: .automatic)
+            self.TableView.endUpdates()
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
 
 
 

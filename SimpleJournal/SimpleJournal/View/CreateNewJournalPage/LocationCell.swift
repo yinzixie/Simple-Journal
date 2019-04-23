@@ -25,14 +25,6 @@ class LocationCell: UITableViewCell {
     }
 
     @IBAction func locationDisplayButton(_ sender: Any) {
-        let alert = UIAlertController(style: .actionSheet)
-        alert.addLocationPicker { location in
-            // action with location
-            self.LocationDisplayButton.setTitle(String(location!.address) , for: .normal)
-        }
-        alert.addAction(title: "Cancel", style: .cancel)
-    
-      
-        ParentView?.present(alert, animated: true)
     }
+       
 }

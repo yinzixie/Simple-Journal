@@ -107,47 +107,30 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="59.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGg-Pz-A0G">
-                                                    <rect key="frame" x="33" y="11" width="41" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGg-Pz-A0G">
+                                                    <rect key="frame" x="15" y="11" width="41" height="37.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gdM-PX-neu">
-                                                    <rect key="frame" x="109" y="7" width="62" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="Year">
-                                                        <color key="titleShadowColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="chooseYear:" destination="mu9-2h-QAp" eventType="touchUpInside" id="mj6-7c-2il"/>
-                                                    </connections>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dFs-be-Iuh">
-                                                    <rect key="frame" x="179" y="11" width="6" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VcW-Ho-ASz">
+                                                    <rect key="frame" x="56" y="15" width="309" height="30"/>
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4N-0M-L5T">
-                                                    <rect key="frame" x="202" y="7" width="158" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <state key="normal" title="Date">
-                                                        <color key="titleShadowColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="chooseDate:" destination="mu9-2h-QAp" eventType="touchUpInside" id="qAV-aF-cbR"/>
-                                                    </connections>
-                                                </button>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="bGg-Pz-A0G" firstAttribute="top" secondItem="9Uo-z4-2ce" secondAttribute="topMargin" id="235-7G-Bz1"/>
+                                                <constraint firstItem="bGg-Pz-A0G" firstAttribute="leading" secondItem="9Uo-z4-2ce" secondAttribute="leadingMargin" id="HeF-Nq-5wh"/>
+                                                <constraint firstAttribute="trailing" secondItem="VcW-Ho-ASz" secondAttribute="trailing" constant="10" id="RAg-GX-H4u"/>
+                                                <constraint firstItem="VcW-Ho-ASz" firstAttribute="leading" secondItem="bGg-Pz-A0G" secondAttribute="trailing" id="d7D-Vl-Iq4"/>
+                                                <constraint firstItem="bGg-Pz-A0G" firstAttribute="centerY" secondItem="9Uo-z4-2ce" secondAttribute="centerY" id="i4K-6N-3eg"/>
+                                                <constraint firstItem="VcW-Ho-ASz" firstAttribute="centerY" secondItem="9Uo-z4-2ce" secondAttribute="centerY" id="uKT-nk-bHF"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="DateDisplayButton" destination="M4N-0M-L5T" id="pWO-Ce-mHj"/>
-                                            <outlet property="YearDisplayButton" destination="gdM-PX-neu" id="6Bw-fM-reD"/>
+                                            <outlet property="DateTextField" destination="VcW-Ho-ASz" id="xJ3-Wf-hb1"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoodCell" rowHeight="60" id="kaD-Em-WYM" customClass="MoodCell" customModule="SimpleJournal" customModuleProvider="target">
@@ -235,7 +218,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="299.66666666666669"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="572281" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-nM-Lon">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-nM-Lon">
                                                     <rect key="frame" x="10" y="10" width="355" height="279.66666666666669"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
@@ -857,7 +840,6 @@
     </scenes>
     <resources>
         <image name="1" width="510" height="722"/>
-        <image name="572281" width="85.333335876464844" height="85.333335876464844"/>
         <image name="delete" width="166.66667175292969" height="166.66667175292969"/>
         <image name="icons8-分享-500" width="120" height="120"/>
         <image name="icons8-编辑-500" width="40" height="40"/>

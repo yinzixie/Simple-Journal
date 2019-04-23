@@ -22,6 +22,8 @@ class HomeScreen: UIViewController {
     let screenh = UIScreen.main.bounds.size.height
     let screenw = UIScreen.main.bounds.size.width
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(screenh, screenw)
