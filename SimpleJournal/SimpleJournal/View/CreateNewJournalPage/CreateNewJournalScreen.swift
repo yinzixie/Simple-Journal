@@ -235,7 +235,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             // Configure the cell...
             if let MoodCell = cell as? MoodCell
             {
-               
+               MoodCell.ParentView = self
             }
             
         }

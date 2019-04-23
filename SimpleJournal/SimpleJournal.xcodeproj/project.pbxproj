@@ -32,6 +32,8 @@
 		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
 		2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */; };
 		2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D2682226DAC460011B435 /* AddPicsCell.swift */; };
+		2D812715226EFBFC004BD665 /* MoodCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D812714226EFBFC004BD665 /* MoodCollectionCell.swift */; };
+		2D812718226EFD21004BD665 /* CollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D812717226EFD21004BD665 /* CollectionPage.swift */; };
 		2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC01939226B2FBD00D13585 /* ScreenInfo.swift */; };
 		2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0193B226B2FD300D13585 /* CircularTransition.swift */; };
 		2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D32263083800A70E33 /* JournalListScreen.swift */; };
@@ -91,6 +93,8 @@
 		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
 		2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetToUIImage.swift; sourceTree = "<group>"; };
 		2D7D2682226DAC460011B435 /* AddPicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicsCell.swift; sourceTree = "<group>"; };
+		2D812714226EFBFC004BD665 /* MoodCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCollectionCell.swift; sourceTree = "<group>"; };
+		2D812717226EFD21004BD665 /* CollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPage.swift; sourceTree = "<group>"; };
 		2DC01939226B2FBD00D13585 /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		2DC0193B226B2FD300D13585 /* CircularTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		2DFF15D32263083800A70E33 /* JournalListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListScreen.swift; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 		2D1116302259FC0300A64523 /* SimpleJournal */ = {
 			isa = PBXGroup;
 			children = (
+				2D812719226F1230004BD665 /* MoodPics */,
 				2D7D267D226DA52A0011B435 /* Tool */,
 				2D00B7882265ECAE007A6097 /* Animation */,
 				2D0329A92264428F00425975 /* Extension */,
@@ -261,6 +266,7 @@
 		2D80438B225F508E00557A3E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D812716226EFD03004BD665 /* CollectionViewPage */,
 				2D0567A2226C75D30014A92C /* CreateNewJournalPage */,
 				2D70E7F9226847A60079D631 /* LaunchPage */,
 				2D70E7F8226847880079D631 /* ManagementPage */,
@@ -270,6 +276,22 @@
 				2DFF15DE226329DE00A70E33 /* MyTabBar.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2D812716226EFD03004BD665 /* CollectionViewPage */ = {
+			isa = PBXGroup;
+			children = (
+				2D812714226EFBFC004BD665 /* MoodCollectionCell.swift */,
+				2D812717226EFD21004BD665 /* CollectionPage.swift */,
+			);
+			path = CollectionViewPage;
+			sourceTree = "<group>";
+		};
+		2D812719226F1230004BD665 /* MoodPics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MoodPics;
 			sourceTree = "<group>";
 		};
 		2DFF15D72263143D00A70E33 /* Core */ = {
@@ -420,6 +442,7 @@
 				2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */,
 				2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */,
 				2D1116342259FC0300A64523 /* ViewController.swift in Sources */,
+				2D812718226EFD21004BD665 /* CollectionPage.swift in Sources */,
 				2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */,
 				2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */,
 				2D0567AA226C764B0014A92C /* WeatherCell.swift in Sources */,
@@ -440,6 +463,7 @@
 				2D0925DC226D547400125150 /* DateInfo.swift in Sources */,
 				2D0808DF226D51E9005F6270 /* ExtensionDate.swift in Sources */,
 				2DFF15D92263145F00A70E33 /* Journal.swift in Sources */,
+				2D812715226EFBFC004BD665 /* MoodCollectionCell.swift in Sources */,
 				2D0567AE226C765F0014A92C /* PicsCell.swift in Sources */,
 				2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */,
 			);

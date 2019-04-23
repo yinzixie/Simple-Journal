@@ -9,7 +9,7 @@
 import UIKit
 
 class MoodCell: UITableViewCell {
-
+    var ParentView:UIViewController? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +20,11 @@ class MoodCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    @IBAction func showCollectionView(_ sender: Any) {
+        
+        //jump to admin page through segue"goToSettingScreen"
+       // ParentView?.performSegue(withIdentifier:"showSegue", sender: self)
+        
+    }
+    
 }
