@@ -12,10 +12,55 @@ class CreateNewJournalScreen: UIViewController {
 
     var pics: [UIImage] = [UIImage(imageLiteralResourceName: "snow")]
     
+    private let ButtonRadius = 25
+   
+    private let ButtonX = Int(screen.screenw) - (50) - 10
+    private let ButtonY = Int(screen.screenh) - 80
+    
+    private let OffSet = 90
+    private let SqrtOffSet = Int(sqrt(90*90/2))
+    
+    private var AddPicButtonCenter:CGPoint!
+    private var AddRecordingButtonCenter:CGPoint!
+    private var AddVideosButtonCenter:CGPoint!
+    
     @IBOutlet var TableView: UITableView!
     
     @IBOutlet var test: UIButton!
     
+    
+    let MenuButton = UIButton.init(type: .custom)
+    let AddPicsButton = UIButton.init(type: .custom)
+    let AddRecordingButton = UIButton.init(type: .custom)
+    let AddVideosButton = UIButton.init(type: .custom)
+    
+  
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // safe place to set the frame of button manually
+        MenuButton.frame = CGRect(x:ButtonX ,y: ButtonY , width: 2*ButtonRadius, height: 2*ButtonRadius)
+        MenuButton.layer.cornerRadius = CGFloat(ButtonRadius)
+        
+        AddPicsButton.frame = CGRect(x:ButtonX,y: ButtonY - OffSet, width: 2*ButtonRadius, height: 2*ButtonRadius)
+        AddPicsButton.layer.cornerRadius = CGFloat(ButtonRadius)
+        
+        AddRecordingButton.frame = CGRect(x:ButtonX - SqrtOffSet,y: ButtonY - SqrtOffSet, width: 2*ButtonRadius, height: 2*ButtonRadius)
+        AddRecordingButton.layer.cornerRadius = CGFloat(ButtonRadius)
+        
+        AddVideosButton.frame = CGRect(x:ButtonX - OffSet,y: ButtonY, width: 2*ButtonRadius, height: 2*ButtonRadius)
+        AddVideosButton.layer.cornerRadius = CGFloat(ButtonRadius)
+        
+        //save original center
+        AddPicButtonCenter = AddPicsButton.center
+        AddRecordingButtonCenter = AddRecordingButton.center
+        AddVideosButtonCenter = AddVideosButton.center
+        
+        //hide menu
+        AddPicsButton.center = MenuButton.center
+        AddRecordingButton.center = MenuButton.center
+        AddVideosButton.center = MenuButton.center
+    }
     
     @IBAction func ttt(_ sender: Any) {
       
@@ -48,8 +93,79 @@ class CreateNewJournalScreen: UIViewController {
         super.viewDidLoad()
        // TabelView.rowHeight = UITableView.automaticDimension
         // Do any additional setup after loading the view.
+        setMenuButtons()
         
         
+        
+    }
+    
+    //create center button(create a new journal) and add animation
+    private func setMenuButtons() {
+        //set background color
+        MenuButton.backgroundColor = .orange
+        
+        
+        //set image
+        MenuButton.setImage(UIImage(named:"moreMenu"), for:.normal)
+        AddPicsButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        AddRecordingButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        AddVideosButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        
+        //set trigger event
+        MenuButton.addTarget(self, action: #selector(self.showMoreButton), for: .touchUpInside)
+        AddPicsButton.addTarget(self, action: #selector(self.showPicsPicker), for: .touchUpInside)
+        
+        //add button to screen
+        self.view.insertSubview(MenuButton, aboveSubview: self.TableView)
+        self.view.insertSubview(AddPicsButton, aboveSubview: self.TableView)
+        self.view.insertSubview(AddRecordingButton, aboveSubview: self.TableView)
+        self.view.insertSubview(AddVideosButton, aboveSubview: self.TableView)
+    }
+    
+    //animation for more menu
+    @objc func showMoreButton(_ sender:UIButton) {
+        
+        if (sender.currentImage == UIImage(named:"moreMenu")) {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.AddPicsButton.center = self.AddPicButtonCenter
+                self.AddRecordingButton.center = self.AddRecordingButtonCenter
+                self.AddVideosButton.center = self.AddVideosButtonCenter
+            })
+            
+            sender.backgroundColor = .lightGray
+            sender.setImage(UIImage(named:"closeMoreMenu"), for: .normal)
+        }else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.AddPicsButton.center = self.MenuButton.center
+                self.AddRecordingButton.center = self.MenuButton.center
+                self.AddVideosButton.center = self.MenuButton.center
+            })
+            sender.backgroundColor = .orange
+            sender.setImage(UIImage(named:"moreMenu"), for: .normal)
+        }
+    }
+    
+    //show pics picker
+    @objc func showPicsPicker(_ sender:UIButton) {
+        let alert = UIAlertController(style: .actionSheet)
+        alert.addPhotoLibraryPicker(
+            flow: .vertical,
+            paging: true,
+            selection: .multiple(action: { images in
+                // action with selected image
+                for image in images{
+                    self.pics.append(PHAssetToImage.PHAssetToImage(asset: image)) //append(contentsOf: images)
+                    
+                    let indexPath = IndexPath(row:self.pics.count + 7 - 1, section: 0 )
+                    
+                    self.TableView.beginUpdates()
+                    self.TableView.insertRows(at: [indexPath], with: .automatic)
+                    self.TableView.endUpdates()
+                }
+                
+            }))
+        alert.addAction(title: "Cancel", style: .cancel)
+        self.present(alert, animated: true)
     }
     
 
@@ -176,8 +292,10 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 PicsCell.ImageView.tag = indexPath.row
                 
                 var t = Int(indexPath.row) - 7
+                print("now:",indexPath.row)
+                print(t)
                 if(pics.count > 0 && t < pics.count) {
-                    print(indexPath.row)
+                    print("pic:",pics.count)
                     PicsCell.ImageView.image = pics[indexPath.row - 7]
                 }
             }
@@ -187,27 +305,24 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
        
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if(indexPath.row <= 7) {
+            return false
+        }
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            pics.remove(at: indexPath.row - 7)
+            self.TableView.beginUpdates()
+            self.TableView.deleteRows(at: [indexPath], with: .automatic)
+            self.TableView.endUpdates()
+        }
+    }
+    
     @objc func pickImages() {
-        print("dsd")
-        let alert = UIAlertController(style: .actionSheet)
-        alert.addPhotoLibraryPicker(
-            flow: .vertical,
-            paging: true,
-            selection: .multiple(action: { images in
-                // action with selected image
-                for image in images{
-                    self.pics.append(PHAssetToImage.PHAssetToImage(asset: image)) //append(contentsOf: images)
-                    
-                    let indexPath = IndexPath(row:self.pics.count + 8 - 1, section: 0 )
-                    
-                    self.TableView.beginUpdates()
-                    self.TableView.insertRows(at: [indexPath], with: .automatic)
-                    self.TableView.endUpdates()
-            }
-                
-        }))
-        alert.addAction(title: "Cancel", style: .cancel)
-        self.present(alert, animated: true)
+       
     }
     
     @objc func startRecording() {
