@@ -9,15 +9,17 @@
 import UIKit
 
 class CreateNewJournalScreen: UIViewController {
-
-    var pics: [UIImage] = [UIImage(imageLiteralResourceName: "snow")]
     
-    private let ButtonRadius = 25
+    public var EditMode:String!
+    
+    var pics: [UIImage] = []//[UIImage(imageLiteralResourceName: "snow")]
+    
+    private let ButtonRadius = 25 //button 半径
    
     private let ButtonX = Int(screen.screenw) - (50) - 10
     private let ButtonY = Int(screen.screenh) - 80
     
-    private let OffSet = 90
+    private let OffSet = 90 //相对位置
     private let SqrtOffSet = Int(sqrt(90*90/2))
     
     private var AddPicButtonCenter:CGPoint!
@@ -64,28 +66,7 @@ class CreateNewJournalScreen: UIViewController {
     
     @IBAction func ttt(_ sender: Any) {
       
-        let alert = UIAlertController(style: .actionSheet)
-        alert.addLocationPicker { location in
-            // action with location
-        }
-        alert.addAction(title: "Cancel", style: .cancel)
-        self.present(alert, animated: true)
-     /*   let alertDate = UIAlertController(style: .actionSheet, title: "Select date")
-        alertDate.addDatePicker(mode: .date, date: Date(), minimumDate: nil, maximumDate: nil) { date in
-            // action with selected date
-        
-        }
-        alertDate.addAction(title: "OK", style: .cancel)
-        
-       
-        self.present(alertDate, animated: true)
-        
-        let alertTime = UIAlertController(style: .actionSheet, title: "Select time")
-        alertTime.addDatePicker(mode: .time, date: Date(), minimumDate: nil, maximumDate: nil) { date in
-            // action with selected date
-        }
-        alertTime.addAction(title: "OK", style: .cancel)
-        self.present(alertTime, animated: true)*/
+    
         
     }
     
@@ -147,7 +128,7 @@ class CreateNewJournalScreen: UIViewController {
     
     //show pics picker
     @objc func showPicsPicker(_ sender:UIButton) {
-        let alert = UIAlertController(style: .actionSheet)
+       /* let alert = UIAlertController(style: .actionSheet)
         alert.addPhotoLibraryPicker(
             flow: .vertical,
             paging: true,
@@ -165,7 +146,7 @@ class CreateNewJournalScreen: UIViewController {
                 
             }))
         alert.addAction(title: "Cancel", style: .cancel)
-        self.present(alert, animated: true)
+        self.present(alert, animated: true)*/
     }
     
 
@@ -192,7 +173,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         #warning("记得修改这里 table的元素数量")
-        return 8 + pics.count
+        return 7 + pics.count
     }
     
     //configure each cell
@@ -206,7 +187,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             if let TitleCell = cell as? TitleCell
             {
                 TitleCell.ParentView = self
-                TitleCell.TitleDisplayButton.setTitle("Journal Title", for: .normal)
+                TitleCell.TitleTextFiled.text = "Journal Title"
             }
         }
         //Location
@@ -291,10 +272,10 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 PicsCell.ImageView.isUserInteractionEnabled = true
                 PicsCell.ImageView.tag = indexPath.row
                 
-                var t = Int(indexPath.row) - 7
-                print("now:",indexPath.row)
-                print(t)
-                if(pics.count > 0 && t < pics.count) {
+                let EedgeNum = Int(indexPath.row) - 7
+                //print("now:",indexPath.row)
+                //print(t)
+                if(pics.count > 0 && EedgeNum < pics.count) {
                     print("pic:",pics.count)
                     PicsCell.ImageView.image = pics[indexPath.row - 7]
                 }
@@ -306,7 +287,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if(indexPath.row <= 7) {
+        if(indexPath.row <= 6) {
             return false
         }
         return true
@@ -341,4 +322,9 @@ extension CreateNewJournalScreen: UITextViewDelegate{
         TableView.endUpdates()
     }
 }
+
+
+
+
+
 

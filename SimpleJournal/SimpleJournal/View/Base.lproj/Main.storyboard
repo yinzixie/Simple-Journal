@@ -43,29 +43,23 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyT-Xq-oa1">
-                                                    <rect key="frame" x="73" y="15.333333333333336" width="297" height="29"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" name="HiraMaruProN-W4" family="Hiragino Maru Gothic ProN" pointSize="17"/>
-                                                    <state key="normal" title="Journal Title">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="titleShadowColor" red="0.43529412150000002" green="0.4431372583" blue="0.47450980539999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="showTextField:" destination="rPJ-yD-CkE" eventType="touchUpInside" id="UYz-q0-mZn"/>
-                                                    </connections>
-                                                </button>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3e7-2N-Gw4">
+                                                    <rect key="frame" x="63" y="15" width="287" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="gqO-3n-qau" firstAttribute="leading" secondItem="y7I-6c-aWe" secondAttribute="leading" constant="15" id="AVk-du-UBy"/>
                                                 <constraint firstItem="gqO-3n-qau" firstAttribute="centerY" secondItem="y7I-6c-aWe" secondAttribute="centerY" id="Mh6-wD-SzG"/>
-                                                <constraint firstAttribute="trailing" secondItem="IyT-Xq-oa1" secondAttribute="trailing" constant="5" id="Zej-CF-mpQ"/>
-                                                <constraint firstItem="IyT-Xq-oa1" firstAttribute="centerY" secondItem="y7I-6c-aWe" secondAttribute="centerY" id="hsV-tJ-bx2"/>
-                                                <constraint firstItem="IyT-Xq-oa1" firstAttribute="leading" secondItem="gqO-3n-qau" secondAttribute="trailing" constant="20" id="qDr-2t-PPW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="3e7-2N-Gw4" secondAttribute="trailing" constant="10" id="XyW-bJ-UC0"/>
+                                                <constraint firstItem="3e7-2N-Gw4" firstAttribute="centerY" secondItem="gqO-3n-qau" secondAttribute="centerY" id="YTK-vJ-Dj8"/>
+                                                <constraint firstItem="3e7-2N-Gw4" firstAttribute="leading" secondItem="gqO-3n-qau" secondAttribute="trailing" constant="10" id="Yee-uZ-XeI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="TitleDisplayButton" destination="IyT-Xq-oa1" id="oz1-d5-cMY"/>
+                                            <outlet property="TitleTextFiled" destination="3e7-2N-Gw4" id="EYT-fF-vba"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="60" id="bmt-4m-vLO" customClass="LocationCell" customModule="SimpleJournal" customModuleProvider="target">
@@ -290,7 +284,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cw-pu-yup">
-                                <rect key="frame" x="172" y="60" width="30" height="30"/>
+                                <rect key="frame" x="314" y="60" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Test"/>
                                 <connections>
