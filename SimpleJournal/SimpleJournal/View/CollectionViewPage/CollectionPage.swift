@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol PassBackData {
+    func setMood(mood:String)
+}
+
 class CollectionPage: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    var passData: PassBackData?
+    var mood: String?
     
     let Moods = ["sad","embarrassed","rich","sad","embarrassed","rich"]
     
@@ -52,9 +59,8 @@ class CollectionPage: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.backgroundColor = UIColor.gray.cgColor
-        //cell?.layer.borderWidth = 2
-        //cell?.layer.borderColor = UIColor.gray.cgColor
         
+        self.mood = Moods[indexPath.item]
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -62,6 +68,10 @@ class CollectionPage: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell?.layer.borderWidth = 0
         cell?.layer.backgroundColor = UIColor.white.cgColor
         //cell?.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    @IBAction func saveAndBack(_ sender: Any) {
+        passData?.setMood(mood:mood!)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

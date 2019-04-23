@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nyp-7X-e6k">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0y8-yl-zZ4">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -156,7 +156,6 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="showCollectionView:" destination="kaD-Em-WYM" eventType="touchUpInside" id="7aE-lW-RGb"/>
-                                                        <segue destination="Nyp-7X-e6k" kind="showDetail" id="Ph2-Hh-Ufe"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -271,11 +270,11 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cw-pu-yup">
-                                <rect key="frame" x="314" y="60" width="30" height="30"/>
+                                <rect key="frame" x="312" y="60" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Test"/>
+                                <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="ttt:" destination="f4d-Bh-N81" eventType="touchUpInside" id="Ksx-8e-uBX"/>
+                                    <action selector="saveJournal:" destination="f4d-Bh-N81" eventType="touchUpInside" id="7bX-H6-XYw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -289,9 +288,10 @@
                         <viewLayoutGuide key="safeArea" id="bTY-uP-OeU"/>
                     </view>
                     <connections>
+                        <outlet property="SaveButton" destination="5cw-pu-yup" id="J0w-HD-uU9"/>
                         <outlet property="TableView" destination="HZN-Qa-JKU" id="P9n-pE-sDP"/>
-                        <outlet property="test" destination="5cw-pu-yup" id="ZYR-x8-b79"/>
                         <segue destination="0y8-yl-zZ4" kind="show" identifier="BackToTabView" id="9ga-dO-Z2N"/>
+                        <segue destination="Nyp-7X-e6k" kind="showDetail" identifier="showMoodCollection" id="2WW-oT-r30"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBW-RG-w8a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,7 +307,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AMS-Hc-j4O">
-                                <rect key="frame" x="5" y="44" width="365" height="734"/>
+                                <rect key="frame" x="5" y="94" width="365" height="684"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="UDl-V5-n2f">
                                     <size key="itemSize" width="87" height="76"/>
@@ -358,11 +358,25 @@
                                     <outlet property="delegate" destination="Nyp-7X-e6k" id="bRd-Sf-wnO"/>
                                 </connections>
                             </collectionView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V8K-IN-oGA">
+                                <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Mood" id="A5R-qQ-ASK">
+                                        <barButtonItem key="leftBarButtonItem" title="back" id="AbU-B7-4gj"/>
+                                        <barButtonItem key="rightBarButtonItem" title="save" id="iCF-5k-dXS">
+                                            <connections>
+                                                <action selector="saveAndBack:" destination="Nyp-7X-e6k" id="l4D-jL-hTu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BhQ-Yu-s2s" firstAttribute="trailing" secondItem="AMS-Hc-j4O" secondAttribute="trailing" constant="5" id="05d-0h-Q9P"/>
-                            <constraint firstItem="AMS-Hc-j4O" firstAttribute="top" secondItem="BhQ-Yu-s2s" secondAttribute="top" id="Vrm-Bb-AZw"/>
+                            <constraint firstItem="AMS-Hc-j4O" firstAttribute="top" secondItem="BhQ-Yu-s2s" secondAttribute="top" constant="50" id="Vrm-Bb-AZw"/>
                             <constraint firstItem="AMS-Hc-j4O" firstAttribute="leading" secondItem="BhQ-Yu-s2s" secondAttribute="leading" constant="5" id="cqm-LW-saY"/>
                             <constraint firstItem="BhQ-Yu-s2s" firstAttribute="bottom" secondItem="AMS-Hc-j4O" secondAttribute="bottom" id="dR4-EG-1MJ"/>
                         </constraints>
@@ -371,7 +385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fM9-S4-ii9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669.5999999999999" y="85.714285714285722"/>
+            <point key="canvasLocation" x="2623" y="-468"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="jae-Rn-Xp6">
@@ -926,7 +940,6 @@
         <image name="tabbar_me" width="22.666666030883789" height="22.666666030883789"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FXP-lI-8be"/>
         <segue reference="9ga-dO-Z2N"/>
     </inferredMetricsTieBreakers>
 </document>

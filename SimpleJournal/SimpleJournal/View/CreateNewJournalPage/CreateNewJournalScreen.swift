@@ -8,14 +8,25 @@
 
 import UIKit
 
-class CreateNewJournalScreen: UIViewController {
+
+
+
+class CreateNewJournalScreen: UIViewController, PassBackData, PassDate {
     
-     var imagePicker = UIImagePickerController()
+    var imagePicker = UIImagePickerController()
+    
     
     
     public var EditMode:String!
     
     var pics: [UIImage] = []//[UIImage(imageLiteralResourceName: "snow")]
+    
+    var saveTitle: String?
+    var saveDate: Date?
+    var saveLocation:String?
+    var saveMood: String?
+    var saveWeather: String?
+    var saveText: String?
     
     private let ButtonRadius = 25 //button 半径
    
@@ -31,7 +42,7 @@ class CreateNewJournalScreen: UIViewController {
     
     @IBOutlet var TableView: UITableView!
     
-    @IBOutlet var test: UIButton!
+    @IBOutlet var SaveButton: UIButton!
     
     
     let MenuButton = UIButton.init(type: .custom)
@@ -46,10 +57,8 @@ class CreateNewJournalScreen: UIViewController {
        
     }
     
-    @IBAction func ttt(_ sender: Any) {
-      
-    
-        
+    @IBAction func saveJournal(_ sender: Any) {
+       
     }
     
     override func viewDidLoad() {
@@ -173,15 +182,24 @@ class CreateNewJournalScreen: UIViewController {
         //jump to admin page through segue"BackToTabView"
        // self.performSegue(withIdentifier:"BackToTabView", sender: self)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+   
+    func setMood(mood:String) {
+        print(mood)
     }
-    */
+    
+    func passDate(date: Date) {
+        saveDate = date
+        print(saveDate)
+        print("ddsd")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showMoodCollection") {
+            var vc = segue.destination as! CollectionPage
+            vc.mood = "happy"
+            vc.passData = self
+        }
+    }
 
 }
 
@@ -225,6 +243,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             if let DateCell = cell as? DateCell
             {
                 DateCell.ParentView = self
+                DateCell.passDate = self
                 DateCell.DateTextField.text = DateInfo.dateToDateString(Date(), dateFormat: "MM-dd-yyyy hh:mm:ss")
             }
         }

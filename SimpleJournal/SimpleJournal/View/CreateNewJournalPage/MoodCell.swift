@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoodCell: UITableViewCell {
+class MoodCell: UITableViewCell{
     var ParentView:UIViewController? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +23,12 @@ class MoodCell: UITableViewCell {
     @IBAction func showCollectionView(_ sender: Any) {
         
         //jump to admin page through segue"goToSettingScreen"
-       // ParentView?.performSegue(withIdentifier:"showSegue", sender: self)
+        ParentView?.performSegue(withIdentifier:"showMoodCollection", sender: self)
         
     }
+    
+  /*  func setMood(mood: String) {
+        print("this is ",mood)
+    }*/
     
 }
