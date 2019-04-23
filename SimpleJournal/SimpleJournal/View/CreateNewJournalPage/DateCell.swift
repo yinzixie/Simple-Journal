@@ -8,15 +8,29 @@
 
 import UIKit
 
+protocol PassDate {
+    func passDate(date: Date)
+}
 class DateCell: UITableViewCell {
     
     var ParentView:UIViewController? = nil
-    @IBOutlet var YearDisplayButton: UIButton!
-    @IBOutlet var DateDisplayButton: UIButton!
+  
+    var passDate: PassDate?
+    
+    @IBOutlet var DateTextField: UITextField!
+    
+    var datePicker: UIDatePicker?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        datePicker  = UIDatePicker()
+        datePicker?.datePickerMode = .dateAndTime
+        datePicker?.addTarget(self, action: #selector(self.dateChanged(dataPicker:)), for: .valueChanged)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(TextTap(gestureRecognizer:)))
+        ParentView?.view.addGestureRecognizer(tapGesture)
+        DateTextField.inputView = datePicker
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,28 +39,19 @@ class DateCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    @IBAction func chooseYear(_ sender: Any) {
-        let alert = UIAlertController(style: .actionSheet, title: "Year", message: "Choose Year")
+    @objc func dateChanged(dataPicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/YYYY HH:mm:ss"
         
-        let YearRange = [Int](1980...2200)
-        let pickerViewValues: [[String]] = [YearRange.map { Int($0).description }]
-        let pickerViewSelectedValue: PickerViewViewController.Index = (column: 0, row: YearRange.index(of: DateInfo.currentYear()) ?? 0)
+        DateTextField.text = dateFormatter.string(from: datePicker!.date)
         
-        alert.addPickerView(values: pickerViewValues, initialSelection: pickerViewSelectedValue) { vc, picker, index, values in
-            self.YearDisplayButton.setTitle(String(YearRange[index.row]), for: .normal)
-        }
-        alert.addAction(title: "Done", style: .cancel)
-        ParentView?.present(alert, animated: true)
-        
+        passDate?.passDate(date: datePicker!.date)
+        print("select")
+        ParentView?.view.endEditing(true)
     }
     
-    @IBAction func chooseDate(_ sender: Any) {
-        let alert = UIAlertController(style: .actionSheet, title: "Select date")
-        alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: nil, maximumDate: nil) {date in
-            // action with selected date
-            self.DateDisplayButton.setTitle(DateInfo.dateToDateString(date, dateFormat: "MM-dd hh:mm:ss"), for: .normal)
-        }
-        alert.addAction(title: "OK", style: .cancel)
-        ParentView?.present(alert, animated: true)
+    @objc func TextTap(gestureRecognizer: UITapGestureRecognizer) {
+        
+         ParentView?.view.endEditing(true)
     }
 }

@@ -1,17 +1,16 @@
 //
-//  TitleCell.swift
+//  AddPicsCell.swift
 //  SimpleJournal
 //
-//  Created by yinzixie on 21/4/19.
+//  Created by yinzixie on 22/4/19.
 //  Copyright © 2019 UTAS. All rights reserved.
 //
 
 import UIKit
 
-class TitleCell: UITableViewCell {
+class AddPicsCell: UITableViewCell {
     var ParentView:UIViewController? = nil
-    
-    @IBOutlet var TitleTextFiled: UITextField!
+    @IBOutlet var AddPicsButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +23,7 @@ class TitleCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-  
+    @IBAction func AddPics(_ sender: Any) {
+        
+    }
 }
