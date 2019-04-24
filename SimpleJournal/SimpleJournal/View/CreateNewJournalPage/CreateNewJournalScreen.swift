@@ -13,14 +13,13 @@ import UIKit
 
 class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, PassWeatherDate {
     
+    var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
+    
     var imagePicker = UIImagePickerController()
     
     var journal = Journal()
     
     public var EditMode:String!
-    
-    var pics: [UIImage] = []//[UIImage(imageLiteralResourceName: "snow")]
-    
     
     private let ButtonRadius = 25 //button 半径
    
@@ -48,10 +47,6 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-       
-    }
-    
-    @IBAction func saveJournal(_ sender: Any) {
        
     }
     
@@ -172,6 +167,8 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
 
     @IBAction func BackToTabView(_ sender: Any) {
         
+        #warning("弹出确认窗口")
+        
         self.dismiss(animated: true, completion: nil)
        
         //jump to admin page through segue"BackToTabView"
@@ -211,6 +208,27 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
             vc.passWeatherDate = self
         }
     }
+    
+    @IBAction func saveJournal(_ sender: Any) {
+        
+        if(EditMode == "Create") {
+            
+            //if()
+            
+            
+            if(database.insertJournal(journal: journal)) {
+                database.insertPic(journal:journal)
+                self.dismiss(animated: true, completion: nil)
+                #warning("弹出窗口提示")
+            }
+            else {
+                #warning("弹出窗口")
+                print("error!can't create journal")
+            }
+        }else if(EditMode == "Edit"){
+            
+        }
+    }
 
 }
 
@@ -218,7 +236,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         #warning("记得修改这里 table的元素数量")
-        return 7 + pics.count
+        return 7 + journal.PicsList.count
     }
     
     //configure each cell
@@ -234,6 +252,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 TitleCell.TitleTextField.delegate = self //针对下面等扩展，监听输入
                 TitleCell.ParentView = self
                 TitleCell.TitleTextField.tag = 0
+                
             }
         }
             
@@ -247,6 +266,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 DateCell.ParentView = self
                 DateCell.passDate = self
                 DateCell.DateTextField.text = DateInfo.dateToDateString(Date(), dateFormat: "yyyy-MM-dd  HH:mm:ss")
+               // DateCell.isUserInteractionEnabled = false
             }
         }
             
@@ -260,6 +280,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 LocationCell.ParentView = self
                 LocationCell.LocationTextField.delegate = self //针对下面等扩展，监听输入
                 LocationCell.LocationTextField.tag = 2
+               // LocationCell.isUserInteractionEnabled = false
             }
         }
         
@@ -272,6 +293,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             {
                 MoodCell.ParentView = self
                 MoodCell.MoodImageView.image = UIImage(named:journal.Mood)
+                //MoodCell.isUserInteractionEnabled = false
             }
             
         }
@@ -284,6 +306,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             {
                 WeatherCell.ParentView = self
                 WeatherCell.WeatherImageView.image = UIImage(named:journal.Weather)
+                //WeatherCell.isUserInteractionEnabled = false
             }
             
         }
@@ -327,9 +350,8 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 let EedgeNum = Int(indexPath.row) - 7
                 //print("now:",indexPath.row)
                 //print(t)
-                if(pics.count > 0 && EedgeNum < pics.count) {
-                    print("pic:",pics.count)
-                    PicsCell.ImageView.image = pics[indexPath.row - 7]
+                if(journal.PicsList.count > 0 && EedgeNum < journal.PicsList.count) {
+                    PicsCell.ImageView.image = journal.PicsList[indexPath.row - 7]
                 }
             }
         }
@@ -347,7 +369,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            pics.remove(at: indexPath.row - 7)
+            journal.PicsList.remove(at: indexPath.row - 7)
             self.TableView.beginUpdates()
             self.TableView.deleteRows(at: [indexPath], with: .automatic)
             self.TableView.endUpdates()
@@ -366,28 +388,26 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension CreateNewJournalScreen: UITextViewDelegate{
-    
-    //每次内容变化时，调用tableView的刷新方法
+    //textview每次内容变化时，调用tableView的刷新方法
     func textViewDidChange(_ textView: UITextView) {
-        //print("textViewDidChange")
         TableView.beginUpdates()
         TableView.endUpdates()
-        print(textView.text)
+        journal.TextContent = textView.text
     }
 }
 
 extension CreateNewJournalScreen: UITextFieldDelegate{
     //每次内容变化时返回title location
     func textFieldDidEndEditing(_ textField: UITextField) {
+        //title
         if (textField.tag == 0) {
-            print(textField.text)
+            journal.Title = textField.text
         }
+        //location
         else if (textField.tag == 2) {
-            print(textField.text)
+            journal.Location = textField.text
         }
-        
     }
-    
 }
 
 
@@ -401,8 +421,8 @@ extension CreateNewJournalScreen:UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let pickImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            self.pics.append(pickImage)
-            let indexPath = IndexPath(row:self.pics.count + 7 - 1, section: 0 )
+            journal.PicsList.append(pickImage)
+            let indexPath = IndexPath(row:journal.PicsList.count + 7 - 1, section: 0 )
             
             self.TableView.beginUpdates()
             self.TableView.insertRows(at: [indexPath], with: .automatic)

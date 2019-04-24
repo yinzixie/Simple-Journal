@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AppFile {
+public class AppFile {
     // 获得沙盒的根路径
     static let Home = NSHomeDirectory() as NSString;
     
@@ -60,14 +60,15 @@ class AppFile {
     }
     
     //保存图片至沙盒 1heighest-100lowest
-    private func saveImage(currentImage: UIImage, persent: CGFloat, imageName: String){
+    class func saveImage(currentImage: UIImage, persent: CGFloat, imageName: String){
         if let imageData = currentImage.jpegData(compressionQuality:persent) as NSData? {
-            let fullPath = NSHomeDirectory().appending("/Documents/").appending(imageName)
+            let fullPath = AppFile.ImagesFolderFullPath.appending(imageName)
             imageData.write(toFile: fullPath, atomically: true)
             print("fullPath=\(fullPath)")
         }
     }
     
+    //save head photo
     class func saveHeadPhoto(image:UIImage) {
         if let imageData = image.jpegData(compressionQuality:1) as NSData? {
             let fullPath = HeadPhotoFullPath

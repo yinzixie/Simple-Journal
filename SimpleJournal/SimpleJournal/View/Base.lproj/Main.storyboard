@@ -19,14 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bI3-YK-hok">
-                                <rect key="frame" x="38" y="60" width="46" height="30"/>
+                                <rect key="frame" x="37" y="60" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Cancle">
+                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="BackToTabView:" destination="f4d-Bh-N81" eventType="touchUpInside" id="Ci0-Vx-Ngd"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZN-Qa-JKU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZN-Qa-JKU">
                                 <rect key="frame" x="0.0" y="88" width="375" height="724"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -70,7 +72,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bGg-Pz-A0G">
-                                                    <rect key="frame" x="30" y="11" width="41" height="37.666666666666664"/>
+                                                    <rect key="frame" x="30" y="11" width="41" height="38"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -282,7 +284,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cw-pu-yup">
                                 <rect key="frame" x="312" y="60" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Save"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" red="0.87670012949999998" green="0.20749296910000001" blue="0.16507621820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="saveJournal:" destination="f4d-Bh-N81" eventType="touchUpInside" id="7bX-H6-XYw"/>
                                 </connections>
@@ -450,15 +454,6 @@
                                                     <color key="textColor" red="0.87670012949999998" green="0.20749296910000001" blue="0.16507621820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcZ-NI-FPB">
-                                                    <rect key="frame" x="37" y="66" width="301" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="zKt-Yd-QTe"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel to china" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="5CL-ej-BIE">
                                                     <rect key="frame" x="107" y="21" width="243" height="22"/>
                                                     <constraints>
@@ -483,15 +478,23 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="icons8-分享-500"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcZ-NI-FPB">
+                                                    <rect key="frame" x="35.666666666666664" y="60" width="34.999999999999993" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="zKt-Yd-QTe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="YhG-qm-ERP" firstAttribute="leading" secondItem="LUj-yk-KQN" secondAttribute="leadingMargin" constant="8" id="CFf-3j-BdJ"/>
+                                                <constraint firstItem="OcZ-NI-FPB" firstAttribute="centerX" secondItem="YhG-qm-ERP" secondAttribute="centerX" id="HDA-0J-VDz"/>
                                                 <constraint firstItem="YhG-qm-ERP" firstAttribute="top" secondItem="LUj-yk-KQN" secondAttribute="topMargin" id="LEd-gb-qgI"/>
                                                 <constraint firstItem="5CL-ej-BIE" firstAttribute="top" secondItem="LUj-yk-KQN" secondAttribute="topMargin" constant="10" id="M0F-mI-aFu"/>
-                                                <constraint firstItem="OcZ-NI-FPB" firstAttribute="top" secondItem="LUj-yk-KQN" secondAttribute="topMargin" constant="55" id="X55-Qp-uc1"/>
-                                                <constraint firstItem="OcZ-NI-FPB" firstAttribute="leading" secondItem="LUj-yk-KQN" secondAttribute="leadingMargin" constant="22" id="dEe-Go-fPx"/>
-                                                <constraint firstItem="OcZ-NI-FPB" firstAttribute="centerX" secondItem="LUj-yk-KQN" secondAttribute="centerX" id="eU1-8n-TpO"/>
                                                 <constraint firstItem="ioL-KK-lXC" firstAttribute="top" secondItem="LUj-yk-KQN" secondAttribute="top" constant="42" id="f5y-q1-pEw"/>
+                                                <constraint firstItem="OcZ-NI-FPB" firstAttribute="top" secondItem="LUj-yk-KQN" secondAttribute="top" constant="60" id="iLX-9e-jaC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ioL-KK-lXC" secondAttribute="trailing" constant="50" id="jcD-pl-Vte"/>
                                                 <constraint firstItem="5CL-ej-BIE" firstAttribute="leading" secondItem="YhG-qm-ERP" secondAttribute="trailing" constant="24" id="kFe-2Y-kfb"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="5CL-ej-BIE" secondAttribute="trailing" constant="10" id="rUT-xe-8a2"/>
@@ -595,7 +598,11 @@
                     <connections>
                         <outlet property="HeadPhoto" destination="cts-4z-kWF" id="K4Z-yf-Vto"/>
                         <outlet property="HomeTable" destination="DEy-Sc-whP" id="QMi-cK-0nU"/>
+                        <outlet property="SharedLabel" destination="gSt-Y0-xGB" id="Eew-7d-7CI"/>
+                        <outlet property="TodayPostLabel" destination="qfE-uk-bhu" id="IWx-AT-vKk"/>
+                        <outlet property="TotalyPostLabel" destination="I2V-uT-xzW" id="OTJ-GQ-Htd"/>
                         <outlet property="UserName" destination="LBF-3x-r6q" id="Q8K-83-gRd"/>
+                        <segue destination="f4d-Bh-N81" kind="showDetail" identifier="goToEditJournalSegue" id="wJD-lk-3IK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPg-ug-ikk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1041,5 +1048,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="9ga-dO-Z2N"/>
+        <segue reference="wJD-lk-3IK"/>
     </inferredMetricsTieBreakers>
 </document>

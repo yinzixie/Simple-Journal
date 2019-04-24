@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 
 class Journal {
+    static let MonthString = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
+    
+    
     var ID:String!
     var Title:String!
     
@@ -26,7 +29,7 @@ class Journal {
     var TextContent:String!
     
     var PicsTableID:String!
-    var PicsList:[UIImage]?
+    var PicsList:[UIImage] = []
     
     init() {
         ID = DateInfo.dateToDateString(Date(), dateFormat:"yyyyMMddHHmmss")//generate by date

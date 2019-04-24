@@ -10,38 +10,63 @@ import UIKit
 
 class HomeScreen: UIViewController {
 
+    var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
+    
+    var journals:[Journal] = JournalListCache.JournalList
+    
     @IBOutlet var HeadPhoto: UIImageView!
     @IBOutlet var UserName: UILabel!
-    
-
-    
     @IBOutlet var HomeTable: UITableView!
+    @IBOutlet var TotalyPostLabel: UILabel!
+    @IBOutlet var SharedLabel: UILabel!
+    @IBOutlet var TodayPostLabel: UILabel!
     
-    
-    
-    let screenh = UIScreen.main.bounds.size.height
-    let screenw = UIScreen.main.bounds.size.width
-    
-
+    lazy var refresher: UIRefreshControl = {
+        let refreshController = UIRefreshControl()
+        refreshController.tintColor = .red
+        refreshController.addTarget(self, action: #selector(refreshDown), for: .valueChanged) // 添加事件
+        return refreshController
+    }()
+  
+    @objc func refreshDown(){
+        let indexPath = IndexPath(row:journals.count,section: 0)
+        journals = database.selectAllJournal()
+        //refresh label
+        setLabel()
+        //refresh table
+        HomeTable.beginUpdates()
+        if(indexPath.row < journals.count){
+            HomeTable.insertRows(at: [indexPath], with: .automatic)
+        }
+        HomeTable.reloadData()
+        HomeTable.endUpdates()
+        refresher.endRefreshing()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(screenh, screenw)
        
-       
-        
-        
         // Do any additional setup after loading the view.
-        
         setHeadPhoto()
+        
+        //get journals from db
+        journals = database.selectAllJournal()
+        
+        //set label
+        setLabel()
+        
+        HomeTable.refreshControl = refresher
+       // refreshAction.attributedTitle = NSAttributedString.init(string: "正在下拉刷新")  // 修改文字内容
+       // self.HomeTable.addSubview(refreshAction) //添加//MARK- 下拉刷新
         
         //remove seperation from cell which doesn't contain data
         HomeTable.tableFooterView = UIView.init(frame: CGRect.zero)
         
         HomeTable.layer.borderWidth = 1
-        HomeTable.layer.borderColor = UIColor.lightGray.cgColor //HeadPhoto.translatesAutoresizingMaskIntoConstraints = false //some say we should add this to disable auto layout but we don't need this here
+        HomeTable.layer.borderColor = UIColor.lightGray.cgColor
+        //HeadPhoto.translatesAutoresizingMaskIntoConstraints = false //some say we should add this to disable auto layout but we don't need this here
        
-         let verticalConstraint = NSLayoutConstraint(item: HeadPhoto, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 812/screenh*100) //812 iphone x height //set top alignment
+         let verticalConstraint = NSLayoutConstraint(item: HeadPhoto, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 812/screen.screenh*100) //812 iphone x height //set top alignment
         
         view.addConstraints([verticalConstraint])
         
@@ -49,7 +74,6 @@ class HomeScreen: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         //water wave
-        
        var headerView = ZFJWaveView(frame: CGRect(x: CGFloat(0), y: CGFloat(-20), width: CGFloat(self.view.frame.size.width), height: CGFloat(320)))
         headerView.backgroundColor =  UIColor(red: 0/255, green: 141/255, blue: 206/255, alpha: 1.0)//UIColor(red: CGFloat(1.000), green: CGFloat(0.318), blue: CGFloat(0.129), alpha: CGFloat(1.00))
         headerView.waveBlock = {(_ currentY: CGFloat) -> Void in
@@ -69,7 +93,17 @@ class HomeScreen: UIViewController {
         navigationController?.setToolbarHidden(true, animated: false)
     }*/
     
-   
+    private func setLabel() {
+        var today_num: Int = 0
+        TotalyPostLabel.text = String(journals.count)
+        #warning("share num")
+        for journal in journals {
+            if(DateInfo.currentYear() == journal.Year && DateInfo.currentMonth() == journal.Month && DateInfo.currentDay() == journal.Day) {
+                today_num += 1
+            }
+        }
+        TodayPostLabel.text = String(today_num)
+    }
     
     
     public func setHeadPhoto() {
@@ -108,24 +142,21 @@ class HomeScreen: UIViewController {
 extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        #warning("记得修改这里 table的元素数量")
-        return 3
+        return journals?.count ?? 0
     }
     
     //configure each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTableCell", for: indexPath) as! HomeJournalCell
        
-         #warning("记得修改这里 table的content")
         // Configure the cell...
         if let HomeTableCell = cell as? HomeJournalCell
         {
-            HomeTableCell.DateLabel.text = "30"
-            HomeTableCell.MonthLabel.text = "Mar"
-            HomeTableCell.TitleLabel.text = "Title"
-            HomeTableCell.ContentLabel.text = "Loeff sdfjh sdfefn sdfsdf..."
+            HomeTableCell.DateLabel.text = String(journals[indexPath.row].Day)
+            HomeTableCell.MonthLabel.text = Journal.MonthString[journals[indexPath.row].Month - 1]
+            HomeTableCell.TitleLabel.text = journals[indexPath.row].Title
+            HomeTableCell.ContentLabel.text = journals[indexPath.row].TextContent
             HomeTableCell.ContentLabel.isUserInteractionEnabled = false
-            
         }
         
         return cell
@@ -140,9 +171,17 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
    
-    func deleteAction(at indextPath: IndexPath)->UIContextualAction {
+    func deleteAction(at indexPath: IndexPath)->UIContextualAction {
         let action = UIContextualAction(style:.normal, title: "Delete") {(action, view, completion) in
             
+            #warning("弹出确认窗口")
+            
+            if(self.database.deleteJournal(journal: self.journals[indexPath.row])) {
+                self.journals.remove(at: indexPath.row)
+                self.HomeTable.beginUpdates()
+                self.HomeTable.deleteRows(at: [indexPath], with: .automatic)
+                self.HomeTable.endUpdates()
+            }
             completion(true)
         }
         

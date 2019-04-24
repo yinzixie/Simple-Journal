@@ -9,7 +9,8 @@
 import UIKit
 
 class JournalListScreen: UIViewController {
-
+    
+    
   
     @IBOutlet var JournalList: UITableView!
     

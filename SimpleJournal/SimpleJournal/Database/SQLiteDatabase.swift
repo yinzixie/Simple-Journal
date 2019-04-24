@@ -323,7 +323,7 @@ class SQLiteDatabase
     
     func insertJournal(journal:Journal)->Bool {
         let query = """
-        INSERT INTO Journal (ID,Title,DateString,Year,Month,Day,Time,Location,Mood,Weather,TextContent,PicsTablesID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+        INSERT INTO Journal (ID,Title,DateString,Year,Month,Day,Time,Location,Mood,Weather,TextContent,PicsTableID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
         """
         return insertWithQuery(query, bindingFunction: { (insertStatement) in
             sqlite3_bind_text(insertStatement, 1, NSString(string:journal.ID).utf8String, -1, nil)
@@ -348,7 +348,6 @@ class SQLiteDatabase
         return insertWithQuery(query, bindingFunction: { (insertStatement) in
             sqlite3_bind_text(insertStatement, 1, NSString(string:journal.ID).utf8String, -1, nil)
         })
-        
     }
     
     func selectAllJournal()->[Journal] {
@@ -380,8 +379,25 @@ class SQLiteDatabase
         
     }
     
-    func insertPic() {
-        
+    func insertPic(journal:Journal) {
+        let query = """
+        INSERT INTO Pic (JournalID,NameID) VALUES (?,?)
+        """
+        var num = 0
+        for pic in journal.PicsList {
+            let NameID = journal.ID + "_" + String(num)
+            
+            if(insertWithQuery(query, bindingFunction: { (insertStatement) in
+                sqlite3_bind_text(insertStatement, 1, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+                sqlite3_bind_text(insertStatement, 2, NSString(string:NameID).utf8String, -1, nil)
+            })) {
+                //write into document/picsfolder
+                AppFile.saveImage(currentImage: pic, persent: 1, imageName: NameID)
+                
+                num+=1
+            }
+        }
+       
     }
     
     func deletePic() {

@@ -110,15 +110,16 @@ class MyTabBar: UITabBarController {
     @objc func startAction() {
         animationLayer?.add(animationGroup!, forKey: radarAnimation)
     }
-    //动作-停止
+    //go to create journal page
     @objc func goToCreateJournalScreen() {
         //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             //jump to admin page through segue"backToPatientTableSegue"
             self.performSegue(withIdentifier:"goToCreateNewJournalSegue", sender: self)
             //self.animationLayer?.removeAnimation(forKey: self.radarAnimation)
         //}
-        
     }
+    
+    
     
     private func makeRadarAnimation(showRect: CGRect, isRound: Bool) -> CALayer {
         // 1. 一个动态波
@@ -178,6 +179,7 @@ extension MyTabBar: UIViewControllerTransitioningDelegate {
             let secondVC = segue.destination as! CreateNewJournalScreen
             secondVC.transitioningDelegate = self
             secondVC.modalPresentationStyle = .custom
+            secondVC.EditMode = "Create"
         }else if segue.identifier == "goToSettingScreenSegue" {
             ChoosenButton = SettingButton
             let secondVC = segue.destination as! SettingScreen
