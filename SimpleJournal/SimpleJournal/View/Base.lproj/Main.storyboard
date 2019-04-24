@@ -831,6 +831,7 @@
                                             <outlet property="MoodView" destination="3zP-rz-XgS" id="Swo-6u-mac"/>
                                             <outlet property="TitleLabel" destination="pn9-PU-xfx" id="sMk-XK-26Q"/>
                                             <outlet property="WeatherView" destination="Uxw-kY-Y4V" id="MW5-QQ-7Hi"/>
+                                            <outlet property="YearLabel" destination="JMi-zp-ZUN" id="rb5-ON-aQv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -839,6 +840,11 @@
                                     <outlet property="delegate" destination="JZ2-vh-fjc" id="mEi-sI-rSI"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pRc-EH-Oy7">
+                                <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>

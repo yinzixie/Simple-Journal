@@ -10,6 +10,7 @@ import UIKit
 
 class JournalCellWithPic: UITableViewCell {
 
+    @IBOutlet var YearLabel: UILabel!
     @IBOutlet var DateLabel: UILabel!
     @IBOutlet var MonthLabel: UILabel!
     @IBOutlet weak var TitleLabel: UILabel!

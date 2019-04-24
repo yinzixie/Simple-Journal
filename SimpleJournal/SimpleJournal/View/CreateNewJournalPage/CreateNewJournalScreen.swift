@@ -213,8 +213,9 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         
         if(EditMode == "Create") {
             
-            //if()
-            
+            if(journal.PicsList.count > 0) {
+                journal.DisplayPic = journal.PicsTableID + "_" + "0"
+            }
             
             if(database.insertJournal(journal: journal)) {
                 database.insertPic(journal:journal)

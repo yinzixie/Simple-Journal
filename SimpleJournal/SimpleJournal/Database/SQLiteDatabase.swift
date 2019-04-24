@@ -305,9 +305,11 @@ class SQLiteDatabase
             Mood CHAR(255),
             Weather CHAR(255),
             TextContent TEXT,
-            PicsTableID CHAR(255)
+            DisplayPic CHAR(255),
+            PicsTableID CHAR(255),
+            Shared
             )
-        """
+        """fdgg
         createTableWithQuery(query, tableName: "Journal")
     }
     

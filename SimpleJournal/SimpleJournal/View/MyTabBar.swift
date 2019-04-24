@@ -29,8 +29,8 @@ class MyTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //init MYSql
-        
+        //init db
+        JournalListCache.init()
         
         
         //init file system

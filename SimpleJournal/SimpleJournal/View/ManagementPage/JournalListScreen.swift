@@ -10,13 +10,20 @@ import UIKit
 
 class JournalListScreen: UIViewController {
     
+    var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
-  
+    var journals:[Journal]!
+    
     @IBOutlet var JournalList: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //load journals
+        journals = database.selectAllJournal()
+        
+        
         //hidden the navigation bar navigationController?.setNavigationBarHidden(true, animated: false)
         
        // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow")!, viewlayer: view)
@@ -101,8 +108,7 @@ class JournalListScreen: UIViewController {
 extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        #warning("记得修改这里 table的元素数量")
-        return 3
+        return journals.count
     }
     
     //configure each cell
@@ -110,20 +116,20 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         //var journal = journas[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "JournalCellWithPic", for: indexPath) as! JournalCellWithPic
         
-        #warning("记得修改这里 table的content")
         if let JournalListCell = cell as? JournalCellWithPic
         {
-            JournalListCell.DateLabel.text = "30"
-            JournalListCell.MonthLabel.text = "Mar"
-            JournalListCell.TitleLabel.text = "Travel to China"
-            JournalListCell.ContentLabel.text = "Loeff sdfjh sdfefn ssdfsdfdfgdfgsfgsdfgdfsg..."
-            JournalListCell.WeatherView.image = UIImage(named:"s_test")
-            JournalListCell.ImageView.image = UIImage(named:"1")
-            JournalListCell.MoodView.image = UIImage(named:"rich")
+            JournalListCell.DateLabel.text = String(journals[indexPath.row].Year)
+            JournalListCell.DateLabel.text = String(journals[indexPath.row].Day)
+            JournalListCell.MonthLabel.text = Journal.MonthString[journals[indexPath.row].Month - 1]
+            JournalListCell.TitleLabel.text = journals[indexPath.row].Title
+            JournalListCell.ContentLabel.text = journals[indexPath.row].TextContent
+            JournalListCell.WeatherView.image = UIImage(named:journals[indexPath.row].Weather)
+            JournalListCell.ImageView.image = UIImage(named:(journals[indexPath.row].PicsTableID + "_" + "0"))
+            JournalListCell.MoodView.image = UIImage(named:journals[indexPath.row].Mood)
             
             JournalListCell.ContentLabel.isUserInteractionEnabled = false
             
-           var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow30")!,viewlayer: JournalListCell)
+          // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow30")!,viewlayer: JournalListCell)
             //JournalListCell.allowsTransparency = true
         }
         

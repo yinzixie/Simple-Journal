@@ -28,8 +28,11 @@ class Journal {
     var Weather:String!
     var TextContent:String!
     
+    var DisplayPic:String!
     var PicsTableID:String!
     var PicsList:[UIImage] = []
+    
+    var Shared:Bool!
     
     init() {
         ID = DateInfo.dateToDateString(Date(), dateFormat:"yyyyMMddHHmmss")//generate by date
@@ -52,11 +55,14 @@ class Journal {
         //time
         Time = String(DateString.suffix(8)) //后8个字符
         
-        Location = "None"
+        Location = "LocationNone"
         Mood = "MoodNone"
         Weather = "WeatherNone"
-        TextContent = "None_Content" //avoid user type none cause conflic
+        TextContent = "ContentNone" //avoid user type none cause conflic
+        DisplayPic = "PicNone"
         PicsTableID = ID
+        
+        Shared = false
     }
 }
 

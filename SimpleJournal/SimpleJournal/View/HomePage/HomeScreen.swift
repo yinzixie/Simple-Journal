@@ -12,7 +12,7 @@ class HomeScreen: UIViewController {
 
     var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
-    var journals:[Journal] = JournalListCache.JournalList
+    var journals:[Journal]!
     
     @IBOutlet var HeadPhoto: UIImageView!
     @IBOutlet var UserName: UILabel!
@@ -36,7 +36,7 @@ class HomeScreen: UIViewController {
         //refresh table
         HomeTable.beginUpdates()
         if(indexPath.row < journals.count){
-            HomeTable.insertRows(at: [indexPath], with: .automatic)
+            HomeTable.insertRows(at: [indexPath], with: .fade)
         }
         HomeTable.reloadData()
         HomeTable.endUpdates()
@@ -142,7 +142,7 @@ class HomeScreen: UIViewController {
 extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return journals?.count ?? 0
+        return journals.count ?? 0
     }
     
     //configure each cell
