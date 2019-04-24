@@ -11,7 +11,7 @@ import UIKit
 class LocationCell: UITableViewCell {
     var ParentView:UIViewController? = nil
     
-    @IBOutlet var LocationDisplayButton: UIButton!
+    @IBOutlet var LocationTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -116,9 +116,9 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
             JournalListCell.MonthLabel.text = "Mar"
             JournalListCell.TitleLabel.text = "Travel to China"
             JournalListCell.ContentLabel.text = "Loeff sdfjh sdfefn ssdfsdfdfgdfgsfgsdfgdfsg..."
-            JournalListCell.WeatherView.image = UIImage(named:"cloudly")
-            JournalListCell.ImageView.image = UIImage(named:"2")
-            JournalListCell.MoodView.image = UIImage(named:"333333")
+            JournalListCell.WeatherView.image = UIImage(named:"s_test")
+            JournalListCell.ImageView.image = UIImage(named:"1")
+            JournalListCell.MoodView.image = UIImage(named:"rich")
             
             JournalListCell.ContentLabel.isUserInteractionEnabled = false
             

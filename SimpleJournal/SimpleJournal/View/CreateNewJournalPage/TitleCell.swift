@@ -11,7 +11,7 @@ import UIKit
 class TitleCell: UITableViewCell {
     var ParentView:UIViewController? = nil
     
-    @IBOutlet var TitleTextFiled: UITextField!
+    @IBOutlet var TitleTextField: UITextField!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -12,7 +12,7 @@ protocol PassBackData {
     func setMood(mood:String)
 }
 
-class CollectionPage: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var passData: PassBackData?
     var mood: String?

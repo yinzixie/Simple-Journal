@@ -15,7 +15,7 @@ class CreateNewJournalScreen: UIViewController, PassBackData, PassDate {
     
     var imagePicker = UIImagePickerController()
     
-    
+    var journal = Journal()
     
     public var EditMode:String!
     
@@ -63,8 +63,9 @@ class CreateNewJournalScreen: UIViewController, PassBackData, PassDate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // TabelView.rowHeight = UITableView.automaticDimension
+       
         // Do any additional setup after loading the view.
+        
         setMenuButtons()
         
         // safe place to set the frame of button manually
@@ -195,7 +196,7 @@ class CreateNewJournalScreen: UIViewController, PassBackData, PassDate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showMoodCollection") {
-            var vc = segue.destination as! CollectionPage
+            var vc = segue.destination as! MoodCollectionPage
             vc.mood = "happy"
             vc.passData = self
         }
@@ -220,23 +221,14 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             // Configure the cell...
             if let TitleCell = cell as? TitleCell
             {
+                TitleCell.TitleTextField.delegate = self //针对下面等扩展，监听输入
                 TitleCell.ParentView = self
-                TitleCell.TitleTextFiled.text = "Journal Title"
+                TitleCell.TitleTextField.tag = 0
             }
         }
-        //Location
-        else if (indexPath.row == 1) {
-            cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
             
-            // Configure the cell...
-            if let LocationCell = cell as? LocationCell
-            {
-                LocationCell.ParentView = self
-                LocationCell.LocationDisplayButton.setTitle("Earth", for: .normal)
-            }
-        }
         //Date
-        else if(indexPath.row == 2) {
+        else if(indexPath.row == 1) {
             cell = tableView.dequeueReusableCell(withIdentifier: "DateCell", for: indexPath) as! DateCell
             
             // Configure the cell...
@@ -244,9 +236,23 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             {
                 DateCell.ParentView = self
                 DateCell.passDate = self
-                DateCell.DateTextField.text = DateInfo.dateToDateString(Date(), dateFormat: "MM-dd-yyyy hh:mm:ss")
+                DateCell.DateTextField.text = DateInfo.dateToDateString(Date(), dateFormat: "yyyy-MM-dd  HH:mm:ss")
             }
         }
+            
+        //Location
+        else if (indexPath.row == 2) {
+            cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
+            
+            // Configure the cell...
+            if let LocationCell = cell as? LocationCell
+            {
+                LocationCell.ParentView = self
+                LocationCell.LocationTextField.delegate = self //针对下面等扩展，监听输入
+                LocationCell.LocationTextField.tag = 2
+            }
+        }
+        
         //Moode
         else if(indexPath.row == 3) {
             cell = tableView.dequeueReusableCell(withIdentifier: "MoodCell", for: indexPath) as! MoodCell
@@ -354,8 +360,25 @@ extension CreateNewJournalScreen: UITextViewDelegate{
         //print("textViewDidChange")
         TableView.beginUpdates()
         TableView.endUpdates()
+        print(textView.text)
     }
 }
+
+extension CreateNewJournalScreen: UITextFieldDelegate{
+    //每次内容变化时返回title location
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField.tag == 0) {
+            print(textField.text)
+        }
+        else if (textField.tag == 2) {
+            print(textField.text)
+        }
+        
+    }
+    
+}
+
+
 
 extension CreateNewJournalScreen:UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

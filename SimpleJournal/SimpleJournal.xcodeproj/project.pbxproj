@@ -10,6 +10,8 @@
 		2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */; };
 		2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */; };
 		2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */; };
+		2D0414192270221100C2610A /* WeatherCollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0414182270221100C2610A /* WeatherCollectionPage.swift */; };
+		2D04141B2270223200C2610A /* WeatherCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04141A2270223200C2610A /* WeatherCollectionCell.swift */; };
 		2D04E680226C32B600FA8638 /* AppFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04E67F226C32B600FA8638 /* AppFile.swift */; };
 		2D0567A4226C761F0014A92C /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A3226C761F0014A92C /* TitleCell.swift */; };
 		2D0567A6226C76360014A92C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A5226C76360014A92C /* LocationCell.swift */; };
@@ -24,16 +26,16 @@
 		2D0925DC226D547400125150 /* DateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0925DB226D547400125150 /* DateInfo.swift */; };
 		2D0AA8A0226982D0009E88E0 /* ZFJWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0AA89F226982D0009E88E0 /* ZFJWaveView.swift */; };
 		2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116312259FC0300A64523 /* AppDelegate.swift */; };
-		2D1116342259FC0300A64523 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116332259FC0300A64523 /* ViewController.swift */; };
 		2D1116372259FC0300A64523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1116352259FC0300A64523 /* Main.storyboard */; };
 		2D11163C2259FC0500A64523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D11163A2259FC0500A64523 /* LaunchScreen.storyboard */; };
 		2D1116472259FC0600A64523 /* SimpleJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116462259FC0600A64523 /* SimpleJournalTests.swift */; };
 		2D1116522259FC0600A64523 /* SimpleJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */; };
+		2D4E7C5C2270017400D5CAC7 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */; };
 		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
 		2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */; };
 		2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D2682226DAC460011B435 /* AddPicsCell.swift */; };
 		2D812715226EFBFC004BD665 /* MoodCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D812714226EFBFC004BD665 /* MoodCollectionCell.swift */; };
-		2D812718226EFD21004BD665 /* CollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D812717226EFD21004BD665 /* CollectionPage.swift */; };
+		2D812718226EFD21004BD665 /* MoodCollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D812717226EFD21004BD665 /* MoodCollectionPage.swift */; };
 		2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC01939226B2FBD00D13585 /* ScreenInfo.swift */; };
 		2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0193B226B2FD300D13585 /* CircularTransition.swift */; };
 		2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D32263083800A70E33 /* JournalListScreen.swift */; };
@@ -65,6 +67,8 @@
 		2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJournalCell.swift; sourceTree = "<group>"; };
 		2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournalScreen.swift; sourceTree = "<group>"; };
 		2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
+		2D0414182270221100C2610A /* WeatherCollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionPage.swift; sourceTree = "<group>"; };
+		2D04141A2270223200C2610A /* WeatherCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionCell.swift; sourceTree = "<group>"; };
 		2D04E67F226C32B600FA8638 /* AppFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFile.swift; sourceTree = "<group>"; };
 		2D0567A3226C761F0014A92C /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		2D0567A5226C76360014A92C /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
@@ -80,7 +84,6 @@
 		2D0AA89F226982D0009E88E0 /* ZFJWaveView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZFJWaveView.swift; sourceTree = "<group>"; };
 		2D11162E2259FC0300A64523 /* SimpleJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1116312259FC0300A64523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2D1116332259FC0300A64523 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2D1116362259FC0300A64523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D11163B2259FC0500A64523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D11163D2259FC0500A64523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,11 +93,12 @@
 		2D11164D2259FC0600A64523 /* SimpleJournalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleJournalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleJournalUITests.swift; sourceTree = "<group>"; };
 		2D1116532259FC0600A64523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
 		2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetToUIImage.swift; sourceTree = "<group>"; };
 		2D7D2682226DAC460011B435 /* AddPicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicsCell.swift; sourceTree = "<group>"; };
 		2D812714226EFBFC004BD665 /* MoodCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCollectionCell.swift; sourceTree = "<group>"; };
-		2D812717226EFD21004BD665 /* CollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPage.swift; sourceTree = "<group>"; };
+		2D812717226EFD21004BD665 /* MoodCollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCollectionPage.swift; sourceTree = "<group>"; };
 		2DC01939226B2FBD00D13585 /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		2DC0193B226B2FD300D13585 /* CircularTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		2DFF15D32263083800A70E33 /* JournalListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListScreen.swift; sourceTree = "<group>"; };
@@ -197,14 +201,12 @@
 		2D1116302259FC0300A64523 /* SimpleJournal */ = {
 			isa = PBXGroup;
 			children = (
-				2D812719226F1230004BD665 /* MoodPics */,
 				2D7D267D226DA52A0011B435 /* Tool */,
 				2D00B7882265ECAE007A6097 /* Animation */,
 				2D0329A92264428F00425975 /* Extension */,
 				2DFF15D72263143D00A70E33 /* Core */,
 				2D80438B225F508E00557A3E /* View */,
 				2D1116312259FC0300A64523 /* AppDelegate.swift */,
-				2D1116332259FC0300A64523 /* ViewController.swift */,
 				2D11163D2259FC0500A64523 /* Info.plist */,
 				2DFF15DA22631BC100A70E33 /* Assets.xcassets */,
 			);
@@ -259,6 +261,9 @@
 			isa = PBXGroup;
 			children = (
 				2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */,
+				2D0925DB226D547400125150 /* DateInfo.swift */,
+				2D04E67F226C32B600FA8638 /* AppFile.swift */,
+				2DC01939226B2FBD00D13585 /* ScreenInfo.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -282,25 +287,18 @@
 			isa = PBXGroup;
 			children = (
 				2D812714226EFBFC004BD665 /* MoodCollectionCell.swift */,
-				2D812717226EFD21004BD665 /* CollectionPage.swift */,
+				2D812717226EFD21004BD665 /* MoodCollectionPage.swift */,
+				2D0414182270221100C2610A /* WeatherCollectionPage.swift */,
+				2D04141A2270223200C2610A /* WeatherCollectionCell.swift */,
 			);
 			path = CollectionViewPage;
-			sourceTree = "<group>";
-		};
-		2D812719226F1230004BD665 /* MoodPics */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MoodPics;
 			sourceTree = "<group>";
 		};
 		2DFF15D72263143D00A70E33 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				2DFF15D82263145F00A70E33 /* Journal.swift */,
-				2DC01939226B2FBD00D13585 /* ScreenInfo.swift */,
-				2D04E67F226C32B600FA8638 /* AppFile.swift */,
-				2D0925DB226D547400125150 /* DateInfo.swift */,
+				2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -441,18 +439,20 @@
 				2D0567AC226C76560014A92C /* TextCell.swift in Sources */,
 				2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */,
 				2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */,
-				2D1116342259FC0300A64523 /* ViewController.swift in Sources */,
-				2D812718226EFD21004BD665 /* CollectionPage.swift in Sources */,
+				2D812718226EFD21004BD665 /* MoodCollectionPage.swift in Sources */,
 				2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */,
 				2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */,
 				2D0567AA226C764B0014A92C /* WeatherCell.swift in Sources */,
 				2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */,
 				2D06D4792269DADC00C668FC /* PickImageMenueCell.swift in Sources */,
+				2D4E7C5C2270017400D5CAC7 /* SQLiteDatabase.swift in Sources */,
 				2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */,
 				2DFF15DD2263278800A70E33 /* HomeScreen.swift in Sources */,
+				2D0414192270221100C2610A /* WeatherCollectionPage.swift in Sources */,
 				2D0567B2226C7EF90014A92C /* DateCell.swift in Sources */,
 				2D0567A4226C761F0014A92C /* TitleCell.swift in Sources */,
 				2D0567A6226C76360014A92C /* LocationCell.swift in Sources */,
+				2D04141B2270223200C2610A /* WeatherCollectionCell.swift in Sources */,
 				2D04E680226C32B600FA8638 /* AppFile.swift in Sources */,
 				2D0567A8226C76410014A92C /* MoodCell.swift in Sources */,
 				2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */,

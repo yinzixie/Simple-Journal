@@ -9,7 +9,8 @@
 import UIKit
 
 class MyTabBar: UITabBarController {
-
+    
+    var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     let transition = CircularTransition()
     
 
@@ -27,10 +28,13 @@ class MyTabBar: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //init MYSql
+        
+        
+        
         //init file system
         AppFile.init()
-        
-        
         //set button
         setCretateNewJournalButton()
         setSettingButton()
