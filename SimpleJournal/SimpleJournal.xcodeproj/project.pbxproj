@@ -12,6 +12,8 @@
 		2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */; };
 		2D0414192270221100C2610A /* WeatherCollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0414182270221100C2610A /* WeatherCollectionPage.swift */; };
 		2D04141B2270223200C2610A /* WeatherCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04141A2270223200C2610A /* WeatherCollectionCell.swift */; };
+		2D04141F227023F900C2610A /* MoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04141E227023F900C2610A /* MoodList.swift */; };
+		2D0414212270240500C2610A /* WeatherList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0414202270240500C2610A /* WeatherList.swift */; };
 		2D04E680226C32B600FA8638 /* AppFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04E67F226C32B600FA8638 /* AppFile.swift */; };
 		2D0567A4226C761F0014A92C /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A3226C761F0014A92C /* TitleCell.swift */; };
 		2D0567A6226C76360014A92C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A5226C76360014A92C /* LocationCell.swift */; };
@@ -69,6 +71,8 @@
 		2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
 		2D0414182270221100C2610A /* WeatherCollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionPage.swift; sourceTree = "<group>"; };
 		2D04141A2270223200C2610A /* WeatherCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionCell.swift; sourceTree = "<group>"; };
+		2D04141E227023F900C2610A /* MoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodList.swift; sourceTree = "<group>"; };
+		2D0414202270240500C2610A /* WeatherList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherList.swift; sourceTree = "<group>"; };
 		2D04E67F226C32B600FA8638 /* AppFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFile.swift; sourceTree = "<group>"; };
 		2D0567A3226C761F0014A92C /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		2D0567A5226C76360014A92C /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
@@ -161,6 +165,23 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
+		2D04141C2270238B00C2610A /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				2D04141E227023F900C2610A /* MoodList.swift */,
+				2D0414202270240500C2610A /* WeatherList.swift */,
+			);
+			path = Icon;
+			sourceTree = "<group>";
+		};
+		2D04141D227023C200C2610A /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		2D0567A2226C75D30014A92C /* CreateNewJournalPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +222,8 @@
 		2D1116302259FC0300A64523 /* SimpleJournal */ = {
 			isa = PBXGroup;
 			children = (
+				2D04141D227023C200C2610A /* Database */,
+				2D04141C2270238B00C2610A /* Icon */,
 				2D7D267D226DA52A0011B435 /* Tool */,
 				2D00B7882265ECAE007A6097 /* Animation */,
 				2D0329A92264428F00425975 /* Extension */,
@@ -298,7 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				2DFF15D82263145F00A70E33 /* Journal.swift */,
-				2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -462,9 +484,11 @@
 				2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */,
 				2D0925DC226D547400125150 /* DateInfo.swift in Sources */,
 				2D0808DF226D51E9005F6270 /* ExtensionDate.swift in Sources */,
+				2D04141F227023F900C2610A /* MoodList.swift in Sources */,
 				2DFF15D92263145F00A70E33 /* Journal.swift in Sources */,
 				2D812715226EFBFC004BD665 /* MoodCollectionCell.swift in Sources */,
 				2D0567AE226C765F0014A92C /* PicsCell.swift in Sources */,
+				2D0414212270240500C2610A /* WeatherList.swift in Sources */,
 				2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

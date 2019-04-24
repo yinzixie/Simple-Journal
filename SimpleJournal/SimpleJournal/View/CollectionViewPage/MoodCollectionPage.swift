@@ -8,37 +8,25 @@
 
 import UIKit
 
-protocol PassBackData {
-    func setMood(mood:String)
+protocol PassMoodData {
+    func passMood(mood:String)
+}
+protocol PassMoodDataToCell {
+    //func passMood(mood:String)
 }
 
 class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    var passData: PassBackData?
-    var mood: String?
+    var passMoodData: PassMoodData?
+    var ChoosenMood: String = "MoodNone"
     
-    let Moods = ["sad","embarrassed","rich","sad","embarrassed","rich"]
-    
-    let MoodImages:[UIImage] = [
-        UIImage(named: "sad")!,
-        UIImage(named: "embarrassed")!,
-        UIImage(named: "rich")!,
-        UIImage(named: "sad")!,
-        UIImage(named: "embarrassed")!,
-        UIImage(named: "rich")!
-    ]
-    
-    @IBOutlet var MoodCollctionView: UICollectionView!
+    let Moods = MoodList.Moods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
     }
-    
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Moods.count
     }
@@ -50,7 +38,7 @@ class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollecti
         if let MoodCell = cell as? MoodCollectionCell
         {
             MoodCell.MoodLabel.text = Moods[indexPath.item]
-            MoodCell.MoodImageView.image =  MoodImages[indexPath.item]
+            MoodCell.MoodImageView.image =  UIImage(named: Moods[indexPath.item])
             MoodCell.layer.cornerRadius = 5
         }
         return cell
@@ -60,7 +48,7 @@ class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollecti
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.layer.backgroundColor = UIColor.gray.cgColor
         
-        self.mood = Moods[indexPath.item]
+        self.ChoosenMood = Moods[indexPath.item]
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -70,7 +58,7 @@ class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollecti
         //cell?.layer.borderColor = UIColor.lightGray.cgColor
     }
     @IBAction func saveAndBack(_ sender: Any) {
-        passData?.setMood(mood:mood!)
+        passMoodData?.passMood(mood:ChoosenMood)
         self.dismiss(animated: true, completion: nil)
     }
     

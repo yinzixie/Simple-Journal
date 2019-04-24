@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class CreateNewJournalScreen: UIViewController, PassBackData, PassDate {
+class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, PassWeatherDate {
     
     var imagePicker = UIImagePickerController()
     
@@ -21,12 +21,6 @@ class CreateNewJournalScreen: UIViewController, PassBackData, PassDate {
     
     var pics: [UIImage] = []//[UIImage(imageLiteralResourceName: "snow")]
     
-    var saveTitle: String?
-    var saveDate: Date?
-    var saveLocation:String?
-    var saveMood: String?
-    var saveWeather: String?
-    var saveText: String?
     
     private let ButtonRadius = 25 //button 半径
    
@@ -184,21 +178,37 @@ class CreateNewJournalScreen: UIViewController, PassBackData, PassDate {
        // self.performSegue(withIdentifier:"BackToTabView", sender: self)
     }
    
-    func setMood(mood:String) {
+    func passMood(mood:String) {
         print(mood)
+        
+        journal.Mood = mood
+        let indexpath = IndexPath.init(row: 3,section: 0)
+        self.TableView.beginUpdates()
+        self.TableView.reloadRows(at: [indexpath], with: .automatic)
+        self.TableView.endUpdates()
     }
     
     func passDate(date: Date) {
-        saveDate = date
-        print(saveDate)
-        print("ddsd")
+        print(date)
+        
     }
     
+    func passWeather(weather: String) {
+        print(weather)
+        journal.Weather = weather
+        let indexpath = IndexPath.init(row: 4,section: 0)
+        self.TableView.beginUpdates()
+        self.TableView.reloadRows(at: [indexpath], with: .automatic)
+        self.TableView.endUpdates()
+    }
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showMoodCollection") {
-            var vc = segue.destination as! MoodCollectionPage
-            vc.mood = "happy"
-            vc.passData = self
+        if (segue.identifier == "showMoodCollectionSegue") {
+            let vc = segue.destination as! MoodCollectionPage
+            vc.passMoodData = self
+        }else if (segue.identifier == "showWeatherCollectionSegue") {
+            let vc = segue.destination as! WeatherCollectionPage
+            vc.passWeatherDate = self
         }
     }
 
@@ -253,14 +263,15 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             }
         }
         
-        //Moode
+        //Mood
         else if(indexPath.row == 3) {
             cell = tableView.dequeueReusableCell(withIdentifier: "MoodCell", for: indexPath) as! MoodCell
             
             // Configure the cell...
             if let MoodCell = cell as? MoodCell
             {
-               MoodCell.ParentView = self
+                MoodCell.ParentView = self
+                MoodCell.MoodImageView.image = UIImage(named:journal.Mood)
             }
             
         }
@@ -271,7 +282,8 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             // Configure the cell...
             if let WeatherCell = cell as? WeatherCell
             {
-                
+                WeatherCell.ParentView = self
+                WeatherCell.WeatherImageView.image = UIImage(named:journal.Weather)
             }
             
         }

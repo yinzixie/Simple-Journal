@@ -11,8 +11,4 @@ import UIKit
 class WeatherCollectionCell: UICollectionViewCell {
     @IBOutlet var WeatherImageView: UIImageView!
     @IBOutlet var WeatherLabel: UILabel!
-    
-    
-    
-    
 }

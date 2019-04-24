@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol PassDate {
+protocol PassDateData {
     func passDate(date: Date)
 }
 class DateCell: UITableViewCell {
     
     var ParentView:UIViewController? = nil
   
-    var passDate: PassDate?
+    var passDate: PassDateData?
     
     @IBOutlet var DateTextField: UITextField!
     

@@ -50,8 +50,8 @@ class Journal {
         Time = String(DateString.suffix(8)) //后8个字符
         
         Location = "None"
-        Mood = "None"
-        Weather = "None"
+        Mood = "MoodNone"
+        Weather = "WeatherNone"
         TextContent = "None_Content" //avoid user type none cause conflic
         PicsTableID = ID
     }

@@ -9,11 +9,6 @@
 import UIKit
 
 class MoodCollectionCell: UICollectionViewCell  {
-    
     @IBOutlet var MoodImageView: UIImageView!
-    
     @IBOutlet var MoodLabel: UILabel!
-    
-    
-    
 }

@@ -9,7 +9,9 @@
 import UIKit
 
 class WeatherCell: UITableViewCell {
-
+    var ParentView:UIViewController? = nil
+    @IBOutlet var WeatherImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +23,8 @@ class WeatherCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func goToWeatherCollectionView(_ sender: Any) {
+        //jump to admin page through segue"showWeatherCollectionView"
+        ParentView?.performSegue(withIdentifier:"showWeatherCollectionSegue", sender: self)
+    }
 }

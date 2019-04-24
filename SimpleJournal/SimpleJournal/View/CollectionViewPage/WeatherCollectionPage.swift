@@ -8,7 +8,11 @@
 
 import UIKit
 
-class WeatherCollectionPage: UIViewController {
+protocol PassWeatherDate {
+    func passWeather(weather:String)
+}
+
+class WeatherCollectionPage: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,15 +20,44 @@ class WeatherCollectionPage: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var passWeatherDate: PassWeatherDate?
+    var ChoosenWeather: String = "WeatherNone"
+    
+    let Weathers = WeatherList.Weathers
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return Weathers.count
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCollectionCell", for: indexPath) as! WeatherCollectionCell
+        
+        // Configure the cell...
+        if let WeatherCell = cell as? WeatherCollectionCell
+        {
+            WeatherCell.WeatherLabel.text = Weathers[indexPath.item]
+            WeatherCell.WeatherImageView.image =  UIImage(named: Weathers[indexPath.item])
+            WeatherCell.layer.cornerRadius = 5
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.layer.backgroundColor = UIColor.gray.cgColor
+        
+        self.ChoosenWeather = Weathers[indexPath.item]
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.layer.borderWidth = 0
+        cell?.layer.backgroundColor = UIColor.white.cgColor
+    
+    }
+    @IBAction func saveAndBack(_ sender: Any) {
+        passWeatherDate?.passWeather(weather:self.ChoosenWeather)
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }

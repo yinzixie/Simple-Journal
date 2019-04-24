@@ -8,11 +8,16 @@
 
 import UIKit
 
-class MoodCell: UITableViewCell{
+class MoodCell: UITableViewCell, PassMoodDataToCell{
+
     var ParentView:UIViewController? = nil
+    
+    @IBOutlet var MoodImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        MoodImageView.image = UIImage(named: "MoodNone")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -22,13 +27,12 @@ class MoodCell: UITableViewCell{
     }
     @IBAction func showCollectionView(_ sender: Any) {
         
-        //jump to admin page through segue"goToSettingScreen"
-        ParentView?.performSegue(withIdentifier:"showMoodCollection", sender: self)
+        //jump to admin page through segue"showMoodCollectionSegue"
+        ParentView?.performSegue(withIdentifier:"showMoodCollectionSegue", sender: self)
         
     }
     
-  /*  func setMood(mood: String) {
-        print("this is ",mood)
-    }*/
-    
+    func passMood(mood: String) {
+        MoodImageView.image = UIImage(named: mood)
+    }
 }
