@@ -68,6 +68,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
         let emitter = CAEmitterLayer()
         emitter.frame = rect
         viewlayer.layer.addSublayer(emitter)
+        
         emitter.emitterShape = CAEmitterLayerEmitterShape.rectangle
         
         //kCAEmitterLayerPoint
