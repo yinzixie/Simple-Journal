@@ -53,7 +53,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
         //remove seperation from cell which doesn't contain data
         JournalList.tableFooterView = UIView.init(frame: CGRect.zero)
         
-        JournalList.layer.borderWidth = 1
+        JournalList.layer.borderWidth = 0.5
         JournalList.layer.borderColor = UIColor.lightGray.cgColor
     }
     
@@ -121,7 +121,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
         // Pass the selected object to the new view controller.
     }
     */
-
+   
 }
 
 
@@ -138,20 +138,9 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         
         if let JournalListCell = cell as? JournalCellWithPic
         {
-            var DayString = String(journals[indexPath.row].Day)
-            if(journals[indexPath.row].Day < 10) {
-                DayString = "0" + String(journals[indexPath.row].Day)
-            }
-            JournalListCell.YearLabel.text = String(journals[indexPath.row].Year)
-            JournalListCell.DateLabel.text = DayString
-            JournalListCell.MonthLabel.text = Journal.MonthString[journals[indexPath.row].Month - 1]
-            JournalListCell.TitleLabel.text = journals[indexPath.row].Title
-            JournalListCell.ContentLabel.text = journals[indexPath.row].TextContent
-            JournalListCell.WeatherView.image = UIImage(named:journals[indexPath.row].Weather)
-            JournalListCell.ImageView.image = UIImage(contentsOfFile: AppFile.getImageFullPath(imageName: journals[indexPath.row].DisplayPic))
-            JournalListCell.MoodView.image = UIImage(named:journals[indexPath.row].Mood)
-            JournalListCell.ContentLabel.isUserInteractionEnabled = false
-            
+            JournalListCell.journal = journals[indexPath.row]
+            //disable selected effect
+            JournalListCell.selectionStyle = UITableViewCell.SelectionStyle.none
           // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow30")!,viewlayer: JournalListCell)
             //JournalListCell.allowsTransparency = true
         }

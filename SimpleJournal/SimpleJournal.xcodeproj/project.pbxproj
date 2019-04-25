@@ -34,6 +34,7 @@
 		2D1116472259FC0600A64523 /* SimpleJournalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116462259FC0600A64523 /* SimpleJournalTests.swift */; };
 		2D1116522259FC0600A64523 /* SimpleJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */; };
 		2D4E7C5C2270017400D5CAC7 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */; };
+		2D692539227197F500609A05 /* JournalDisplayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D692538227197F500609A05 /* JournalDisplayScreen.swift */; };
 		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
 		2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */; };
 		2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D2682226DAC460011B435 /* AddPicsCell.swift */; };
@@ -100,6 +101,7 @@
 		2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleJournalUITests.swift; sourceTree = "<group>"; };
 		2D1116532259FC0600A64523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
+		2D692538227197F500609A05 /* JournalDisplayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDisplayScreen.swift; sourceTree = "<group>"; };
 		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
 		2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetToUIImage.swift; sourceTree = "<group>"; };
 		2D7D2682226DAC460011B435 /* AddPicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicsCell.swift; sourceTree = "<group>"; };
@@ -256,6 +258,14 @@
 			path = SimpleJournalUITests;
 			sourceTree = "<group>";
 		};
+		2D692537227197B300609A05 /* JournalDisplayPage */ = {
+			isa = PBXGroup;
+			children = (
+				2D692538227197F500609A05 /* JournalDisplayScreen.swift */,
+			);
+			path = JournalDisplayPage;
+			sourceTree = "<group>";
+		};
 		2D70E7F522683B040079D631 /* SettingPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +306,7 @@
 		2D80438B225F508E00557A3E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D692537227197B300609A05 /* JournalDisplayPage */,
 				2D812716226EFD03004BD665 /* CollectionViewPage */,
 				2D0567A2226C75D30014A92C /* CreateNewJournalPage */,
 				2D70E7F9226847A60079D631 /* LaunchPage */,
@@ -485,6 +496,7 @@
 				2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */,
 				2DFF15DF226329DE00A70E33 /* MyTabBar.swift in Sources */,
 				2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */,
+				2D692539227197F500609A05 /* JournalDisplayScreen.swift in Sources */,
 				2D0925DC226D547400125150 /* DateInfo.swift in Sources */,
 				2D0808DF226D51E9005F6270 /* ExtensionDate.swift in Sources */,
 				2D04141F227023F900C2610A /* MoodList.swift in Sources */,
