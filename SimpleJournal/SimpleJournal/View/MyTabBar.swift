@@ -176,6 +176,7 @@ extension MyTabBar: UIViewControllerTransitioningDelegate {
         if segue.identifier == "goToCreateNewJournalSegue" {
             ChoosenButton = CreateButton
             let secondVC = segue.destination as! CreateNewJournalScreen
+            secondVC.journal = Journal()
             secondVC.transitioningDelegate = self
             secondVC.modalPresentationStyle = .custom
             secondVC.EditMode = "Create"

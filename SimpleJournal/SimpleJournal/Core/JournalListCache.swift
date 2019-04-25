@@ -30,7 +30,9 @@ public class JournalListCache {
     class func refresh() {
         JournalList = JournalListCache.Database.selectAllJournal()
         tellHomePageCacheRefresh?.remindHomePageCacheChanged()
+        
         tellManagementPageCacheRefresh?.remindManagementPageCacheChanged()
+        print("send refresh")
     }
     
     class func deleteJournal(journal:Journal,indexPathInTable:IndexPath) {
@@ -40,6 +42,7 @@ public class JournalListCache {
             
             tellHomePageCacheRefresh?.remindHomePageDeleteAJournal(indexPathInTable:indexPathInTable)
             tellManagementPageCacheRefresh?.remindManagementPageDeleteAJournal(indexPathInTable:indexPathInTable)
+            print("send refresh")
         }
     }
 }

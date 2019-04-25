@@ -17,7 +17,9 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     
     var imagePicker = UIImagePickerController()
     
-    var journal = Journal()
+    var journal: Journal!
+    
+    private var PicsIDList: [String]?
     
     public var EditMode:String!
     
@@ -54,8 +56,29 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         super.viewDidLoad()
        
         // Do any additional setup after loading the view.
-        
         setMenuButtons()
+        if(EditMode == "Edit") {
+            PicsIDList = database.selectPicsByJournal(journal: journal)
+            journal.PicsList = getUIImageList(picList:PicsIDList!)
+            print(PicsIDList)
+        }
+    }
+    
+    //create center button(create a new journal) and add animation
+    private func setMenuButtons() {
+        //set background color
+        MenuButton.backgroundColor = .orange
+        
+        
+        //set image
+        MenuButton.setImage(UIImage(named:"moreMenu"), for:.normal)
+        AddPicsButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        AddRecordingButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        AddVideosButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        
+        //set trigger event
+        MenuButton.addTarget(self, action: #selector(self.showMoreButton), for: .touchUpInside)
+        AddPicsButton.addTarget(self, action: #selector(self.showPicsPicker), for: .touchUpInside)
         
         // safe place to set the frame of button manually
         MenuButton.frame = CGRect(x:ButtonX ,y: ButtonY , width: 2*ButtonRadius, height: 2*ButtonRadius)
@@ -80,31 +103,25 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         AddRecordingButton.center = MenuButton.center
         AddVideosButton.center = MenuButton.center
         
-        
-    }
-    
-    //create center button(create a new journal) and add animation
-    private func setMenuButtons() {
-        //set background color
-        MenuButton.backgroundColor = .orange
-        
-        
-        //set image
-        MenuButton.setImage(UIImage(named:"moreMenu"), for:.normal)
-        AddPicsButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
-        AddRecordingButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
-        AddVideosButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
-        
-        //set trigger event
-        MenuButton.addTarget(self, action: #selector(self.showMoreButton), for: .touchUpInside)
-        AddPicsButton.addTarget(self, action: #selector(self.showPicsPicker), for: .touchUpInside)
-        
+
         //add button to screen
         self.view.insertSubview(MenuButton, aboveSubview: self.TableView)
         self.view.insertSubview(AddPicsButton, aboveSubview: self.TableView)
         self.view.insertSubview(AddRecordingButton, aboveSubview: self.TableView)
         self.view.insertSubview(AddVideosButton, aboveSubview: self.TableView)
     }
+    
+    //get uiimage form pics list
+    private func getUIImageList(picList:[String])->[UIImage] {
+        var result = [UIImage]()
+        
+        for id in picList {
+            let image = UIImage(contentsOfFile: AppFile.getImageFullPath(imageName: id))
+            result += [image!]
+        }
+        return result
+    }
+    
     
     //animation for more menu
     @objc func showMoreButton(_ sender:UIButton) {
@@ -143,32 +160,13 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
             #warning("如何显示具体的类型， 并弹出警告框")
             print("Can't access ",imagePicker.sourceType)
         }
-       /* let alert = UIAlertController(style: .actionSheet)
-        alert.addPhotoLibraryPicker(
-            flow: .vertical,
-            paging: true,
-            selection: .multiple(action: { images in
-                // action with selected image
-                for image in images{
-                    self.pics.append(PHAssetToImage.PHAssetToImage(asset: image)) //append(contentsOf: images)
-                    
-                    let indexPath = IndexPath(row:self.pics.count + 7 - 1, section: 0 )
-                    
-                    self.TableView.beginUpdates()
-                    self.TableView.insertRows(at: [indexPath], with: .automatic)
-                    self.TableView.endUpdates()
-                }
-                
-            }))
-        alert.addAction(title: "Cancel", style: .cancel)
-        self.present(alert, animated: true)*/
     }
     
 
     @IBAction func BackToTabView(_ sender: Any) {
         
         #warning("弹出确认窗口")
-        
+        JournalListCache.refresh()
         self.dismiss(animated: true, completion: nil)
        
         //jump to admin page through segue"BackToTabView"
@@ -211,16 +209,15 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     }
     
     @IBAction func saveJournal(_ sender: Any) {
+        if(journal.PicsList.count > 0) {
+            journal.DisplayPic = journal.PicsTableID + "_" + "0"
+        }
         
         if(EditMode == "Create") {
             
-            if(journal.PicsList.count > 0) {
-                journal.DisplayPic = journal.PicsTableID + "_" + "0"
-            }
-            
             if(database.insertJournal(journal: journal)) {
                 database.insertPic(journal:journal)
-                
+               
                 JournalListCache.refresh()
                 
                 self.dismiss(animated: true, completion: nil)
@@ -232,6 +229,14 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
             }
         }else if(EditMode == "Edit"){
             
+            database.deletePicsByStringList(journal:journal,pics:PicsIDList!)
+            
+            if(database.updateJournal(journal: journal)){
+                database.insertPic(journal:journal)
+            }
+            JournalListCache.refresh()
+            self.dismiss(animated: true, completion: nil)
+            #warning("弹出窗口提示")
         }
     }
 
@@ -258,6 +263,9 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 TitleCell.ParentView = self
                 TitleCell.TitleTextField.tag = 0
                 
+                if(EditMode == "Edit") {
+                    TitleCell.TitleTextField.text = journal.Title
+                }
             }
         }
             
@@ -272,6 +280,10 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 DateCell.passDate = self
                 DateCell.DateTextField.text = DateInfo.dateToDateString(Date(), dateFormat: "yyyy-MM-dd  HH:mm:ss")
                // DateCell.isUserInteractionEnabled = false
+                
+                if(EditMode == "Edit") {
+                   DateCell.DateTextField.text = journal.DateString
+                }
             }
         }
             
@@ -286,6 +298,10 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 LocationCell.LocationTextField.delegate = self //针对下面等扩展，监听输入
                 LocationCell.LocationTextField.tag = 2
                // LocationCell.isUserInteractionEnabled = false
+                
+                if(EditMode == "Edit") {
+                    LocationCell.LocationTextField.text = journal.Location
+                }
             }
         }
         
@@ -324,6 +340,10 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             {
                 TextCell.ParentView = self
                 TextCell.TextDisplayField.delegate = self //针对下面等扩展，监听输入
+                
+                if(EditMode == "Edit") {
+                    TextCell.TextDisplayField.text = journal.TextContent
+                }
             }
             
         }
@@ -353,8 +373,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 PicsCell.ImageView.tag = indexPath.row
                 
                 let EedgeNum = Int(indexPath.row) - 7
-                //print("now:",indexPath.row)
-                //print(t)
+               
                 if(journal.PicsList.count > 0 && EedgeNum < journal.PicsList.count) {
                     PicsCell.ImageView.image = journal.PicsList[indexPath.row - 7]
                 }
@@ -362,7 +381,6 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
         }
         
         return cell as! UITableViewCell
-       
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

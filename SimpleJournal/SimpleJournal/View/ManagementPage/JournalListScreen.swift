@@ -18,18 +18,19 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
     
     func remindManagementPageCacheChanged() {
         let indexPath = IndexPath(row:journals.count,section: 0)
+        print("receive refresh")
         journals = JournalListCache.JournalList
-        
         //refresh table
         JournalList.beginUpdates()
         if(indexPath.row < journals.count){
-           JournalList.insertRows(at: [indexPath], with: .fade)
+           JournalList.insertRows(at: [indexPath], with: .automatic)
         }
         JournalList.reloadData()
         JournalList.endUpdates()
     }
     
     func remindManagementPageDeleteAJournal(indexPathInTable:IndexPath) {
+        print("receive refresh")
         journals = JournalListCache.JournalList
         JournalList.beginUpdates()
         JournalList.deleteRows(at: [indexPathInTable], with: .fade)
@@ -40,8 +41,8 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
         super.viewDidLoad()
         
         JournalListCache.tellManagementPageCacheRefresh = self
-        
-        
+        JournalListCache.refresh()
+        print("preapred mange delegate")
         //hidden the navigation bar navigationController?.setNavigationBarHidden(true, animated: false)
         
        // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow")!, viewlayer: view)

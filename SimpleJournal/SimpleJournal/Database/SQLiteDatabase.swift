@@ -19,7 +19,7 @@ class SQLiteDatabase
      
      WARNING: DOING THIS WILL WIPE YOUR DATA, unless you modify how updateDatabase() works.
      */
-    private let DATABASE_VERSION = 2
+    private let DATABASE_VERSION = 3
     
     
     
@@ -260,8 +260,9 @@ class SQLiteDatabase
     //Provide it with a binding function for replacing the "?"'s in the WHERE clause
     private func updateWithQuery(
         _ updateStatementQuery : String,
-        bindingFunction: ((_ rowHandle: OpaquePointer?)->()))
+        bindingFunction: ((_ rowHandle: OpaquePointer?)->()))->Bool
     {
+        var flag:Bool = true
         //prepare the statement
         var updateStatement: OpaquePointer? = nil
         if sqlite3_prepare_v2(db, updateStatementQuery, -1, &updateStatement, nil) == SQLITE_OK
@@ -273,20 +274,24 @@ class SQLiteDatabase
             if sqlite3_step(updateStatement) == SQLITE_DONE
             {
                 print("Successfully inserted row.")
+                flag = true
             }
             else
             {
                 print("Could not insert row.")
                 printCurrentSQLErrorMessage(db)
+                flag = false
             }
         }
         else
         {
             print("UPDATE statement could not be prepared.")
             printCurrentSQLErrorMessage(db)
+            flag = false
         }
         //clean up
         sqlite3_finalize(updateStatement)
+        return flag
     }
     
     /* --------------------------------*/
@@ -358,7 +363,7 @@ class SQLiteDatabase
     
     func selectAllJournal()->[Journal] {
         var result = [Journal]()
-        let selectStatementQuery = "SELECT * FROM Journal"
+        let selectStatementQuery = "SELECT * FROM Journal ORDER BY Year DESC, Month DESC, Day DESC, Time DESC"
         
         selectWithQuery(selectStatementQuery, eachRow: { (row) in //create a journal object from each result
             let journal = Journal()
@@ -382,9 +387,25 @@ class SQLiteDatabase
         return result
     }
     
-    func selectJournalByID() {
+    func updateJournal(journal:Journal)->Bool{
+        let statement = "UPDATE Journal SET Title = ?,DateString = ?,Year = ?,Month = ?,Day = ?,Time = ?,Location = ?,Mood = ?,Weather = ?,TextContent = ?, DisplayPic = ?,PicsTableID = ?,Shared = ? WHERE ID = ? "
         
-        
+        return (updateWithQuery(statement,bindingFunction: {(insertStatement) in
+            sqlite3_bind_text(insertStatement, 1, NSString(string:journal.Title).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 2, NSString(string:journal.DateString).utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 3, Int32(journal.Year))
+            sqlite3_bind_int(insertStatement, 4, Int32(journal.Month))
+            sqlite3_bind_int(insertStatement, 5, Int32(journal.Day))
+            sqlite3_bind_text(insertStatement, 6, NSString(string:journal.Time).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 7, NSString(string:journal.Location).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 8, NSString(string:journal.Mood).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 9, NSString(string:journal.Weather).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 10, NSString(string:journal.TextContent).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 11, NSString(string:journal.DisplayPic).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 12, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 13, Int32(Int(journal.Shared!)))
+            sqlite3_bind_text(insertStatement, 14, NSString(string:journal.ID).utf8String, -1, nil)
+        }))
     }
     
     func insertPic(journal:Journal) {
@@ -408,8 +429,37 @@ class SQLiteDatabase
        
     }
     
-    func deletePic() {
+    
+    func deletePicsByStringList(journal:Journal,pics:[String]) {
+        #warning("this way lose pics quality!")
+        let query = """
+        DELETE FROM Pic WHERE JournalID = ?
+        """
         
+        if(insertWithQuery(query, bindingFunction: { (insertStatement) in
+                sqlite3_bind_text(insertStatement, 1, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+            })) {
+                //delete pics
+                for pic in pics{
+                    print(pic)
+                     AppFile.removefile(folderName: AppFile.ImagesFolderFullPath.appending(pic))
+                }
+            }
+    }
+    
+    func selectPicsByJournal(journal:Journal)->[String] {
+        var result = [String]()
+
+        let selectStatementQuery = "SELECT NameID FROM Pic WHERE JournalID = ?"
+        
+        selectWithQuery(selectStatementQuery, eachRow: { (row) in //create a journal object from each result
+            let name = String(cString:sqlite3_column_text(row, 0))
+         
+            result += [name]
+        },bindingFunction: {(insertStatement) in
+            sqlite3_bind_text(insertStatement, 1, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+        })
+        return result
     }
     
     

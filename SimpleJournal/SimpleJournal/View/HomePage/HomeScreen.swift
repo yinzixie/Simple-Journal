@@ -150,22 +150,22 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
          HeadPhoto.clipsToBounds = true*/
     }
    
-    
-    /*
-    // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "goToEditJournalSegue" {
+            let EditPage = segue.destination as! CreateNewJournalScreen
+            EditPage.journal = sender as! Journal
+            EditPage.EditMode = "Edit"
+        }
     }
-    */
 }
 
 extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return journals.count ?? 0
+        return journals.count 
     }
     
     //configure each cell
@@ -204,11 +204,9 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
             #warning("弹出确认窗口")
             
             JournalListCache.deleteJournal(journal: self.journals[indexPath.row], indexPathInTable: indexPath)
-            //if(self.database.deleteJournal(journal: self.journals[indexPath.row])) {
-            //self.journals = JournalListCache.JournalList
-                //self.test(indexPath:indexPath)
+           
                 //JournalListCache.refresh()
-            //}
+    
             completion(true)
         }
         
@@ -220,10 +218,13 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     func editAction(at indextPath: IndexPath)->UIContextualAction {
         let action = UIContextualAction(style:.normal, title: "Edit") {(action, view, completion) in
             
+            //jump to admin page through segue"goToEditJournalSegue"
+            self.performSegue(withIdentifier:"goToEditJournalSegue", sender: self.journals[indextPath.row])
+            
             completion(true)
         }
         
-        action.image = UIImage(named:"edit@120*120")?.resizeImage(60, opaque: false)
+        action.image = UIImage(named:"edit@250*250")?.resizeImage(60, opaque: false)
         action.backgroundColor = .lightGray
         return action
     }
