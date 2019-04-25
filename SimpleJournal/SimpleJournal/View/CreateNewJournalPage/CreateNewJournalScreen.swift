@@ -177,8 +177,8 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
    
     func passMood(mood:String) {
         print(mood)
-        
         journal.Mood = mood
+         //update table
         let indexpath = IndexPath.init(row: 3,section: 0)
         self.TableView.beginUpdates()
         self.TableView.reloadRows(at: [indexpath], with: .automatic)
@@ -187,12 +187,13 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     
     func passDate(date: Date) {
         print(date)
-        
+        journal.setDateAndRelevantData(date:date)
     }
     
     func passWeather(weather: String) {
         print(weather)
         journal.Weather = weather
+        //update table
         let indexpath = IndexPath.init(row: 4,section: 0)
         self.TableView.beginUpdates()
         self.TableView.reloadRows(at: [indexpath], with: .automatic)
@@ -219,6 +220,9 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
             
             if(database.insertJournal(journal: journal)) {
                 database.insertPic(journal:journal)
+                
+                JournalListCache.refresh()
+                
                 self.dismiss(animated: true, completion: nil)
                 #warning("弹出窗口提示")
             }

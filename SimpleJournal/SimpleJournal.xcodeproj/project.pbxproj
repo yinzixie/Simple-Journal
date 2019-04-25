@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */; };
 		2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */; };
+		2D00E8F1227148D6006CFBA7 /* JournalListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00E8F0227148D6006CFBA7 /* JournalListCache.swift */; };
 		2D03A37C2265AFDB00718D7A /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */; };
 		2D0414192270221100C2610A /* WeatherCollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0414182270221100C2610A /* WeatherCollectionPage.swift */; };
 		2D04141B2270223200C2610A /* WeatherCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04141A2270223200C2610A /* WeatherCollectionCell.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJournalCell.swift; sourceTree = "<group>"; };
 		2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournalScreen.swift; sourceTree = "<group>"; };
+		2D00E8F0227148D6006CFBA7 /* JournalListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListCache.swift; sourceTree = "<group>"; };
 		2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
 		2D0414182270221100C2610A /* WeatherCollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionPage.swift; sourceTree = "<group>"; };
 		2D04141A2270223200C2610A /* WeatherCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionCell.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				2DFF15D82263145F00A70E33 /* Journal.swift */,
+				2D00E8F0227148D6006CFBA7 /* JournalListCache.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				2D0567AE226C765F0014A92C /* PicsCell.swift in Sources */,
 				2D0414212270240500C2610A /* WeatherList.swift in Sources */,
 				2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */,
+				2D00E8F1227148D6006CFBA7 /* JournalListCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

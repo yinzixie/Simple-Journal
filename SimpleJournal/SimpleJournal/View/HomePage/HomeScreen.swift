@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-class HomeScreen: UIViewController {
-
+class HomeScreen: UIViewController,TellHomePageCacheRefresh {
+   
     var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
-    var journals:[Journal]!
+    var journals:[Journal] = JournalListCache.JournalList
     
     @IBOutlet var HeadPhoto: UIImageView!
     @IBOutlet var UserName: UILabel!
@@ -29,8 +29,13 @@ class HomeScreen: UIViewController {
     }()
   
     @objc func refreshDown(){
+        JournalListCache.refresh()
+        refresher.endRefreshing()
+    }
+    
+    func remindHomePageCacheChanged() {
         let indexPath = IndexPath(row:journals.count,section: 0)
-        journals = database.selectAllJournal()
+        journals = JournalListCache.JournalList
         //refresh label
         setLabel()
         //refresh table
@@ -40,7 +45,13 @@ class HomeScreen: UIViewController {
         }
         HomeTable.reloadData()
         HomeTable.endUpdates()
-        refresher.endRefreshing()
+    }
+    
+    func remindHomePageDeleteAJournal(indexPathInTable:IndexPath) {
+        journals = JournalListCache.JournalList
+        HomeTable.beginUpdates()
+        HomeTable.deleteRows(at: [indexPathInTable], with: .automatic)
+        HomeTable.endUpdates()
     }
     
     override func viewDidLoad() {
@@ -49,8 +60,8 @@ class HomeScreen: UIViewController {
         // Do any additional setup after loading the view.
         setHeadPhoto()
         
-        //get journals from db
-        journals = database.selectAllJournal()
+        //set delegate or journal list cache class
+        JournalListCache.tellHomePageCacheRefresh = self
         
         //set label
         setLabel()
@@ -95,8 +106,20 @@ class HomeScreen: UIViewController {
     
     private func setLabel() {
         var today_num: Int = 0
+        var shared_num: Int = 0
+        
+        //Totaly post label
         TotalyPostLabel.text = String(journals.count)
-        #warning("share num")
+        
+        //shared label
+        for journal in journals {
+            if(journal.Shared == 1) {
+                shared_num += 1
+            }
+        }
+        SharedLabel.text = String(shared_num)
+        
+        //Today post label
         for journal in journals {
             if(DateInfo.currentYear() == journal.Year && DateInfo.currentMonth() == journal.Month && DateInfo.currentDay() == journal.Day) {
                 today_num += 1
@@ -152,7 +175,11 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
         // Configure the cell...
         if let HomeTableCell = cell as? HomeJournalCell
         {
-            HomeTableCell.DateLabel.text = String(journals[indexPath.row].Day)
+            var DayString = String(journals[indexPath.row].Day)
+            if(journals[indexPath.row].Day < 10) {
+                 DayString = "0" + String(journals[indexPath.row].Day)
+            }
+            HomeTableCell.DateLabel.text = DayString
             HomeTableCell.MonthLabel.text = Journal.MonthString[journals[indexPath.row].Month - 1]
             HomeTableCell.TitleLabel.text = journals[indexPath.row].Title
             HomeTableCell.ContentLabel.text = journals[indexPath.row].TextContent
@@ -176,12 +203,12 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
             
             #warning("弹出确认窗口")
             
-            if(self.database.deleteJournal(journal: self.journals[indexPath.row])) {
-                self.journals.remove(at: indexPath.row)
-                self.HomeTable.beginUpdates()
-                self.HomeTable.deleteRows(at: [indexPath], with: .automatic)
-                self.HomeTable.endUpdates()
-            }
+            JournalListCache.deleteJournal(journal: self.journals[indexPath.row], indexPathInTable: indexPath)
+            //if(self.database.deleteJournal(journal: self.journals[indexPath.row])) {
+            //self.journals = JournalListCache.JournalList
+                //self.test(indexPath:indexPath)
+                //JournalListCache.refresh()
+            //}
             completion(true)
         }
         

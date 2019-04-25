@@ -40,6 +40,9 @@ public class AppFile {
     static let HeadPhoto = "HeadPhoto"
     static let HeadPhotoFullPath = UserInfoFolderFullPath.appendingPathComponent(HeadPhoto) as NSString;
     
+    //default pic
+    static let DefaultPic = "PicNone"
+    static let DefaultPicFullPath = ImagesFolderFullPath.appendingPathComponent(ImagesFolder) as NSString;
     
     static let FolderArray = [UserInfoFolderFullPath,ImagesFolderFullPath,VideosFolderFullPath,RecordingsFolderFullPath]
     
@@ -51,6 +54,10 @@ public class AppFile {
                     print("can't create file")
                 }
             }
+        }
+        //add default pic
+        if (!AppFile.isJudgeFileOrFolderExists(folderName: AppFile.DefaultPicFullPath as String)) {
+            AppFile.saveImage(currentImage: UIImage(named: AppFile.DefaultPic)!, persent: 1, imageName: AppFile.DefaultPic)
         }
     }
     
@@ -66,6 +73,11 @@ public class AppFile {
             imageData.write(toFile: fullPath, atomically: true)
             print("fullPath=\(fullPath)")
         }
+    }
+    
+    //get uiimage through image name
+    class func getImageFullPath(imageName: String)->String {
+        return AppFile.ImagesFolderFullPath.appending(imageName)
     }
     
     //save head photo

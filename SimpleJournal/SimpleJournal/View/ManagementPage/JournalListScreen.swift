@@ -8,20 +8,38 @@
 
 import UIKit
 
-class JournalListScreen: UIViewController {
+class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
     
     var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
-    var journals:[Journal]!
+    var journals:[Journal] = JournalListCache.JournalList
     
     @IBOutlet var JournalList: UITableView!
     
+    func remindManagementPageCacheChanged() {
+        let indexPath = IndexPath(row:journals.count,section: 0)
+        journals = JournalListCache.JournalList
+        
+        //refresh table
+        JournalList.beginUpdates()
+        if(indexPath.row < journals.count){
+           JournalList.insertRows(at: [indexPath], with: .fade)
+        }
+        JournalList.reloadData()
+        JournalList.endUpdates()
+    }
+    
+    func remindManagementPageDeleteAJournal(indexPathInTable:IndexPath) {
+        journals = JournalListCache.JournalList
+        JournalList.beginUpdates()
+        JournalList.deleteRows(at: [indexPathInTable], with: .fade)
+        JournalList.endUpdates()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //load journals
-        journals = database.selectAllJournal()
+        JournalListCache.tellManagementPageCacheRefresh = self
         
         
         //hidden the navigation bar navigationController?.setNavigationBarHidden(true, animated: false)
@@ -118,15 +136,18 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         
         if let JournalListCell = cell as? JournalCellWithPic
         {
-            JournalListCell.DateLabel.text = String(journals[indexPath.row].Year)
-            JournalListCell.DateLabel.text = String(journals[indexPath.row].Day)
+            var DayString = String(journals[indexPath.row].Day)
+            if(journals[indexPath.row].Day < 10) {
+                DayString = "0" + String(journals[indexPath.row].Day)
+            }
+            JournalListCell.YearLabel.text = String(journals[indexPath.row].Year)
+            JournalListCell.DateLabel.text = DayString
             JournalListCell.MonthLabel.text = Journal.MonthString[journals[indexPath.row].Month - 1]
             JournalListCell.TitleLabel.text = journals[indexPath.row].Title
             JournalListCell.ContentLabel.text = journals[indexPath.row].TextContent
             JournalListCell.WeatherView.image = UIImage(named:journals[indexPath.row].Weather)
-            JournalListCell.ImageView.image = UIImage(named:(journals[indexPath.row].PicsTableID + "_" + "0"))
+            JournalListCell.ImageView.image = UIImage(contentsOfFile: AppFile.getImageFullPath(imageName: journals[indexPath.row].DisplayPic))
             JournalListCell.MoodView.image = UIImage(named:journals[indexPath.row].Mood)
-            
             JournalListCell.ContentLabel.isUserInteractionEnabled = false
             
           // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow30")!,viewlayer: JournalListCell)

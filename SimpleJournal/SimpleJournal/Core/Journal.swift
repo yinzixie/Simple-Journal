@@ -32,12 +32,30 @@ class Journal {
     var PicsTableID:String!
     var PicsList:[UIImage] = []
     
-    var Shared:Bool!
+    var Shared:Int! //0 false 1 true
     
     init() {
         ID = DateInfo.dateToDateString(Date(), dateFormat:"yyyyMMddHHmmss")//generate by date
         Title = "Journal Title"
-        Date_ = Date()
+        
+        setDateAndRelevantData(date:Date())
+        
+        //time
+        Time = String(DateString.suffix(8)) //后8个字符
+        
+        Location = "LocationNone"
+        Mood = "MoodNone"
+        Weather = "WeatherNone"
+        TextContent = "ContentNone" //avoid user type none cause conflic
+        DisplayPic = "PicNone"
+        PicsTableID = ID
+        
+        Shared = 0
+    }
+    
+    //set date and relevant data (date, dateString, year, month, day)
+    func setDateAndRelevantData(date:Date) {
+        Date_ = date
         DateString = DateInfo.dateToDateString(Date_, dateFormat: "yyyy-MM-dd  HH:mm:ss")
         Year = Int(DateString.prefix(4)) //前4个字符
         
@@ -51,18 +69,6 @@ class Journal {
         let index9 = DateString.index(DateString.startIndex, offsetBy: 8)
         let index11 = DateString.index(DateString.startIndex, offsetBy: 10)
         Day = Int(DateString[index9..<index11])
-        
-        //time
-        Time = String(DateString.suffix(8)) //后8个字符
-        
-        Location = "LocationNone"
-        Mood = "MoodNone"
-        Weather = "WeatherNone"
-        TextContent = "ContentNone" //avoid user type none cause conflic
-        DisplayPic = "PicNone"
-        PicsTableID = ID
-        
-        Shared = false
     }
 }
 

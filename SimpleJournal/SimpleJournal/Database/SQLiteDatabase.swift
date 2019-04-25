@@ -19,7 +19,7 @@ class SQLiteDatabase
      
      WARNING: DOING THIS WILL WIPE YOUR DATA, unless you modify how updateDatabase() works.
      */
-    private let DATABASE_VERSION = 1
+    private let DATABASE_VERSION = 2
     
     
     
@@ -68,6 +68,8 @@ class SQLiteDatabase
     
     private func dropTables()
     {
+        dropTable(tableName:"Pic")
+        dropTable(tableName:"Journal")
         //INSERT YOUR dropTable function calls here
         //e.g. dropTable(tableName:"Movie")
         
@@ -83,7 +85,7 @@ class SQLiteDatabase
         let lastSavedVersion = defaults.integer(forKey: "DATABASE_VERSION")
         
         // detect a version change
-        if (DATABASE_VERSION > lastSavedVersion)
+        if (DATABASE_VERSION != lastSavedVersion)
         {
             onUpdateDatabase(previousVersion:lastSavedVersion, newVersion: DATABASE_VERSION);
             
@@ -307,9 +309,9 @@ class SQLiteDatabase
             TextContent TEXT,
             DisplayPic CHAR(255),
             PicsTableID CHAR(255),
-            Shared
+            Shared BOOL
             )
-        """fdgg
+        """
         createTableWithQuery(query, tableName: "Journal")
     }
     
@@ -325,7 +327,7 @@ class SQLiteDatabase
     
     func insertJournal(journal:Journal)->Bool {
         let query = """
-        INSERT INTO Journal (ID,Title,DateString,Year,Month,Day,Time,Location,Mood,Weather,TextContent,PicsTableID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
+        INSERT INTO Journal (ID,Title,DateString,Year,Month,Day,Time,Location,Mood,Weather,TextContent, DisplayPic,PicsTableID,Shared) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """
         return insertWithQuery(query, bindingFunction: { (insertStatement) in
             sqlite3_bind_text(insertStatement, 1, NSString(string:journal.ID).utf8String, -1, nil)
@@ -339,7 +341,9 @@ class SQLiteDatabase
             sqlite3_bind_text(insertStatement, 9, NSString(string:journal.Mood).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 10, NSString(string:journal.Weather).utf8String, -1, nil)
             sqlite3_bind_text(insertStatement, 11, NSString(string:journal.TextContent).utf8String, -1, nil)
-            sqlite3_bind_text(insertStatement, 12, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 12, NSString(string:journal.DisplayPic).utf8String, -1, nil)
+            sqlite3_bind_text(insertStatement, 13, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+            sqlite3_bind_int(insertStatement, 14, Int32(Int(journal.Shared!)))
         })
     }
     
@@ -369,8 +373,10 @@ class SQLiteDatabase
             journal.Mood = String(cString:sqlite3_column_text(row, 8))
             journal.Weather = String(cString:sqlite3_column_text(row, 9))
             journal.TextContent = String(cString:sqlite3_column_text(row, 10))
-            journal.PicsTableID = String(cString:sqlite3_column_text(row, 11))
-
+            journal.DisplayPic = String(cString:sqlite3_column_text(row, 11))
+            journal.PicsTableID = String(cString:sqlite3_column_text(row, 12))
+            journal.Shared = Int(sqlite3_column_int(row, 13))
+            
             result += [journal]
         })
         return result
