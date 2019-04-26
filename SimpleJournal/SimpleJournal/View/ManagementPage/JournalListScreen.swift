@@ -138,7 +138,8 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         
         if let JournalListCell = cell as? JournalCellWithPic
         {
-            JournalListCell.journal = journals[indexPath.row]
+            JournalListCell.loadJournal(journal: journals[indexPath.row]) 
+            print("prepare cell")
             //disable selected effect
             JournalListCell.selectionStyle = UITableViewCell.SelectionStyle.none
           // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow30")!,viewlayer: JournalListCell)

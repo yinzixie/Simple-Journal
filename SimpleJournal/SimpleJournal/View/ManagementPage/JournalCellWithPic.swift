@@ -36,24 +36,29 @@ class JournalCellWithPic: UITableViewCell {
         BackGroundCardView.layer.shadowOffset = CGSize(width: 0, height: 0)
         BackGroundCardView.layer.shadowOpacity = 0.8
         
+        print("awake cell")
         
-        
+       
+    
+    }
+
+    public func loadJournal(journal:Journal) {
+        self.journal = journal
         var DayString = String(journal.Day)
         if(journal.Day < 10) {
             DayString = "0" + String(journal.Day)
         }
         YearLabel.text = String(journal.Year)
         DateLabel.text = DayString
-       MonthLabel.text = Journal.MonthString[journal.Month - 1]
+        MonthLabel.text = Journal.MonthString[journal.Month - 1]
         TitleLabel.text = journal.Title
         ContentLabel.text = journal.TextContent
-       WeatherView.image = UIImage(named:journal.Weather)
+        WeatherView.image = UIImage(named:journal.Weather)
         ImageView.image = UIImage(contentsOfFile: AppFile.getImageFullPath(imageName: journal.DisplayPic))
         MoodView.image = UIImage(named:journal.Mood)
         ContentLabel.isUserInteractionEnabled = false
-    
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -69,7 +74,7 @@ class JournalCellWithPic: UITableViewCell {
     @IBAction func deleteJournal(_ sender: Any) {
         #warning("弹出确认窗口")
         
-        JournalListCache.deleteJournal(journal: parentView?.journals[self.indexPath.row], indexPathInTable:indexPathh)
+       // JournalListCache.deleteJournal(journal: parentView?.journals[self.indexPath.row], indexPathInTable:indexPathh)
         
     }
 }
