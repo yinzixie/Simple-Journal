@@ -1,0 +1,6 @@
+framework module Pods_SimpleJournalTests {
+  umbrella header "Pods-SimpleJournalTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
