@@ -70,17 +70,21 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     private func setMenuButtons() {
         //set background color
         MenuButton.backgroundColor = .orange
+        //AddPicsButton.backgroundColor = .yellow
+       // AddRecordingButton.backgroundColor = .blue
+        //AddVideosButton.backgroundColor = .red
         
-        
+    
         //set image
         MenuButton.setImage(UIImage(named:"moreMenu"), for:.normal)
-        AddPicsButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
-        AddRecordingButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
-        AddVideosButton.setImage(UIImage(named:"tabbar_add_yellow"), for:.normal)
+        AddPicsButton.setImage(UIImage(named:"Picture@32*32"), for:.normal)
+        AddRecordingButton.setImage(UIImage(named:"Question@32*32"), for:.normal)
+        AddVideosButton.setImage(UIImage(named:"Camera@32*32"), for:.normal)
         
         //set trigger event
         MenuButton.addTarget(self, action: #selector(self.showMoreButton), for: .touchUpInside)
         AddPicsButton.addTarget(self, action: #selector(self.showPicsPicker), for: .touchUpInside)
+        AddVideosButton.addTarget(self, action: #selector(self.showCamera), for: .touchUpInside)
         
         // safe place to set the frame of button manually
         MenuButton.frame = CGRect(x:ButtonX ,y: ButtonY , width: 2*ButtonRadius, height: 2*ButtonRadius)
@@ -144,6 +148,22 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         
         if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
             imagePicker.sourceType = .photoLibrary
+            // 打开图片选择器
+            present(imagePicker, animated: true, completion: nil)
+        }else {
+            #warning("如何显示具体的类型， 并弹出警告框")
+            print("Can't access ",imagePicker.sourceType)
+        }
+    }
+    
+    //show pics picker
+    @objc func showCamera(_ sender:UIButton) {
+        
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
+            imagePicker.sourceType = .camera
             // 打开图片选择器
             present(imagePicker, animated: true, completion: nil)
         }else {
