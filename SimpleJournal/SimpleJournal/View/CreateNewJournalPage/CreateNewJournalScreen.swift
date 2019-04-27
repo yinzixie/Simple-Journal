@@ -76,10 +76,10 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         
     
         //set image
-        MenuButton.setImage(UIImage(named:"moreMenu"), for:.normal)
-        AddPicsButton.setImage(UIImage(named:"Picture@32*32"), for:.normal)
-        AddRecordingButton.setImage(UIImage(named:"Question@32*32"), for:.normal)
-        AddVideosButton.setImage(UIImage(named:"Camera@32*32"), for:.normal)
+        MenuButton.setImage(UIImage(named:"MoreMenu"), for:.normal)
+        AddPicsButton.setImage(UIImage(named:"Picture"), for:.normal)
+        AddRecordingButton.setImage(UIImage(named:"Question"), for:.normal)
+        AddVideosButton.setImage(UIImage(named:"Camera"), for:.normal)
         
         //set trigger event
         MenuButton.addTarget(self, action: #selector(self.showMoreButton), for: .touchUpInside)
@@ -120,7 +120,7 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     //animation for more menu
     @objc func showMoreButton(_ sender:UIButton) {
         
-        if (sender.currentImage == UIImage(named:"moreMenu")) {
+        if (sender.currentImage == UIImage(named:"MoreMenu")) {
             UIView.animate(withDuration: 0.3, animations: {
                 self.AddPicsButton.center = self.AddPicButtonCenter
                 self.AddRecordingButton.center = self.AddRecordingButtonCenter
@@ -128,7 +128,7 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
             })
             
             sender.backgroundColor = .lightGray
-            sender.setImage(UIImage(named:"closeMoreMenu"), for: .normal)
+            sender.setImage(UIImage(named:"CloseMoreMenu"), for: .normal)
         }else {
             UIView.animate(withDuration: 0.3, animations: {
                 self.AddPicsButton.center = self.MenuButton.center
@@ -136,7 +136,7 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
                 self.AddVideosButton.center = self.MenuButton.center
             })
             sender.backgroundColor = .orange
-            sender.setImage(UIImage(named:"moreMenu"), for: .normal)
+            sender.setImage(UIImage(named:"MoreMenu"), for: .normal)
         }
     }
     
