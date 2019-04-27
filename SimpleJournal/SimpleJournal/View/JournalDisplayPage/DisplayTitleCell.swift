@@ -1,21 +1,16 @@
 //
-//  HomeJournalCell.swift
+//  DisplayTitleCell.swift
 //  SimpleJournal
 //
-//  Created by yinzixie on 16/4/19.
+//  Created by yinzixie on 26/4/19.
 //  Copyright © 2019 UTAS. All rights reserved.
 //
 
 import UIKit
 
-class HomeJournalCell: UITableViewCell {
+class DisplayTitleCell: UITableViewCell {
 
-    @IBOutlet weak var DateLabel: UILabel!
-    @IBOutlet weak var MonthLabel: UILabel!
-    @IBOutlet weak var TitleLabel: UILabel!
-    @IBOutlet weak var ContentLabel: UITextView!
-    
-    @IBOutlet var ShareButton: UIButton!
+    @IBOutlet var TitleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +19,8 @@ class HomeJournalCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
-        
     }
 
 }

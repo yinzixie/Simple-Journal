@@ -7,6 +7,7 @@
 //
 import Foundation
 import SQLite3
+import UIKit
 
 class SQLiteDatabase
 {
@@ -323,8 +324,8 @@ class SQLiteDatabase
     func createPicTable() {
         let query = """
             CREATE TABLE Pic(
-            JournalID STRING PRIMARY KEY NOT NULL,
-            NameID CHAR(255)
+            NameID STRING PRIMARY KEY NOT NULL,
+            JournalID CHAR(255)
             )
         """
         createTableWithQuery(query, tableName: "Pic")
@@ -414,7 +415,7 @@ class SQLiteDatabase
         """
         var num = 0
         for pic in journal.PicsList {
-            let NameID = journal.ID + "_" + String(num)
+            let NameID = pic.accessibilityIdentifier!
             
             if(insertWithQuery(query, bindingFunction: { (insertStatement) in
                 sqlite3_bind_text(insertStatement, 1, NSString(string:journal.PicsTableID).utf8String, -1, nil)
@@ -422,29 +423,41 @@ class SQLiteDatabase
             })) {
                 //write into document/picsfolder
                 AppFile.saveImage(currentImage: pic, persent: 1, imageName: NameID)
-                
+                print("test")
                 num+=1
             }
         }
        
     }
     
+    func insertPicByImageList(journal:Journal, list:[UIImage]) {
+        let query = """
+        INSERT INTO Pic (JournalID,NameID) VALUES (?,?)
+        """
+        for pic in list {
+            if(insertWithQuery(query, bindingFunction: { (insertStatement) in
+                sqlite3_bind_text(insertStatement, 1, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+                sqlite3_bind_text(insertStatement, 2, NSString(string:pic.accessibilityIdentifier!).utf8String, -1, nil)
+            })) {
+                //write into document/picsfolder
+                AppFile.saveImage(currentImage: pic, persent: 1, imageName: pic.accessibilityIdentifier!)
+            }
+        }
+    }
     
     func deletePicsByStringList(journal:Journal,pics:[String]) {
-        #warning("this way lose pics quality!")
         let query = """
-        DELETE FROM Pic WHERE JournalID = ?
+        DELETE FROM Pic WHERE NameID = ?
         """
         
-        if(insertWithQuery(query, bindingFunction: { (insertStatement) in
-                sqlite3_bind_text(insertStatement, 1, NSString(string:journal.PicsTableID).utf8String, -1, nil)
+        for name in pics {
+            if(insertWithQuery(query, bindingFunction: { (insertStatement) in
+                sqlite3_bind_text(insertStatement, 1, NSString(string:name).utf8String, -1, nil)
             })) {
                 //delete pics
-                for pic in pics{
-                    print(pic)
-                     AppFile.removefile(folderName: AppFile.ImagesFolderFullPath.appending(pic))
-                }
+                AppFile.removefile(folderName: AppFile.ImagesFolderFullPath.appending(name))
             }
+        }
     }
     
     func selectPicsByJournal(journal:Journal)->[String] {

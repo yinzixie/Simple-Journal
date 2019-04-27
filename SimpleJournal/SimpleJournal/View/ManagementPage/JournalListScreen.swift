@@ -18,7 +18,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
     
     func remindManagementPageCacheChanged() {
         let indexPath = IndexPath(row:journals.count,section: 0)
-        print("receive refresh")
+        print("Management Page receive refresh")
         journals = JournalListCache.JournalList
         //refresh table
         JournalList.beginUpdates()
@@ -30,7 +30,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
     }
     
     func remindManagementPageDeleteAJournal(indexPathInTable:IndexPath) {
-        print("receive refresh")
+        print("Management Page receive refresh")
         journals = JournalListCache.JournalList
         JournalList.beginUpdates()
         JournalList.deleteRows(at: [indexPathInTable], with: .fade)
@@ -40,9 +40,10 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("Initial Management Page")
         JournalListCache.tellManagementPageCacheRefresh = self
         JournalListCache.refresh()
-        print("preapred mange delegate")
+        
         //hidden the navigation bar navigationController?.setNavigationBarHidden(true, animated: false)
         
        // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow")!, viewlayer: view)
@@ -112,15 +113,31 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
         return emitter
     }
     
-    /*
-    // MARK: - Navigation
-
+   
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "fromManagementTableShowJournalSegue") {
+            guard let DisplayPage = segue.destination as? JournalDisplayScreen else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let selectedJournalCell = sender as? JournalCellWithPic else {
+                fatalError("Unexpected selected cell")
+            }
+            guard let indexPath = JournalList.indexPath(for: selectedJournalCell) else {
+                fatalError("The selected cell is not in table")
+            }
+            DisplayPage.journal = journals[indexPath.row]
+            print("Going to show journal details")
+            
+        }else if(segue.identifier == "fromManagementEditJournalSegue") {
+                print("Going to edit journal")
+                let EditPage = segue.destination as! CreateNewJournalScreen
+                EditPage.journal = sender as? Journal
+                EditPage.EditMode = "Edit"
+        }
     }
-    */
    
 }
 
@@ -138,16 +155,47 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         
         if let JournalListCell = cell as? JournalCellWithPic
         {
-            JournalListCell.loadJournal(journal: journals[indexPath.row]) 
-            print("prepare cell")
+            //set journal
+            JournalListCell.loadJournal(journal: journals[indexPath.row])
+            
+            //add button event and tag
+            JournalListCell.DeleteButton.tag = indexPath.row
+            JournalListCell.DeleteButton.addTarget(self, action: #selector(deleteJournal(sender:)), for: .touchUpInside)
+            
+            JournalListCell.EditButton.tag = indexPath.row
+            JournalListCell.EditButton.addTarget(self, action: #selector(editJournal(sender:)), for: .touchUpInside)
+            
+            JournalListCell.ShareButton.tag = indexPath.row
+            JournalListCell.ShareButton.addTarget(self, action: #selector(shareJournal(sender:)), for: .touchUpInside)
+            
             //disable selected effect
             JournalListCell.selectionStyle = UITableViewCell.SelectionStyle.none
-          // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow30")!,viewlayer: JournalListCell)
+          
+            // var emitter:CAEmitterLayer? = particleEffect(UIImage(named: "snow30")!,viewlayer: JournalListCell)
             //JournalListCell.allowsTransparency = true
         }
         
         return cell
-        
+    }
+    
+    @objc func deleteJournal(sender: UIButton) {
+        print("Press mangement table dell's delete button ")
+        let IndexRow = sender.tag //indexpath.row
+        let indexPath = IndexPath(row: IndexRow, section: 0)
+        JournalListCache.deleteJournal(journal: journals[IndexRow], indexPathInTable:indexPath)
+    }
+    
+    @objc func editJournal(sender: UIButton) {
+        print("Press mangement table cell's edit button ")
+        let IndexRow = sender.tag //indexpath.row
+        performSegue(withIdentifier: "fromManagementEditJournalSegue", sender: self.journals[IndexRow])
+    }
+    
+    @objc func shareJournal(sender: UIButton) {
+        print("Press mangement table dell's share button ")
+        let IndexRow = sender.tag //indexpath.row
         
     }
+    
+    
 }

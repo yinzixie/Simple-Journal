@@ -20,6 +20,8 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     var journal: Journal!
     
     private var PicsIDList: [String]?
+    private var DeletePicsIDList = [String]()
+    private var AddPicsImageList = [UIImage]()
     
     public var EditMode:String!
     
@@ -56,11 +58,11 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         super.viewDidLoad()
        
         // Do any additional setup after loading the view.
+        print("Initial Create/Edit Screen")
         setMenuButtons()
         if(EditMode == "Edit") {
             PicsIDList = database.selectPicsByJournal(journal: journal)
-            journal.PicsList = getUIImageList(picList:PicsIDList!)
-            print(PicsIDList)
+            journal.PicsList = Tools.getUIImageList(picList:PicsIDList!)
         }
     }
     
@@ -110,18 +112,6 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         self.view.insertSubview(AddRecordingButton, aboveSubview: self.TableView)
         self.view.insertSubview(AddVideosButton, aboveSubview: self.TableView)
     }
-    
-    //get uiimage form pics list
-    private func getUIImageList(picList:[String])->[UIImage] {
-        var result = [UIImage]()
-        
-        for id in picList {
-            let image = UIImage(contentsOfFile: AppFile.getImageFullPath(imageName: id))
-            result += [image!]
-        }
-        return result
-    }
-    
     
     //animation for more menu
     @objc func showMoreButton(_ sender:UIButton) {
@@ -210,12 +200,13 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     
     @IBAction func saveJournal(_ sender: Any) {
         if(journal.PicsList.count > 0) {
-            journal.DisplayPic = journal.PicsTableID + "_" + "0"
+            journal.DisplayPic = journal.PicsList[0].accessibilityIdentifier
         }
         
         if(EditMode == "Create") {
             
             if(database.insertJournal(journal: journal)) {
+
                 database.insertPic(journal:journal)
                
                 JournalListCache.refresh()
@@ -229,17 +220,16 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
             }
         }else if(EditMode == "Edit"){
             
-            database.deletePicsByStringList(journal:journal,pics:PicsIDList!)
-            
             if(database.updateJournal(journal: journal)){
-                database.insertPic(journal:journal)
+                database.insertPicByImageList(journal: journal,list:AddPicsImageList)
+                database.deletePicsByStringList(journal:journal,pics:DeletePicsIDList)
             }
+            
             JournalListCache.refresh()
             self.dismiss(animated: true, completion: nil)
             #warning("弹出窗口提示")
         }
     }
-
 }
 
 extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
@@ -392,6 +382,9 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+           
+            DeletePicsIDList += [(journal.PicsList[indexPath.row - 7]).accessibilityIdentifier!]
+            
             journal.PicsList.remove(at: indexPath.row - 7)
             self.TableView.beginUpdates()
             self.TableView.deleteRows(at: [indexPath], with: .automatic)
@@ -444,7 +437,12 @@ extension CreateNewJournalScreen:UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let pickImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            pickImage.accessibilityIdentifier = journal.PicsTableID! + "_" + DateInfo.dateToDateString(Date(), dateFormat: "yyyyMMdd_HH:mm:ss")
+            
+            AddPicsImageList += [pickImage]
+            
             journal.PicsList.append(pickImage)
+            
             let indexPath = IndexPath(row:journal.PicsList.count + 7 - 1, section: 0 )
             
             self.TableView.beginUpdates()

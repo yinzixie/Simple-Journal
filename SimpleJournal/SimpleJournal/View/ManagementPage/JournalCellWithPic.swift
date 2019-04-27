@@ -26,6 +26,10 @@ class JournalCellWithPic: UITableViewCell {
     
     @IBOutlet var WeatherView: UIImageView!
     
+    @IBOutlet var ShareButton: UIButton!
+    @IBOutlet var EditButton: UIButton!
+    @IBOutlet var DeleteButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,11 +39,6 @@ class JournalCellWithPic: UITableViewCell {
         BackGroundCardView.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
         BackGroundCardView.layer.shadowOffset = CGSize(width: 0, height: 0)
         BackGroundCardView.layer.shadowOpacity = 0.8
-        
-        print("awake cell")
-        
-       
-    
     }
 
     public func loadJournal(journal:Journal) {
@@ -63,18 +62,5 @@ class JournalCellWithPic: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-    @IBAction func editJournal(_ sender: Any) {
-        
-        //jump segue"fromManagementEditJournalSegue"
-        parentView?.performSegue(withIdentifier:"fromManagementEditJournalSegue", sender: journal)
-        
-    }
-    
-    @IBAction func deleteJournal(_ sender: Any) {
-        #warning("弹出确认窗口")
-        
-       // JournalListCache.deleteJournal(journal: parentView?.journals[self.indexPath.row], indexPathInTable:indexPathh)
-        
     }
 }

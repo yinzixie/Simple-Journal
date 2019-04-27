@@ -10,7 +10,7 @@ import UIKit
 
 class HomeScreen: UIViewController,TellHomePageCacheRefresh {
    
-    var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
+   // var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
     var journals:[Journal] = JournalListCache.JournalList
     
@@ -156,8 +156,21 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
         // Pass the selected object to the new view controller.
         if segue.identifier == "goToEditJournalSegue" {
             let EditPage = segue.destination as! CreateNewJournalScreen
-            EditPage.journal = sender as! Journal
+            EditPage.journal = sender as? Journal
             EditPage.EditMode = "Edit"
+            
+        }else if(segue.identifier == "fromHomeTableShowJournalSegue") {
+            guard let DisplayPage = segue.destination as? JournalDisplayScreen else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            guard let selectedJournalCell = sender as? HomeJournalCell else {
+                fatalError("Unexpected selected cell")
+            }
+            guard let indexPath = HomeTable.indexPath(for: selectedJournalCell) else {
+                fatalError("The selected cell is not in table")
+            }
+            DisplayPage.journal = journals[indexPath.row]
+            print("Going to show journal details")
         }
     }
 }
@@ -183,12 +196,20 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
             HomeTableCell.MonthLabel.text = Journal.MonthString[journals[indexPath.row].Month - 1]
             HomeTableCell.TitleLabel.text = journals[indexPath.row].Title
             HomeTableCell.ContentLabel.text = journals[indexPath.row].TextContent
+            
+            //add button event and tag
+            HomeTableCell.ShareButton.tag = indexPath.row
+            HomeTableCell.ShareButton.addTarget(self, action: #selector(shareJournal(sender:)), for: .touchUpInside)
+            
             HomeTableCell.ContentLabel.isUserInteractionEnabled = false
         }
         
         return cell
     }
     
+    @objc func shareJournal(sender: UIButton) {
+    
+    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
        
@@ -204,9 +225,6 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
             #warning("弹出确认窗口")
             
             JournalListCache.deleteJournal(journal: self.journals[indexPath.row], indexPathInTable: indexPath)
-           
-                //JournalListCache.refresh()
-    
             completion(true)
         }
         
