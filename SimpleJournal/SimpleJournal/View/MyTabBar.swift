@@ -29,9 +29,6 @@ class MyTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
-        
         //init file system
         AppFile.init()
         //set button
@@ -45,11 +42,11 @@ class MyTabBar: UITabBarController {
         super.viewDidLayoutSubviews()
         
         // safe place to set the frame of button manually
-        CreateButton.frame = CGRect.init(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 104, width: 64, height: 64)
+        CreateButton.frame = CGRect.init(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 104*screen.screenh/CGFloat(screen.Xscreenh), width: 64, height: 64)
         CreateButton.layer.cornerRadius = 32
         
         //
-        SettingButton.frame = CGRect.init(x: self.view.bounds.width-50 , y: 50, width: 32, height: 32)
+        SettingButton.frame = CGRect.init(x: self.view.bounds.width-50 , y: 50*screen.screenh/CGFloat(screen.Xscreenh), width: 32, height: 32)
         SettingButton.layer.cornerRadius = 16
     }
     
@@ -91,7 +88,7 @@ class MyTabBar: UITabBarController {
         CreateButton.addTarget(self, action: #selector(goToCreateJournalScreen), for: .touchUpInside)
         
         //add animation
-        let first = makeRadarAnimation(showRect: CGRect(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 104, width: 64, height: 64), isRound: true)    //位置和大小
+        let first = makeRadarAnimation(showRect: CGRect(x: self.tabBar.center.x - 32, y: self.view.bounds.height - 104*screen.screenh/CGFloat(screen.Xscreenh), width: 64, height: 64), isRound: true)    //位置和大小
         view.layer.addSublayer(first)
         self.animationLayer?.removeAnimation(forKey: self.radarAnimation)
         

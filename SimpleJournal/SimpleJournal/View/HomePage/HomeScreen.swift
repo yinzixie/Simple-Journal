@@ -77,7 +77,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
         HomeTable.layer.borderColor = UIColor.lightGray.cgColor
         //HeadPhoto.translatesAutoresizingMaskIntoConstraints = false //some say we should add this to disable auto layout but we don't need this here
        
-         let verticalConstraint = NSLayoutConstraint(item: HeadPhoto, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 812/screen.screenh*100) //812 iphone x height //set top alignment
+         let verticalConstraint = NSLayoutConstraint(item: HeadPhoto, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 70*screen.screenh/CGFloat(screen.Xscreenh)) //set top alignment
         
         view.addConstraints([verticalConstraint])
         
@@ -85,7 +85,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         //water wave
-       var headerView = ZFJWaveView(frame: CGRect(x: CGFloat(0), y: CGFloat(-20), width: CGFloat(self.view.frame.size.width), height: CGFloat(320)))
+       var headerView = ZFJWaveView(frame: CGRect(x: CGFloat(0), y: CGFloat(-20), width: CGFloat(self.view.frame.size.width), height: CGFloat(240) + 70*screen.screenh/CGFloat(screen.Xscreenh)))
         headerView.backgroundColor =  UIColor(red: 0/255, green: 141/255, blue: 206/255, alpha: 1.0)//UIColor(red: CGFloat(1.000), green: CGFloat(0.318), blue: CGFloat(0.129), alpha: CGFloat(1.00))
         headerView.waveBlock = {(_ currentY: CGFloat) -> Void in
             //print(currentY)
