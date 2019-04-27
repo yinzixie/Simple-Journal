@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSContactsUsageDescription</key>
-	<string>c</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>d</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&apos;SimpleJournal&apos; need access your album</string>
-	<key>NSCameraUsageDescription</key>
-	<string>&apos;SimpleJournal&apos; need access your camera</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>&apos;SimpleJournal&apos; need add photo to album</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -30,6 +20,16 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>'SimpleJournal' need access your camera</string>
+	<key>NSContactsUsageDescription</key>
+	<string>c</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>d</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>'SimpleJournal' need add photo to album</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>'SimpleJournal' need access your album</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

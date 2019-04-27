@@ -44,6 +44,8 @@
 		2D1116522259FC0600A64523 /* SimpleJournalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1116512259FC0600A64523 /* SimpleJournalUITests.swift */; };
 		2D4E7C5C2270017400D5CAC7 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */; };
 		2D692539227197F500609A05 /* JournalDisplayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D692538227197F500609A05 /* JournalDisplayScreen.swift */; };
+		2D702E2422740C32007CD7DB /* StatisticScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D702E2322740C32007CD7DB /* StatisticScreen.swift */; };
+		2D702E2722740C54007CD7DB /* ClendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D702E2622740C54007CD7DB /* ClendarScreen.swift */; };
 		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
 		2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */; };
 		2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D2682226DAC460011B435 /* AddPicsCell.swift */; };
@@ -120,6 +122,8 @@
 		2D1116532259FC0600A64523 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		2D692538227197F500609A05 /* JournalDisplayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDisplayScreen.swift; sourceTree = "<group>"; };
+		2D702E2322740C32007CD7DB /* StatisticScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticScreen.swift; sourceTree = "<group>"; };
+		2D702E2622740C54007CD7DB /* ClendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClendarScreen.swift; sourceTree = "<group>"; };
 		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
 		2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetToUIImage.swift; sourceTree = "<group>"; };
 		2D7D2682226DAC460011B435 /* AddPicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicsCell.swift; sourceTree = "<group>"; };
@@ -292,6 +296,22 @@
 			path = JournalDisplayPage;
 			sourceTree = "<group>";
 		};
+		2D702E2222740C06007CD7DB /* StatisticPage */ = {
+			isa = PBXGroup;
+			children = (
+				2D702E2322740C32007CD7DB /* StatisticScreen.swift */,
+			);
+			path = StatisticPage;
+			sourceTree = "<group>";
+		};
+		2D702E2522740C44007CD7DB /* CalendarPage */ = {
+			isa = PBXGroup;
+			children = (
+				2D702E2622740C54007CD7DB /* ClendarScreen.swift */,
+			);
+			path = CalendarPage;
+			sourceTree = "<group>";
+		};
 		2D70E7F522683B040079D631 /* SettingPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +353,8 @@
 		2D80438B225F508E00557A3E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2D702E2522740C44007CD7DB /* CalendarPage */,
+				2D702E2222740C06007CD7DB /* StatisticPage */,
 				2D692537227197B300609A05 /* JournalDisplayPage */,
 				2D812716226EFD03004BD665 /* CollectionViewPage */,
 				2D0567A2226C75D30014A92C /* CreateNewJournalPage */,
@@ -525,6 +547,7 @@
 				2D02020E2272D2E1003A03A3 /* DisplayLocationCell.swift in Sources */,
 				2D0567A8226C76410014A92C /* MoodCell.swift in Sources */,
 				2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */,
+				2D702E2722740C54007CD7DB /* ClendarScreen.swift in Sources */,
 				2D0567B0226C76DC0014A92C /* RecordingCell.swift in Sources */,
 				2D0202122272D300003A03A3 /* DisplayMoodCell.swift in Sources */,
 				2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */,
@@ -537,6 +560,7 @@
 				2D0202162272D362003A03A3 /* DisplayTextCell.swift in Sources */,
 				2DFF15D92263145F00A70E33 /* Journal.swift in Sources */,
 				2D812715226EFBFC004BD665 /* MoodCollectionCell.swift in Sources */,
+				2D702E2422740C32007CD7DB /* StatisticScreen.swift in Sources */,
 				2D0202142272D30C003A03A3 /* DisplayPicCell.swift in Sources */,
 				2D0567AE226C765F0014A92C /* PicsCell.swift in Sources */,
 				2D0414212270240500C2610A /* WeatherList.swift in Sources */,
@@ -723,7 +747,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = au.edu.utas.cis.SimpleJournal;
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.utas.cis.assigment2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -741,7 +765,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = au.edu.utas.cis.SimpleJournal;
+				PRODUCT_BUNDLE_IDENTIFIER = au.edu.utas.cis.assigment2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -70,5 +70,36 @@ class Journal {
         let index11 = DateString.index(DateString.startIndex, offsetBy: 10)
         Day = Int(DateString[index9..<index11])
     }
+    
+    //generate share list
+    func generateShareList(picIDList:[String])->[Any?] {
+        var result = [Any?]()
+        
+        let TitleMessage = Title
+        result += [TitleMessage]
+        
+        let DateMessage = "Time: " + DateString
+        result += [DateMessage]
+        
+        let LocationMessage = "Location: " + Location
+        result += [LocationMessage]
+        
+        let MoodMessage = "Feeling: " + Mood
+        result += [MoodMessage]
+        
+        let WeatherMessage = "Weather: " + Weather
+        result += [WeatherMessage]
+        
+        let ContentMessage = TextContent
+        result += [ContentMessage]
+        
+        //get pics
+        PicsList = Tools.getUIImageList(picList: picIDList)
+        
+        for pic in PicsList {
+            result += [pic]
+        }
+        return result
+    }
 }
 

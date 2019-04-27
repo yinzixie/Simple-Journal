@@ -10,7 +10,7 @@ import UIKit
 
 class HomeScreen: UIViewController,TellHomePageCacheRefresh {
    
-   // var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
+    var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
     var journals:[Journal] = JournalListCache.JournalList
     
@@ -208,6 +208,16 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
     @objc func shareJournal(sender: UIButton) {
+        
+            //get pics for journal
+        let PicsIDList = database.selectPicsByJournal(journal: journals[sender.tag])
+        
+        
+        
+        let ActiveShareView = UIActivityViewController(activityItems: journals[sender.tag].generateShareList(picIDList:PicsIDList) as [Any], applicationActivities: nil)
+        ActiveShareView.popoverPresentationController?.sourceView = self.view
+        
+        self.present(ActiveShareView,animated: true,completion: nil)
     
     }
     
