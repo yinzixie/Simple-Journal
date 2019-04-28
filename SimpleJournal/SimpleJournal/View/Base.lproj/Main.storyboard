@@ -45,7 +45,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Journal Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3e7-2N-Gw4">
-                                                    <rect key="frame" x="111" y="15" width="278" height="30"/>
+                                                    <rect key="frame" x="111" y="15" width="239" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -77,7 +77,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VcW-Ho-ASz">
-                                                    <rect key="frame" x="111" y="15" width="278" height="30"/>
+                                                    <rect key="frame" x="111" y="15" width="239" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -110,7 +110,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7z0-X0-B6P">
-                                                    <rect key="frame" x="111" y="15" width="278" height="30"/>
+                                                    <rect key="frame" x="111" y="15" width="239" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -234,7 +234,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Type something..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yuu-Lc-Jw4">
-                                                    <rect key="frame" x="15" y="21" width="374" height="258"/>
+                                                    <rect key="frame" x="15" y="21" width="335" height="258"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -261,7 +261,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-nM-Lon">
-                                                    <rect key="frame" x="10" y="10" width="394" height="279.66666666666669"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="279.66666666666669"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
@@ -488,7 +488,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel to china" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="5CL-ej-BIE">
-                                                    <rect key="frame" x="107" y="21" width="282" height="22"/>
+                                                    <rect key="frame" x="107" y="21" width="243" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="mjK-bI-moJ"/>
                                                     </constraints>
@@ -497,7 +497,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur ..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ioL-KK-lXC">
-                                                    <rect key="frame" x="105" y="42" width="244" height="50"/>
+                                                    <rect key="frame" x="105" y="42" width="205" height="50"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="8Fl-pL-TXI"/>
@@ -507,7 +507,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWM-Po-UaR">
-                                                    <rect key="frame" x="372" y="16" width="32" height="32"/>
+                                                    <rect key="frame" x="333" y="16" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="32" id="Vao-Wj-5Md"/>
                                                         <constraint firstAttribute="height" constant="32" id="bz9-I6-y0d"/>
@@ -944,7 +944,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nXO-0W-Qb9">
-                                                    <rect key="frame" x="10" y="15.666666666666664" width="394" height="29"/>
+                                                    <rect key="frame" x="10" y="15.666666666666664" width="355" height="29"/>
                                                     <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -969,7 +969,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019/1/1 11:11:11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pRm-Pz-QZY">
-                                                    <rect key="frame" x="189" y="25.666666666666671" width="126" height="19"/>
+                                                    <rect key="frame" x="150" y="25.666666666666671" width="126" height="19"/>
                                                     <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1109,7 +1109,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Type something..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mbY-Sy-v9q">
-                                                    <rect key="frame" x="15" y="21" width="384" height="258"/>
+                                                    <rect key="frame" x="15" y="21" width="345" height="258"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1136,7 +1136,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zqF-im-xkZ">
-                                                    <rect key="frame" x="10" y="10" width="394" height="279.66666666666669"/>
+                                                    <rect key="frame" x="10" y="10" width="355" height="279.66666666666669"/>
                                                     <gestureRecognizers/>
                                                 </imageView>
                                             </subviews>
@@ -1156,7 +1156,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KgZ-43-vIZ">
-                                                    <rect key="frame" x="18" y="8" width="378" height="280"/>
+                                                    <rect key="frame" x="18" y="8" width="339" height="280"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="280" id="WRm-nE-AdV"/>
                                                     </constraints>
@@ -1335,6 +1335,7 @@
                     <connections>
                         <outlet property="CalendarTable" destination="kuD-4K-iWc" id="UwQ-vT-5dy"/>
                         <outlet property="DatePicker" destination="OiO-ko-XvN" id="dfx-B2-KlP"/>
+                        <segue destination="f4d-Bh-N81" kind="showDetail" identifier="fromCalendarGoToEditJournalSegue" id="wLv-az-3AM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="red-Jh-Gjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1517,8 +1518,8 @@
         <image name="icons8-分享-500" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OWl-uK-0T0"/>
+        <segue reference="dav-4R-J1M"/>
         <segue reference="9ga-dO-Z2N"/>
-        <segue reference="Ve0-1D-Vkq"/>
+        <segue reference="wLv-az-3AM"/>
     </inferredMetricsTieBreakers>
 </document>

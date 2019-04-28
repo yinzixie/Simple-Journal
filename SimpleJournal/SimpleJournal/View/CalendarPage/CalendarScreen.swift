@@ -70,6 +70,10 @@ class CalendarScreen: UIViewController,TellCalendarPageCacheRefresh {
             }
             DisplayPage.journal = DisplayJournals[indexPath.row].journal
             print("Going to show journal details")
+        }else if (segue.identifier == "fromCalendarGoToEditJournalSegue") {
+            let EditPage = segue.destination as! CreateNewJournalScreen
+            EditPage.journal = sender as? Journal
+            EditPage.EditMode = "Edit"
         }
     }
 }
@@ -121,8 +125,8 @@ extension CalendarScreen: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-   /* func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        print(indexPath.row)
         let delete = deleteAction(at: indexPath)
         let edit = editAction(at: indexPath)
         return UISwipeActionsConfiguration(actions: [delete,edit])
@@ -134,7 +138,7 @@ extension CalendarScreen: UITableViewDataSource, UITableViewDelegate {
             
             #warning("弹出确认窗口")
             
-            JournalListCache.deleteJournal(journal: self.journals[indexPath.row], indexPathInTable: indexPath)
+            JournalListCache.deleteJournal(journal: self.DisplayJournals[indexPath.row].journal, indexPathInTable: self.DisplayJournals[indexPath.row].indexPath)
             completion(true)
         }
         
@@ -143,11 +147,11 @@ extension CalendarScreen: UITableViewDataSource, UITableViewDelegate {
         return action
     }
     
-    func editAction(at indextPath: IndexPath)->UIContextualAction {
+    func editAction(at indexPath: IndexPath)->UIContextualAction {
         let action = UIContextualAction(style:.normal, title: "Edit") {(action, view, completion) in
             
             //jump to admin page through segue"goToEditJournalSegue"
-            self.performSegue(withIdentifier:"goToEditJournalSegue", sender: self.journals[indextPath.row])
+            self.performSegue(withIdentifier:"fromCalendarGoToEditJournalSegue", sender: self.DisplayJournals[indexPath.row].journal)
             
             completion(true)
         }
@@ -155,5 +159,5 @@ extension CalendarScreen: UITableViewDataSource, UITableViewDelegate {
         action.image = UIImage(named:"Edit")?.resizeImage(60, opaque: false)
         action.backgroundColor = .lightGray
         return action
-    }*/
+    }
 }

@@ -243,11 +243,11 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
         return action
     }
     
-    func editAction(at indextPath: IndexPath)->UIContextualAction {
+    func editAction(at indexPath: IndexPath)->UIContextualAction {
         let action = UIContextualAction(style:.normal, title: "Edit") {(action, view, completion) in
             
             //jump to admin page through segue"goToEditJournalSegue"
-            self.performSegue(withIdentifier:"goToEditJournalSegue", sender: self.journals[indextPath.row])
+            self.performSegue(withIdentifier:"goToEditJournalSegue", sender: self.journals[indexPath.row])
             
             completion(true)
         }
