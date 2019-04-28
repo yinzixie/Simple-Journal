@@ -15,6 +15,8 @@ class StatisticScreen: UIViewController,TellStatisticPageCacheRefresh {
     @IBOutlet var ToDateTextField: UITextField!
     @IBOutlet var PieChartView: PieChartView!
     
+    @IBOutlet var TotalJournalsLabel: UILabel!
+    
     var FromDatePicker: UIDatePicker!
     var ToDatePicker: UIDatePicker!
     
@@ -85,6 +87,7 @@ class StatisticScreen: UIViewController,TellStatisticPageCacheRefresh {
             total += mood.Num ?? 0
         }
         if(count == 0){
+            FirstMoodPieChartData.value = 0
             FirstMoodPieChartData.label = "None"
             FinalDataListInPieChart += [FirstMoodPieChartData]
         }
@@ -115,7 +118,7 @@ class StatisticScreen: UIViewController,TellStatisticPageCacheRefresh {
             ForthMoodPieChartData.label = "Other"
             FinalDataListInPieChart += [ForthMoodPieChartData]
         }
-        //FinalDataListInPieChart = [FirstMoodPieChartData,SecondMoodPieChartData,ThirdMoodPieChartData,ForthMoodPieChartData]
+        TotalJournalsLabel.text = String(total)
         updatePieChart()
     }
     

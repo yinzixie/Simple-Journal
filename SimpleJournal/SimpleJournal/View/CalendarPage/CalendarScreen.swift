@@ -14,6 +14,8 @@ class CalendarScreen: UIViewController,TellCalendarPageCacheRefresh {
     
     var DisplayJournals:[SearchJournalResultList] = []
     
+    var IsRefreshFromSelf = false
+    
     @IBOutlet var CalendarTable: UITableView!
     
     @IBOutlet var DatePicker: UIDatePicker!
@@ -27,6 +29,12 @@ class CalendarScreen: UIViewController,TellCalendarPageCacheRefresh {
         JournalListCache.tellCalendarPageCacheRefresh = self
         getDisplayResult(date:DatePicker.date)
         DatePicker.addTarget(self, action: #selector(self.DateChanged(dataPicker:)), for: .valueChanged)
+        
+        //remove seperation from cell which doesn't contain data
+        CalendarTable.tableFooterView = UIView.init(frame: CGRect.zero)
+        
+        CalendarTable.layer.borderWidth = 0.5
+        CalendarTable.layer.borderColor = UIColor.lightGray.cgColor
     }
     
     private func getDisplayResult(date:Date) {
@@ -34,13 +42,9 @@ class CalendarScreen: UIViewController,TellCalendarPageCacheRefresh {
     }
     
     private func updateTable(date:Date) {
-        DisplayJournals.removeAll()
-        
         getDisplayResult(date:date)
         
-        //CalendarTable.beginUpdates()
         CalendarTable.reloadData()
-        //CalendarTable.endUpdates()
     }
     
     @objc func DateChanged(dataPicker:UIDatePicker) {
@@ -51,6 +55,12 @@ class CalendarScreen: UIViewController,TellCalendarPageCacheRefresh {
         updateTable(date:DatePicker.date)
     }
     
+    func remindCalendarPageDeleteAJournal(indexPathInTable: IndexPath) {
+        if(!IsRefreshFromSelf) {
+            updateTable(date:DatePicker.date)
+        }
+        IsRefreshFromSelf = false
+    }
     
     // MARK: - Navigation
 
@@ -137,8 +147,15 @@ extension CalendarScreen: UITableViewDataSource, UITableViewDelegate {
         let action = UIContextualAction(style:.normal, title: "Delete") {(action, view, completion) in
             
             #warning("弹出确认窗口")
-            
+            self.IsRefreshFromSelf = true
             JournalListCache.deleteJournal(journal: self.DisplayJournals[indexPath.row].journal, indexPathInTable: self.DisplayJournals[indexPath.row].indexPath)
+            
+            self.getDisplayResult(date:self.DatePicker.date)
+            
+            self.CalendarTable.beginUpdates()
+            self.CalendarTable.deleteRows(at: [indexPath], with: .fade)
+            self.CalendarTable.endUpdates()
+            
             completion(true)
         }
         

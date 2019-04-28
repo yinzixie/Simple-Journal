@@ -12,29 +12,42 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
     
     var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
-    var journals:[Journal] = JournalListCache.JournalList
+    var DisplayJournals:[SearchJournalResultList] = []
+
+    var Searching = false
     
+    var IsRefreshFromSelf = false
+    
+    @IBOutlet var SearchBar: UISearchBar!
     @IBOutlet var JournalList: UITableView!
     
     func remindManagementPageCacheChanged() {
-        let indexPath = IndexPath(row:journals.count,section: 0)
-        print("Management Page receive refresh")
-        journals = JournalListCache.JournalList
-        //refresh table
-        JournalList.beginUpdates()
-        if(indexPath.row < journals.count){
-           JournalList.insertRows(at: [indexPath], with: .automatic)
+        if(!Searching) {
+            print("Management Page receive refresh,now not in searching modle")
+
+            DisplayJournals = JournalListCache.getAllJournalsInResultListForm()
+            JournalList.reloadData()
+        }else {
+            print("Management Page receive refresh,now in searching modle")
+            
+            DisplayJournals = JournalListCache.searchJournalByString(text: SearchBar.text ?? "")
+            JournalList.reloadData()
         }
-        JournalList.reloadData()
-        JournalList.endUpdates()
     }
     
     func remindManagementPageDeleteAJournal(indexPathInTable:IndexPath) {
-        print("Management Page receive refresh")
-        journals = JournalListCache.JournalList
-        JournalList.beginUpdates()
-        JournalList.deleteRows(at: [indexPathInTable], with: .fade)
-        JournalList.endUpdates()
+        if(Searching) {
+            print("Management Page receive refresh,now in searching modle")
+            DisplayJournals = JournalListCache.searchJournalByString(text: SearchBar.text ?? "")
+        }else {
+            print("Management Page receive refresh, now not in searching modle")
+            DisplayJournals = JournalListCache.getAllJournalsInResultListForm()
+        }
+        
+        if(!IsRefreshFromSelf) {
+            JournalList.reloadData()
+        }
+        IsRefreshFromSelf = false
     }
     
     override func viewDidLoad() {
@@ -50,6 +63,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
         
         //emitter!.birthRate = 0
         
+        DisplayJournals = JournalListCache.getAllJournalsInResultListForm()
         
         //remove seperation from cell which doesn't contain data
         JournalList.tableFooterView = UIView.init(frame: CGRect.zero)
@@ -128,7 +142,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
             guard let indexPath = JournalList.indexPath(for: selectedJournalCell) else {
                 fatalError("The selected cell is not in table")
             }
-            DisplayPage.journal = journals[indexPath.row]
+            DisplayPage.journal = DisplayJournals[indexPath.row].journal
             print("Going to show journal details")
             
         }else if(segue.identifier == "fromManagementEditJournalSegue") {
@@ -145,7 +159,7 @@ class JournalListScreen: UIViewController,TellManagementPageCacheRefresh {
 extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return journals.count
+        return DisplayJournals.count
     }
     
     //configure each cell
@@ -156,7 +170,7 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         if let JournalListCell = cell as? JournalCellWithPic
         {
             //set journal
-            JournalListCell.loadJournal(journal: journals[indexPath.row])
+            JournalListCell.loadJournal(journal: DisplayJournals[indexPath.row].journal)
             
             //add button event and tag
             JournalListCell.DeleteButton.tag = indexPath.row
@@ -179,16 +193,25 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
     }
     
     @objc func deleteJournal(sender: UIButton) {
-        print("Press mangement table dell's delete button ")
-        let IndexRow = sender.tag //indexpath.row
-        let indexPath = IndexPath(row: IndexRow, section: 0)
-        JournalListCache.deleteJournal(journal: journals[IndexRow], indexPathInTable:indexPath)
+        print("Press mangement table cell's delete button ")
+        let IndexPathInFulltable = DisplayJournals[sender.tag].indexPath
+        
+        let indexPathForSelfTable = IndexPath(row: sender.tag, section: 0)
+        
+        IsRefreshFromSelf = true
+        print(IndexPathInFulltable)
+        
+        JournalListCache.deleteJournal(journal: DisplayJournals[sender.tag].journal, indexPathInTable:IndexPathInFulltable)
+        
+        JournalList.beginUpdates()
+        JournalList.deleteRows(at: [indexPathForSelfTable], with: .fade)
+        JournalList.endUpdates()
     }
     
     @objc func editJournal(sender: UIButton) {
         print("Press mangement table cell's edit button ")
         let IndexRow = sender.tag //indexpath.row
-        performSegue(withIdentifier: "fromManagementEditJournalSegue", sender: self.journals[IndexRow])
+        performSegue(withIdentifier: "fromManagementEditJournalSegue", sender: self.DisplayJournals[IndexRow].journal)
     }
     
     @objc func shareJournal(sender: UIButton) {
@@ -197,5 +220,41 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         
     }
     
+    private func getDisplayResult(text:String) {
+        DisplayJournals = JournalListCache.searchJournalByString(text: text)
+    }
     
+    private func updateTable(text:String) {
+        DisplayJournals.removeAll()
+        
+        getDisplayResult(text: text)
+        
+        JournalList.reloadData()
+    }
+    
+}
+
+extension JournalListScreen: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if(searchText == "") {
+            DisplayJournals = JournalListCache.getAllJournalsInResultListForm()
+            JournalList.reloadData()
+            Searching = false
+            //print(Searching)
+        }else {
+            DisplayJournals = JournalListCache.searchJournalByString(text: searchText)
+            JournalList.reloadData()
+            Searching = true
+            //print(Searching)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        DisplayJournals = JournalListCache.getAllJournalsInResultListForm()
+        JournalList.reloadData()
+        Searching = false
+        //print(Searching)
+    }
 }

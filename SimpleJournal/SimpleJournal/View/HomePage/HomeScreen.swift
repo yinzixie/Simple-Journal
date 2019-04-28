@@ -14,6 +14,8 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
     
     var journals:[Journal] = JournalListCache.JournalList
     
+    var IsRefreshFromSelf = false
+    
     @IBOutlet var HeadPhoto: UIImageView!
     @IBOutlet var UserName: UILabel!
     @IBOutlet var HomeTable: UITableView!
@@ -51,9 +53,18 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
     func remindHomePageDeleteAJournal(indexPathInTable:IndexPath) {
         print("Home page receive refresh")
         journals = JournalListCache.JournalList
-        HomeTable.beginUpdates()
-        HomeTable.deleteRows(at: [indexPathInTable], with: .automatic)
-        HomeTable.endUpdates()
+        //refresh label
+        setLabel()
+        
+        if(IsRefreshFromSelf){
+            print(indexPathInTable)
+            HomeTable.beginUpdates()
+            HomeTable.deleteRows(at: [indexPathInTable], with: .automatic)
+            HomeTable.endUpdates()
+        }else {
+            HomeTable.reloadData()
+        }
+        IsRefreshFromSelf = false
     }
     
     override func viewDidLoad() {
@@ -233,7 +244,7 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
         let action = UIContextualAction(style:.normal, title: "Delete") {(action, view, completion) in
             
             #warning("弹出确认窗口")
-            
+            self.IsRefreshFromSelf = true
             JournalListCache.deleteJournal(journal: self.journals[indexPath.row], indexPathInTable: indexPath)
             completion(true)
         }

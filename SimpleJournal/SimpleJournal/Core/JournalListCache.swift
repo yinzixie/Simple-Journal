@@ -45,7 +45,7 @@ protocol TellStatisticPageCacheRefresh {
 
 protocol TellCalendarPageCacheRefresh {
     func remindCalendarPageCacheChanged()
-    //func remindCalendarPageDeleteAJournal(indexPathInTable: IndexPath)
+    func remindCalendarPageDeleteAJournal(indexPathInTable: IndexPath)
 }
 
 public class JournalListCache {
@@ -79,7 +79,7 @@ public class JournalListCache {
             tellHomePageCacheRefresh?.remindHomePageDeleteAJournal(indexPathInTable:indexPathInTable)
             tellManagementPageCacheRefresh?.remindManagementPageDeleteAJournal(indexPathInTable:indexPathInTable)
             tellStatisticPageCacheRefresh?.remindStatisticPageDeleteAJournal(indexPathInTable: indexPathInTable)
-            tellCalendarPageCacheRefresh?.remindCalendarPageCacheChanged()
+            tellCalendarPageCacheRefresh?.remindCalendarPageDeleteAJournal(indexPathInTable: indexPathInTable)
         }
     }
     
@@ -149,5 +149,44 @@ public class JournalListCache {
             index += 1
         }
         return result
+    }
+    
+    static func searchJournalByString(text:String)->[SearchJournalResultList] {
+        var result = [SearchJournalResultList]()
+        var index = 0
+        for journal in JournalList {
+            if((journal.Title.containsIgnoringCase(find: text)) || (journal.Location.containsIgnoringCase(find:text)) || (journal.Mood.containsIgnoringCase(find:text)) || (journal.Weather.containsIgnoringCase(find:text)) || (journal.TextContent.containsIgnoringCase(find:text))){
+               
+                let indePath = IndexPath(row: index,section: 0)
+                result += [SearchJournalResultList(journal_: journal, indexPath_: indePath)]
+            }
+            index += 1
+        }
+        return result
+    }
+    
+    static func getAllJournalsInResultListForm()->[SearchJournalResultList] {
+        var result = [SearchJournalResultList]()
+        var index = 0
+        for journal in JournalList {
+            
+            let indePath = IndexPath(row: index,section: 0)
+            result += [SearchJournalResultList(journal_: journal, indexPath_: indePath)]
+            
+            index += 1
+        }
+        return result
+    }
+    
+    static func getIndexPathForSearchResultListByJournal(journal:Journal,SearchResultList:[SearchJournalResultList])->IndexPath {
+        var indexRow = 0
+        for result in SearchResultList {
+            if(journal.ID == result.journal.ID) {
+                break
+            }
+            indexRow += 1
+        }
+        let indexpath = IndexPath(row: indexRow, section: 0)
+        return indexpath
     }
 }
