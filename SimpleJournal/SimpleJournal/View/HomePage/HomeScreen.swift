@@ -34,6 +34,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
     }
     
     func remindHomePageCacheChanged() {
+        print("Home page receive refresh")
         let indexPath = IndexPath(row:journals.count,section: 0)
         journals = JournalListCache.JournalList
         //refresh label
@@ -48,6 +49,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
     }
     
     func remindHomePageDeleteAJournal(indexPathInTable:IndexPath) {
+        print("Home page receive refresh")
         journals = JournalListCache.JournalList
         HomeTable.beginUpdates()
         HomeTable.deleteRows(at: [indexPathInTable], with: .automatic)

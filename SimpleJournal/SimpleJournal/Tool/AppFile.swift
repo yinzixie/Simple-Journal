@@ -44,6 +44,10 @@ public class AppFile {
     static let DefaultPic = "PicNone"
     static let DefaultPicFullPath = ImagesFolderFullPath.appendingPathComponent(ImagesFolder) as NSString;
     
+    //Moods
+    static let MoodsFolder = "MoodsFolder"
+    static let MoodsFolderFullPath = Documents.appendingPathComponent(MoodsFolder) as NSString;
+    
     static let FolderArray = [UserInfoFolderFullPath,ImagesFolderFullPath,VideosFolderFullPath,RecordingsFolderFullPath]
     
     init() {
@@ -55,9 +59,22 @@ public class AppFile {
                 }
             }
         }
+        
         //add default pic
         if (!AppFile.isJudgeFileOrFolderExists(folderName: AppFile.DefaultPicFullPath as String)) {
             AppFile.saveImage(currentImage: UIImage(named: AppFile.DefaultPic)!, persent: 1, imageName: AppFile.DefaultPic)
+        }
+        
+        //add moods pic
+        if (!AppFile.isJudgeFileOrFolderExists(folderName: AppFile.MoodsFolderFullPath as String)) {
+            if(!AppFile.createDir(dir: AppFile.MoodsFolderFullPath as String)) {
+                #warning("exit app")
+                print("can't create moods folder")
+            }else {
+                for mood in MoodList.Moods {
+                    AppFile.saveMoodPhoto(image: UIImage(named: mood)!, imageName: mood)
+                }
+            }
         }
     }
     
@@ -75,9 +92,22 @@ public class AppFile {
         }
     }
     
-    //get uiimage through image name
+    //get pic image through image name
     class func getImageFullPath(imageName: String)->String {
         return AppFile.ImagesFolderFullPath.appending(imageName)
+    }
+    
+    //get Mood image through image name
+    class func getMoodImageFullPath(imageName: String)->String {
+        return AppFile.MoodsFolderFullPath.appending(imageName)
+    }
+    
+    //save mood image
+    class func saveMoodPhoto(image:UIImage,imageName:String) {
+        if let imageData = image.jpegData(compressionQuality:1) as NSData? {
+            let fullPath = AppFile.MoodsFolderFullPath.appending(imageName)
+            imageData.write(toFile: fullPath as String, atomically: true)
+        }
     }
     
     //save head photo

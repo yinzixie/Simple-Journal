@@ -38,7 +38,7 @@ class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollecti
         if let MoodCell = cell as? MoodCollectionCell
         {
             MoodCell.MoodLabel.text = Moods[indexPath.item]
-            MoodCell.MoodImageView.image =  UIImage(named: Moods[indexPath.item])
+            MoodCell.MoodImageView.image =  UIImage(contentsOfFile: AppFile.getMoodImageFullPath(imageName: Moods[indexPath.item]))
             MoodCell.layer.cornerRadius = 5
         }
         return cell
@@ -61,5 +61,4 @@ class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollecti
         passMoodData?.passMood(mood:ChoosenMood)
         self.dismiss(animated: true, completion: nil)
     }
-    
 }

@@ -54,7 +54,7 @@ class JournalCellWithPic: UITableViewCell {
         ContentLabel.text = journal.TextContent
         WeatherView.image = UIImage(named:journal.Weather)
         ImageView.image = UIImage(contentsOfFile: AppFile.getImageFullPath(imageName: journal.DisplayPic))
-        MoodView.image = UIImage(named:journal.Mood)
+        MoodView.image = UIImage(contentsOfFile: AppFile.getMoodImageFullPath(imageName: journal.Mood))
         ContentLabel.isUserInteractionEnabled = false
     }
     

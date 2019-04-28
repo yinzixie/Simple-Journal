@@ -10,5 +10,15 @@ import Foundation
 import UIKit
 
 public class MoodList {
-    static let Moods = ["sad","embarrassed","rich","sad","embarrassed","rich"]
+    static var Moods = ["sad","embarrassed","rich","sad","embarrassed","rich"]
+    
+    static func UpdateMoods() {
+        let list = AppFile.getFileListInFolderWithPath(path:AppFile.MoodsFolderFullPath as String)
+        
+        for name in list {
+            if (!Moods.contains(name)) {
+                Moods += [name]
+            }
+        }
+    }
 }
