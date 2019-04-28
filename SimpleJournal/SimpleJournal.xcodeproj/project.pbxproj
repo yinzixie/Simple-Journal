@@ -45,7 +45,7 @@
 		2D4E7C5C2270017400D5CAC7 /* SQLiteDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */; };
 		2D692539227197F500609A05 /* JournalDisplayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D692538227197F500609A05 /* JournalDisplayScreen.swift */; };
 		2D702E2422740C32007CD7DB /* StatisticScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D702E2322740C32007CD7DB /* StatisticScreen.swift */; };
-		2D702E2722740C54007CD7DB /* ClendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D702E2622740C54007CD7DB /* ClendarScreen.swift */; };
+		2D702E2722740C54007CD7DB /* CalendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D702E2622740C54007CD7DB /* CalendarScreen.swift */; };
 		2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D70E7F622683B230079D631 /* SettingScreen.swift */; };
 		2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */; };
 		2D7D2683226DAC460011B435 /* AddPicsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7D2682226DAC460011B435 /* AddPicsCell.swift */; };
@@ -53,6 +53,7 @@
 		2D812718226EFD21004BD665 /* MoodCollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D812717226EFD21004BD665 /* MoodCollectionPage.swift */; };
 		2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC01939226B2FBD00D13585 /* ScreenInfo.swift */; };
 		2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC0193B226B2FD300D13585 /* CircularTransition.swift */; };
+		2DE1C01522756AA000CFE8DD /* CalendarTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1C01422756AA000CFE8DD /* CalendarTableCell.swift */; };
 		2DFF15D42263083800A70E33 /* JournalListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D32263083800A70E33 /* JournalListScreen.swift */; };
 		2DFF15D62263137600A70E33 /* JournalCellWithPic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D52263137600A70E33 /* JournalCellWithPic.swift */; };
 		2DFF15D92263145F00A70E33 /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF15D82263145F00A70E33 /* Journal.swift */; };
@@ -126,7 +127,7 @@
 		2D4E7C5B2270017400D5CAC7 /* SQLiteDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDatabase.swift; sourceTree = "<group>"; };
 		2D692538227197F500609A05 /* JournalDisplayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalDisplayScreen.swift; sourceTree = "<group>"; };
 		2D702E2322740C32007CD7DB /* StatisticScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticScreen.swift; sourceTree = "<group>"; };
-		2D702E2622740C54007CD7DB /* ClendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClendarScreen.swift; sourceTree = "<group>"; };
+		2D702E2622740C54007CD7DB /* CalendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreen.swift; sourceTree = "<group>"; };
 		2D70E7F622683B230079D631 /* SettingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingScreen.swift; sourceTree = "<group>"; };
 		2D7D267E226DA55D0011B435 /* PHAssetToUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetToUIImage.swift; sourceTree = "<group>"; };
 		2D7D2682226DAC460011B435 /* AddPicsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPicsCell.swift; sourceTree = "<group>"; };
@@ -134,6 +135,7 @@
 		2D812717226EFD21004BD665 /* MoodCollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodCollectionPage.swift; sourceTree = "<group>"; };
 		2DC01939226B2FBD00D13585 /* ScreenInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenInfo.swift; sourceTree = "<group>"; };
 		2DC0193B226B2FD300D13585 /* CircularTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		2DE1C01422756AA000CFE8DD /* CalendarTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableCell.swift; sourceTree = "<group>"; };
 		2DFF15D32263083800A70E33 /* JournalListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListScreen.swift; sourceTree = "<group>"; };
 		2DFF15D52263137600A70E33 /* JournalCellWithPic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCellWithPic.swift; sourceTree = "<group>"; };
 		2DFF15D82263145F00A70E33 /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
@@ -324,7 +326,8 @@
 		2D702E2522740C44007CD7DB /* CalendarPage */ = {
 			isa = PBXGroup;
 			children = (
-				2D702E2622740C54007CD7DB /* ClendarScreen.swift */,
+				2D702E2622740C54007CD7DB /* CalendarScreen.swift */,
+				2DE1C01422756AA000CFE8DD /* CalendarTableCell.swift */,
 			);
 			path = CalendarPage;
 			sourceTree = "<group>";
@@ -415,7 +418,6 @@
 				38F570CEBC51E55E20310C54 /* Pods-SimpleJournalUITests.debug.xcconfig */,
 				8CA2BF2423216EE1019C4267 /* Pods-SimpleJournalUITests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -675,6 +677,7 @@
 				2DFF15DD2263278800A70E33 /* HomeScreen.swift in Sources */,
 				2D0414192270221100C2610A /* WeatherCollectionPage.swift in Sources */,
 				2D0567B2226C7EF90014A92C /* DateCell.swift in Sources */,
+				2DE1C01522756AA000CFE8DD /* CalendarTableCell.swift in Sources */,
 				2D0567A4226C761F0014A92C /* TitleCell.swift in Sources */,
 				2D0567A6226C76360014A92C /* LocationCell.swift in Sources */,
 				2D04141B2270223200C2610A /* WeatherCollectionCell.swift in Sources */,
@@ -683,7 +686,7 @@
 				2D02020E2272D2E1003A03A3 /* DisplayLocationCell.swift in Sources */,
 				2D0567A8226C76410014A92C /* MoodCell.swift in Sources */,
 				2DC0193A226B2FBD00D13585 /* ScreenInfo.swift in Sources */,
-				2D702E2722740C54007CD7DB /* ClendarScreen.swift in Sources */,
+				2D702E2722740C54007CD7DB /* CalendarScreen.swift in Sources */,
 				2D0567B0226C76DC0014A92C /* RecordingCell.swift in Sources */,
 				2D0202122272D300003A03A3 /* DisplayMoodCell.swift in Sources */,
 				2DC0193C226B2FD300D13585 /* CircularTransition.swift in Sources */,

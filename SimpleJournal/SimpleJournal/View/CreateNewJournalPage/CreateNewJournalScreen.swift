@@ -219,6 +219,8 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     }
     
     @IBAction func saveJournal(_ sender: Any) {
+        #warning("title 检测有问题，如果不点击别的 地方无法保存")
+        
         if(journal.PicsList.count > 0) {
             journal.DisplayPic = journal.PicsList[0].accessibilityIdentifier
         }

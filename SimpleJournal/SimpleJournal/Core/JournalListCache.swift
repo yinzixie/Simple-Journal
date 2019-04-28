@@ -18,6 +18,16 @@ class MoodStatistic {
     }
 }
 
+class SearchJournalResultList {
+    var journal:Journal
+    var indexPath: IndexPath
+    
+    init(journal_:Journal,indexPath_:IndexPath) {
+        journal = journal_
+        indexPath = indexPath_
+    }
+}
+
 protocol TellHomePageCacheRefresh {
     func remindHomePageCacheChanged()
     func remindHomePageDeleteAJournal(indexPathInTable:IndexPath)
@@ -33,11 +43,17 @@ protocol TellStatisticPageCacheRefresh {
     func remindStatisticPageDeleteAJournal(indexPathInTable: IndexPath)
 }
 
+protocol TellCalendarPageCacheRefresh {
+    func remindCalendarPageCacheChanged()
+    //func remindCalendarPageDeleteAJournal(indexPathInTable: IndexPath)
+}
+
 public class JournalListCache {
     
     static var tellHomePageCacheRefresh:TellHomePageCacheRefresh?
     static var tellManagementPageCacheRefresh:TellManagementPageCacheRefresh?
     static var tellStatisticPageCacheRefresh:TellStatisticPageCacheRefresh?
+    static var tellCalendarPageCacheRefresh:TellCalendarPageCacheRefresh?
     
     static var Database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
@@ -47,21 +63,23 @@ public class JournalListCache {
     class func refresh() {
         JournalList = JournalListCache.Database.selectAllJournal()
         
+        print("send refresh")
         tellHomePageCacheRefresh?.remindHomePageCacheChanged()
         tellManagementPageCacheRefresh?.remindManagementPageCacheChanged()
         tellStatisticPageCacheRefresh?.remindStatisticPageCacheChanged()
-        print("send refresh")
+        tellCalendarPageCacheRefresh?.remindCalendarPageCacheChanged()
+       
     }
     
     class func deleteJournal(journal:Journal,indexPathInTable:IndexPath) {
         if(Database.deleteJournal(journal: journal)) {
-            
             JournalList = JournalListCache.Database.selectAllJournal()
             
+            print("send refresh")
             tellHomePageCacheRefresh?.remindHomePageDeleteAJournal(indexPathInTable:indexPathInTable)
             tellManagementPageCacheRefresh?.remindManagementPageDeleteAJournal(indexPathInTable:indexPathInTable)
             tellStatisticPageCacheRefresh?.remindStatisticPageDeleteAJournal(indexPathInTable: indexPathInTable)
-            print("send refresh")
+            tellCalendarPageCacheRefresh?.remindCalendarPageCacheChanged()
         }
     }
     
@@ -102,11 +120,11 @@ public class JournalListCache {
             for i in 0..<len {
                 let j = i+1
                 if(j < len) {
-                    print("ss: ",i," ",j," ",result[i].Num)
+                    //print("ss: ",i," ",j," ",result[i].Num)
                     if(result[i].Num! < result[j].Num!) {
                       
                         let temp = result[i]
-                        print(result[i].Num, result[j].Num)
+                      //  print(result[i].Num, result[j].Num)
                         
                         result[i] = result[j]
                         result[j] = temp
@@ -117,6 +135,19 @@ public class JournalListCache {
             print(finish)
         } while(!finish)
         
+        return result
+    }
+    
+    static func getJournalByDate(date:Date)->[SearchJournalResultList] {
+        var result = [SearchJournalResultList]()
+        var index = 0
+        for journal in JournalList {
+            if((journal.Year == date.year_()) && (journal.Month == date.month_()) && (journal.Day == date.day_())){
+                let indePath = IndexPath(row: index,section: 0)
+                result += [SearchJournalResultList(journal_: journal, indexPath_: indePath)]
+            }
+            index += 1
+        }
         return result
     }
 }

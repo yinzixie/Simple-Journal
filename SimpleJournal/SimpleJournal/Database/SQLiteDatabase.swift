@@ -413,7 +413,6 @@ class SQLiteDatabase
         let query = """
         INSERT INTO Pic (JournalID,NameID) VALUES (?,?)
         """
-        var num = 0
         for pic in journal.PicsList {
             let NameID = pic.accessibilityIdentifier!
             
@@ -423,8 +422,6 @@ class SQLiteDatabase
             })) {
                 //write into document/picsfolder
                 AppFile.saveImage(currentImage: pic, persent: 1, imageName: NameID)
-                print("test")
-                num+=1
             }
         }
        

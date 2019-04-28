@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Edit.png",
+      "filename" : "Edit@32*32.png",
       "scale" : "1x"
     },
     {
@@ -11,6 +11,7 @@
     },
     {
       "idiom" : "universal",
+      "filename" : "Edit.png",
       "scale" : "3x"
     }
   ],

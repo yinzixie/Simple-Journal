@@ -211,10 +211,8 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     
     @objc func shareJournal(sender: UIButton) {
         
-            //get pics for journal
+        //get pics for journal
         let PicsIDList = database.selectPicsByJournal(journal: journals[sender.tag])
-        
-        
         
         let ActiveShareView = UIActivityViewController(activityItems: journals[sender.tag].generateShareList(picIDList:PicsIDList) as [Any], applicationActivities: nil)
         ActiveShareView.popoverPresentationController?.sourceView = self.view
@@ -254,7 +252,7 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
             completion(true)
         }
         
-        action.image = UIImage(named:"edit@250*250")?.resizeImage(60, opaque: false)
+        action.image = UIImage(named:"Edit")?.resizeImage(60, opaque: false)
         action.backgroundColor = .lightGray
         return action
     }

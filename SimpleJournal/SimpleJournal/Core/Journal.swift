@@ -12,7 +12,6 @@ import UIKit
 class Journal {
     static let MonthString = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"]
     
-    
     var ID:String!
     var Title:String!
     

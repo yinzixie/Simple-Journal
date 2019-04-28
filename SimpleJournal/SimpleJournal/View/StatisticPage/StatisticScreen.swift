@@ -90,7 +90,6 @@ class StatisticScreen: UIViewController,TellStatisticPageCacheRefresh {
         }
         
         if (count >= 1){
-            print("test")
             FirstMoodPieChartData.value = Double((StatisticList?[0].Num!)!)
             FirstMoodPieChartData.label = StatisticList?[0].Mood
             FinalDataListInPieChart += [FirstMoodPieChartData]
