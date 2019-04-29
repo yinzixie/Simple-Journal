@@ -15,6 +15,7 @@ class LocationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
 
@@ -25,6 +26,8 @@ class LocationCell: UITableViewCell {
     }
 
     @IBAction func locationDisplayButton(_ sender: Any) {
+        //jump segue"showMapViewSegue"
+        ParentView?.performSegue(withIdentifier:"showMapViewSegue", sender: self)
     }
        
 }

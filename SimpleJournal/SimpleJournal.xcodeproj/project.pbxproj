@@ -24,6 +24,8 @@
 		2D04141B2270223200C2610A /* WeatherCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04141A2270223200C2610A /* WeatherCollectionCell.swift */; };
 		2D04141F227023F900C2610A /* MoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04141E227023F900C2610A /* MoodList.swift */; };
 		2D0414212270240500C2610A /* WeatherList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0414202270240500C2610A /* WeatherList.swift */; };
+		2D04383822768E8D00ED4548 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D04383722768E8D00ED4548 /* MapKit.framework */; };
+		2D04383C22768F3200ED4548 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04383B22768F3200ED4548 /* MapScreen.swift */; };
 		2D04E680226C32B600FA8638 /* AppFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D04E67F226C32B600FA8638 /* AppFile.swift */; };
 		2D0567A4226C761F0014A92C /* TitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A3226C761F0014A92C /* TitleCell.swift */; };
 		2D0567A6226C76360014A92C /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0567A5226C76360014A92C /* LocationCell.swift */; };
@@ -101,6 +103,8 @@
 		2D04141A2270223200C2610A /* WeatherCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionCell.swift; sourceTree = "<group>"; };
 		2D04141E227023F900C2610A /* MoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodList.swift; sourceTree = "<group>"; };
 		2D0414202270240500C2610A /* WeatherList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherList.swift; sourceTree = "<group>"; };
+		2D04383722768E8D00ED4548 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2D04383B22768F3200ED4548 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		2D04E67F226C32B600FA8638 /* AppFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFile.swift; sourceTree = "<group>"; };
 		2D0567A3226C761F0014A92C /* TitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		2D0567A5226C76360014A92C /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D04383822768E8D00ED4548 /* MapKit.framework in Frameworks */,
 				F729549E17943C4B230F99A7 /* Pods_SimpleJournal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +246,7 @@
 				2D0567AF226C76DC0014A92C /* RecordingCell.swift */,
 				2D0567B1226C7EF90014A92C /* DateCell.swift */,
 				2D7D2682226DAC460011B435 /* AddPicsCell.swift */,
+				2D04383B22768F3200ED4548 /* MapScreen.swift */,
 			);
 			path = CreateNewJournalPage;
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 		A56293FC795120079FC2C588 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2D04383722768E8D00ED4548 /* MapKit.framework */,
 				4062D466469381DC5D78A851 /* Pods_SimpleJournal.framework */,
 				693172B694D70771950476E0 /* Pods_SimpleJournalTests.framework */,
 				950A1D9048BB4763D06CC209 /* Pods_SimpleJournalUITests.framework */,
@@ -674,6 +681,7 @@
 				2D0567AA226C764B0014A92C /* WeatherCell.swift in Sources */,
 				2D3667152275939300B9F8D0 /* ExtensionString.swift in Sources */,
 				2D1116322259FC0300A64523 /* AppDelegate.swift in Sources */,
+				2D04383C22768F3200ED4548 /* MapScreen.swift in Sources */,
 				2D06D4792269DADC00C668FC /* PickImageMenueCell.swift in Sources */,
 				2D4E7C5C2270017400D5CAC7 /* SQLiteDatabase.swift in Sources */,
 				2D7D267F226DA55D0011B435 /* PHAssetToUIImage.swift in Sources */,

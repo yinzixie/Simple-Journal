@@ -11,7 +11,8 @@ import UIKit
 
 
 
-class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, PassWeatherDate {
+class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, PassWeatherDate, PassLocationData {
+   
     
     var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
@@ -207,7 +208,14 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         self.TableView.reloadRows(at: [indexpath], with: .automatic)
         self.TableView.endUpdates()
     }
-        
+    
+    func passLocationString(location: String) {
+        print(location)
+        journal.Location = location
+        let indexPath = IndexPath(row: 2, section: 0)
+        TableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showMoodCollectionSegue") {
             let vc = segue.destination as! MoodCollectionPage
@@ -215,6 +223,9 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
         }else if (segue.identifier == "showWeatherCollectionSegue") {
             let vc = segue.destination as! WeatherCollectionPage
             vc.passWeatherDate = self
+        }else if(segue.identifier == "showMapViewSegue") {
+            let vc = segue.destination as! MapScreen
+            vc.passLocationData = self
         }
     }
     
@@ -311,7 +322,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
                 LocationCell.LocationTextField.tag = 2
                // LocationCell.isUserInteractionEnabled = false
                 
-                if(EditMode == "Edit") {
+                if(journal.Location != "LocationNone") {
                     LocationCell.LocationTextField.text = journal.Location
                 }
             }
