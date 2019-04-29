@@ -282,7 +282,9 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             // Configure the cell...
             if let TitleCell = cell as? TitleCell
             {
-                TitleCell.TitleTextField.delegate = self //针对下面等扩展，监听输入
+                
+                TitleCell.TitleTextField.addTarget(self, action: #selector(titleTextFieldDidChange), for: UIControl.Event.editingChanged)
+                //TitleCell.TitleTextField.delegate = self //针对下面等扩展，监听输入
                 TitleCell.ParentView = self
                 TitleCell.TitleTextField.tag = 0
                 
@@ -318,7 +320,8 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             if let LocationCell = cell as? LocationCell
             {
                 LocationCell.ParentView = self
-                LocationCell.LocationTextField.delegate = self //针对下面等扩展，监听输入
+                LocationCell.LocationTextField.addTarget(self, action: #selector(locationTextFieldDidChange), for: UIControl.Event.editingChanged)
+                //LocationCell.LocationTextField.delegate = self //针对下面等扩展，监听输入
                 LocationCell.LocationTextField.tag = 2
                // LocationCell.isUserInteractionEnabled = false
                 
@@ -425,6 +428,14 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    @objc func titleTextFieldDidChange(textField: UITextField) {
+        journal.Title = textField.text
+    }
+    
+    @objc func locationTextFieldDidChange(textField: UITextField) {
+        journal.Location = textField.text
+    }
+    
     @objc func pickImages() {
        
     }
@@ -445,7 +456,7 @@ extension CreateNewJournalScreen: UITextViewDelegate{
     }
 }
 
-extension CreateNewJournalScreen: UITextFieldDelegate{
+/*extension CreateNewJournalScreen: UITextFieldDelegate{
     //每次内容变化时返回title location
     func textFieldDidEndEditing(_ textField: UITextField) {
         //title
@@ -457,7 +468,7 @@ extension CreateNewJournalScreen: UITextFieldDelegate{
             journal.Location = textField.text
         }
     }
-}
+}*/
 
 
 
