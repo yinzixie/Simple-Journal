@@ -60,4 +60,7 @@ class WeatherCollectionPage: UIViewController, UICollectionViewDelegate, UIColle
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func cancle(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

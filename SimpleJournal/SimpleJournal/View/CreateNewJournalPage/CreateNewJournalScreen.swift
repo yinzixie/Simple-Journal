@@ -20,6 +20,8 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     
     var journal: Journal!
     
+    var editingText = false
+    
     private var PicsIDList: [String]?
     private var DeletePicsIDList = [String]()
     private var AddPicsImageList = [UIImage]()
@@ -65,6 +67,46 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
             PicsIDList = database.selectPicsByJournal(journal: journal)
             journal.PicsList = Tools.getUIImageList(picList:PicsIDList!)
         }
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard_))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+        
+        //strat listenning keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChanged), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChanged), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyBoardWillChanged), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @objc func dismissKeyboard_() {
+        view.endEditing(true)
+    }
+    
+    @objc func keyBoardWillChanged(notification: Notification) {
+        print("Key board will show:\(notification.name.rawValue)")
+        
+        guard let keyBoardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
+        
+        if((notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification) && editingText) {
+            view.frame.origin.y = -keyBoardRect.height
+        }else {
+            view.frame.origin.y = 0
+            editingText = false
+        }
+    }
+    
+    
+    
+    //remove notification stop listenning key board
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     //create center button(create a new journal) and add animation
@@ -366,12 +408,11 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             {
                 TextCell.ParentView = self
                 TextCell.TextDisplayField.delegate = self //针对下面等扩展，监听输入
-                
+              
                 if(EditMode == "Edit") {
                     TextCell.TextDisplayField.text = journal.TextContent
                 }
             }
-            
         }
         //Recording
         else if(indexPath.row == 6) {
@@ -408,7 +449,7 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
         
         return cell as! UITableViewCell
     }
-    
+   
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if(indexPath.row <= 6) {
             return false
@@ -453,6 +494,18 @@ extension CreateNewJournalScreen: UITextViewDelegate{
         TableView.beginUpdates()
         TableView.endUpdates()
         journal.TextContent = textView.text
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        editingText = true
+        return true
+    }
+}
+
+extension CreateNewJournalScreen: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

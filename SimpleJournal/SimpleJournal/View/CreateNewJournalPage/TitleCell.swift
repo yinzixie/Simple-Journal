@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TitleCell: UITableViewCell {
+class TitleCell: UITableViewCell{
     var ParentView:UIViewController? = nil
     
     @IBOutlet var TitleTextField: UITextField!
@@ -23,6 +23,6 @@ class TitleCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
-  
+    
+    
 }

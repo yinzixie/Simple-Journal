@@ -49,6 +49,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="f4d-Bh-N81" id="1JC-bB-lW1"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -114,6 +117,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" textContentType="location"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="f4d-Bh-N81" id="Tf8-pD-ok6"/>
+                                                    </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdb-yS-cBU">
                                                     <rect key="frame" x="318" y="14" width="32" height="32"/>
@@ -270,7 +276,7 @@
                                         <rect key="frame" x="0.0" y="735" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JiZ-k9-rec" id="fA4-lE-f0c">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-nM-Lon">
@@ -508,7 +514,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Mood" id="A5R-qQ-ASK">
-                                        <barButtonItem key="leftBarButtonItem" title="back" id="AbU-B7-4gj"/>
+                                        <barButtonItem key="leftBarButtonItem" title="back" id="AbU-B7-4gj">
+                                            <connections>
+                                                <action selector="cancle:" destination="Nyp-7X-e6k" id="kaa-V4-jya"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="save" id="iCF-5k-dXS">
                                             <connections>
                                                 <action selector="saveAndBack:" destination="Nyp-7X-e6k" id="l4D-jL-hTu"/>
@@ -779,8 +789,8 @@
                                     <action selector="ShowPickerChoices:" destination="Lqs-fZ-Ty8" eventType="touchUpInside" id="jrw-Yy-KC7"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOr-JS-LAl">
-                                <rect key="frame" x="16" y="55" width="11" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOr-JS-LAl">
+                                <rect key="frame" x="16" y="55" width="112" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="BackToTabView:" destination="Lqs-fZ-Ty8" eventType="touchUpInside" id="AhI-JA-Kyo"/>
@@ -1260,7 +1270,7 @@
                                         <rect key="frame" x="0.0" y="868" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2b0-C6-7uo" id="8oI-ff-oxs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zqF-im-xkZ">
@@ -1280,7 +1290,7 @@
                                         <rect key="frame" x="0.0" y="1168" width="375" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aGV-Kb-nzB" id="78E-ys-IXI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="299.66666666666669"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KgZ-43-vIZ">
@@ -1635,7 +1645,11 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Weather" id="2Yf-RH-5nY">
-                                        <barButtonItem key="leftBarButtonItem" title="back" id="CWh-3P-RcC"/>
+                                        <barButtonItem key="leftBarButtonItem" title="back" id="CWh-3P-RcC">
+                                            <connections>
+                                                <action selector="cancle:" destination="yMm-hi-reV" id="dSd-Lx-WSY"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="choose" id="Nye-lk-u5x">
                                             <connections>
                                                 <action selector="saveAndBack:" destination="yMm-hi-reV" id="lHq-9b-cAw"/>
@@ -1675,8 +1689,8 @@
         <image name="icons8-分享-500" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UUU-zW-Arw"/>
+        <segue reference="OWl-uK-0T0"/>
         <segue reference="9ga-dO-Z2N"/>
-        <segue reference="wJD-lk-3IK"/>
+        <segue reference="FXP-lI-8be"/>
     </inferredMetricsTieBreakers>
 </document>

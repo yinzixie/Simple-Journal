@@ -32,6 +32,17 @@ class MapScreen: UIViewController, UISearchBarDelegate  {
         // Do any additional setup after loading the view.
         checkLocationServices()
         initLocation()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapScreen.dismissKeyboard_))
+        
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard_() {
+        view.endEditing(true)
     }
     
     func initLocation() {
@@ -164,10 +175,13 @@ class MapScreen: UIViewController, UISearchBarDelegate  {
             }
             
         }
+        view.endEditing(true)
     }
+    
     @IBAction func cancleButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func chooseButton(_ sender: Any) {
         self.Location = self.SearchBar.text ?? ""
         print(Location)

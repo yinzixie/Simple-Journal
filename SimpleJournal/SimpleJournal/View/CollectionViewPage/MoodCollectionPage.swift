@@ -61,4 +61,8 @@ class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollecti
         passMoodData?.passMood(mood:ChoosenMood)
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func cancle(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

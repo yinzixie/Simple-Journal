@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */; };
 		2D009EA222730CAB0051FAA1 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D009EA122730CAB0051FAA1 /* Tools.swift */; };
+		2D009F652282DE0B00A09509 /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D009F642282DE0B00A09509 /* ExtensionUIViewController.swift */; };
 		2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */; };
 		2D00E8F1227148D6006CFBA7 /* JournalListCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00E8F0227148D6006CFBA7 /* JournalListCache.swift */; };
 		2D02020A2272D2BE003A03A3 /* DisplayTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0202092272D2BE003A03A3 /* DisplayTitleCell.swift */; };
@@ -88,6 +89,7 @@
 /* Begin PBXFileReference section */
 		2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJournalCell.swift; sourceTree = "<group>"; };
 		2D009EA122730CAB0051FAA1 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		2D009F642282DE0B00A09509 /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournalScreen.swift; sourceTree = "<group>"; };
 		2D00E8F0227148D6006CFBA7 /* JournalListCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalListCache.swift; sourceTree = "<group>"; };
 		2D0202092272D2BE003A03A3 /* DisplayTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayTitleCell.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				2D03A37B2265AFDB00718D7A /* ExtensionUIImage.swift */,
 				2D0808DE226D51E9005F6270 /* ExtensionDate.swift */,
 				2D3667142275939300B9F8D0 /* ExtensionString.swift */,
+				2D009F642282DE0B00A09509 /* ExtensionUIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				2D0567A6226C76360014A92C /* LocationCell.swift in Sources */,
 				2D04141B2270223200C2610A /* WeatherCollectionCell.swift in Sources */,
 				2D04E680226C32B600FA8638 /* AppFile.swift in Sources */,
+				2D009F652282DE0B00A09509 /* ExtensionUIViewController.swift in Sources */,
 				2D009EA222730CAB0051FAA1 /* Tools.swift in Sources */,
 				2D02020E2272D2E1003A03A3 /* DisplayLocationCell.swift in Sources */,
 				2D0567A8226C76410014A92C /* MoodCell.swift in Sources */,
@@ -893,7 +897,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 892DZ3A58K;
+				DEVELOPMENT_TEAM = 3A9FK2TUR8;
 				INFOPLIST_FILE = SimpleJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -912,7 +916,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 892DZ3A58K;
+				DEVELOPMENT_TEAM = 3A9FK2TUR8;
 				INFOPLIST_FILE = SimpleJournal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

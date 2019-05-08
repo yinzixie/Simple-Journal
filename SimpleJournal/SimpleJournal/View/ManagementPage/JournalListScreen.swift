@@ -206,6 +206,7 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         JournalList.beginUpdates()
         JournalList.deleteRows(at: [indexPathForSelfTable], with: .fade)
         JournalList.endUpdates()
+        JournalList.reloadData()
     }
     
     @objc func editJournal(sender: UIButton) {
@@ -218,6 +219,13 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
         print("Press mangement table dell's share button ")
         let IndexRow = sender.tag //indexpath.row
         
+        //get pics for journal
+        let PicsIDList = database.selectPicsByJournal(journal: self.DisplayJournals[IndexRow].journal)
+        
+        let ActiveShareView = UIActivityViewController(activityItems: self.DisplayJournals[IndexRow].journal.generateShareList(picIDList:PicsIDList) as [Any], applicationActivities: nil)
+        ActiveShareView.popoverPresentationController?.sourceView = self.view
+        
+        self.present(ActiveShareView,animated: true,completion: nil)
     }
     
     private func getDisplayResult(text:String) {
@@ -250,11 +258,16 @@ extension JournalListScreen: UISearchBarDelegate {
         }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         DisplayJournals = JournalListCache.getAllJournalsInResultListForm()
         JournalList.reloadData()
         Searching = false
+        view.endEditing(true)
         //print(Searching)
     }
 }
