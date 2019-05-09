@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */; };
+		2D0041E42283BE6300FEEAB1 /* AddNewMoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0041E32283BE6300FEEAB1 /* AddNewMoodCell.swift */; };
 		2D009EA222730CAB0051FAA1 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D009EA122730CAB0051FAA1 /* Tools.swift */; };
 		2D009F652282DE0B00A09509 /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D009F642282DE0B00A09509 /* ExtensionUIViewController.swift */; };
 		2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */; };
@@ -88,6 +89,7 @@
 
 /* Begin PBXFileReference section */
 		2D002E8F2265482F00C2D838 /* HomeJournalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeJournalCell.swift; sourceTree = "<group>"; };
+		2D0041E32283BE6300FEEAB1 /* AddNewMoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMoodCell.swift; sourceTree = "<group>"; };
 		2D009EA122730CAB0051FAA1 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		2D009F642282DE0B00A09509 /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		2D00B7862265E83A007A6097 /* CreateNewJournalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewJournalScreen.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 				2D812717226EFD21004BD665 /* MoodCollectionPage.swift */,
 				2D0414182270221100C2610A /* WeatherCollectionPage.swift */,
 				2D04141A2270223200C2610A /* WeatherCollectionCell.swift */,
+				2D0041E32283BE6300FEEAB1 /* AddNewMoodCell.swift */,
 			);
 			path = CollectionViewPage;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				2D002E902265482F00C2D838 /* HomeJournalCell.swift in Sources */,
 				2D0567AC226C76560014A92C /* TextCell.swift in Sources */,
 				2D00B7872265E83A007A6097 /* CreateNewJournalScreen.swift in Sources */,
+				2D0041E42283BE6300FEEAB1 /* AddNewMoodCell.swift in Sources */,
 				2D70E7F722683B230079D631 /* SettingScreen.swift in Sources */,
 				2D812718226EFD21004BD665 /* MoodCollectionPage.swift in Sources */,
 				2D02020C2272D2D1003A03A3 /* DisplayDateCell.swift in Sources */,

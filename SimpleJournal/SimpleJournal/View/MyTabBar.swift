@@ -35,6 +35,12 @@ class MyTabBar: UITabBarController {
         setCretateNewJournalButton()
         setSettingButton()
         disableCentreTabBarIteam()
+        
+        
+        //AppFile.saveMoodPhoto(image: UIImage(named: "1")!, imageName: "test")
+        //print(AppFile.isJudgeFileOrFolderExists(folderName: AppFile.MoodsFolderFullPath.appending("fuck") as String))
+        //print(AppFile.getDomcumentAllFolder())//AppFile.getFileListInFolderWithPath(path: AppFile.ImagesFolderFullPath as String))
+        
         // Do any additional setup after loading the view.
     }
     

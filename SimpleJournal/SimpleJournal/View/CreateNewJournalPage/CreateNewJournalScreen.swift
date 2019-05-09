@@ -381,8 +381,11 @@ extension CreateNewJournalScreen: UITableViewDataSource, UITableViewDelegate {
             if let MoodCell = cell as? MoodCell
             {
                 MoodCell.ParentView = self
+                
+                if(journal.Mood != "MoodNone") {
                 MoodCell.MoodImageView.image = UIImage(contentsOfFile:AppFile.getMoodImageFullPath(imageName: journal.Mood))
                 //MoodCell.isUserInteractionEnabled = false
+                }
             }
             
         }

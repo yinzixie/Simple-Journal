@@ -89,7 +89,9 @@ extension JournalDisplayScreen: UITableViewDataSource, UITableViewDelegate {
             // Configure the cell...
             if let DisplayMoodCell = cell as? DisplayMoodCell
             {
-                DisplayMoodCell.MoodImageView.image = UIImage(contentsOfFile: AppFile.getMoodImageFullPath(imageName: journal.Mood))
+                if(journal.Mood != "MoodNone") {
+                    DisplayMoodCell.MoodImageView.image = UIImage(contentsOfFile: AppFile.getMoodImageFullPath(imageName: journal.Mood))
+                }
             }
         }
             

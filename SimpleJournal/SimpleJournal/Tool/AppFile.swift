@@ -86,27 +86,27 @@ public class AppFile {
     //保存图片至沙盒 1heighest-100lowest
     class func saveImage(currentImage: UIImage, persent: CGFloat, imageName: String){
         if let imageData = currentImage.jpegData(compressionQuality:persent) as NSData? {
-            let fullPath = AppFile.ImagesFolderFullPath.appending(imageName)
+            let fullPath = AppFile.ImagesFolderFullPath.appendingPathComponent(imageName)
             imageData.write(toFile: fullPath, atomically: true)
-            print("fullPath=\(fullPath)")
+            //print("fullPath=\(fullPath)")
         }
     }
     
     //get pic image through image name
     class func getImageFullPath(imageName: String)->String {
-        return AppFile.ImagesFolderFullPath.appending(imageName)
+        return AppFile.ImagesFolderFullPath.appendingPathComponent(imageName)
     }
     
     //get Mood image through image name
     class func getMoodImageFullPath(imageName: String)->String {
-        return AppFile.MoodsFolderFullPath.appending(imageName)
+        return AppFile.MoodsFolderFullPath.appendingPathComponent(imageName)
     }
     
     //save mood image
     class func saveMoodPhoto(image:UIImage,imageName:String) {
         if let imageData = image.jpegData(compressionQuality:1) as NSData? {
-            let fullPath = AppFile.MoodsFolderFullPath.appending(imageName)
-            imageData.write(toFile: fullPath as String, atomically: true)
+            let fullPath = AppFile.MoodsFolderFullPath.appendingPathComponent(imageName)
+            imageData.write(toFile: fullPath, atomically: true)
         }
     }
     

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public class MoodList {
-    static var Moods = ["sad","embarrassed","rich","sad","embarrassed","rich"]
+    static var Moods = ["sad","embarrassed","rich"]
     
     static func UpdateMoods() {
         let list = AppFile.getFileListInFolderWithPath(path:AppFile.MoodsFolderFullPath as String)
@@ -20,5 +20,10 @@ public class MoodList {
                 Moods += [name]
             }
         }
+        print(list)
+    }
+    
+    static func isExist(name:String)->Bool {
+        return Moods.contains(name)
     }
 }
