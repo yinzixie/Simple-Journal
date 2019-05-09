@@ -14,13 +14,12 @@ public class MoodList {
     
     static func UpdateMoods() {
         let list = AppFile.getFileListInFolderWithPath(path:AppFile.MoodsFolderFullPath as String)
-        
+        print(list)
         for name in list {
             if (!Moods.contains(name)) {
                 Moods += [name]
             }
         }
-        print(list)
     }
     
     static func isExist(name:String)->Bool {

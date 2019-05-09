@@ -92,7 +92,7 @@ class MoodCollectionPage: UIViewController, UICollectionViewDelegate, UICollecti
         //1. Create the alert controller.
         let addNewMoodAlert = UIAlertController(title: "Add new mood", message: "Type your custom mood name", preferredStyle: .alert)
         
-        //2. Add the text field. You can configure it however you need.
+        //2. Add the text field.
         addNewMoodAlert.addTextField(configurationHandler: { (textField) -> Void in
             textField.placeholder = "Attention:can't be empty!"
         })

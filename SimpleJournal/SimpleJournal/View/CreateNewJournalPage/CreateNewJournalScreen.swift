@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Photos
 
 
 
@@ -57,9 +57,33 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
        
     }
     
+    func checkPermission() {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
+            print("Access is granted by user")
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (newStatus) in
+                print("status is \(newStatus)")
+                if newStatus ==  PHAuthorizationStatus.authorized {
+                    /* do stuff here */
+                    print("success")
+                }
+            })
+            print("It is not determined until now")
+        case .restricted:
+            // same same
+            print("User do not have access to photo album.")
+        case .denied:
+            // same same
+            print("User has denied the permission.")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        checkPermission()
         // Do any additional setup after loading the view.
         print("Initial Create/Edit Screen")
         setMenuButtons()
@@ -187,7 +211,7 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     @objc func showPicsPicker(_ sender:UIButton) {
         
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = false
         
         if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
             imagePicker.sourceType = .photoLibrary
@@ -203,7 +227,7 @@ class CreateNewJournalScreen: UIViewController, PassDateData, PassMoodData, Pass
     @objc func showCamera(_ sender:UIButton) {
         
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = false
         
         if (UIImagePickerController.isSourceTypeAvailable(.camera)) {
             imagePicker.sourceType = .camera
@@ -536,7 +560,8 @@ extension CreateNewJournalScreen:UIImagePickerControllerDelegate, UINavigationCo
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let pickImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+        if let pickImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            print("test")
             pickImage.accessibilityIdentifier = journal.PicsTableID! + "_" + DateInfo.dateToDateString(Date(), dateFormat: "yyyyMMdd_HH:mm:ss")
             
             AddPicsImageList += [pickImage]
@@ -552,6 +577,7 @@ extension CreateNewJournalScreen:UIImagePickerControllerDelegate, UINavigationCo
         
         picker.dismiss(animated: true, completion: nil)
     }
+
 }
 
 

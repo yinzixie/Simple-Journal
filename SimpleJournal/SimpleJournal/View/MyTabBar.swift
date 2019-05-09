@@ -10,7 +10,9 @@ import UIKit
 
 class MyTabBar: UITabBarController {
     
-    var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
+    let USERNAME = "SuZhen Bai"
+    let SENTENCE = "Life is colorful..."
+    
     let transition = CircularTransition()
     
 
@@ -29,18 +31,15 @@ class MyTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //SET DEFAULT DATA
+        setDefaultData()
         //init file system
         AppFile.init()
+        MoodList.UpdateMoods()
         //set button
         setCretateNewJournalButton()
         setSettingButton()
         disableCentreTabBarIteam()
-        
-        
-        //AppFile.saveMoodPhoto(image: UIImage(named: "1")!, imageName: "test")
-        //print(AppFile.isJudgeFileOrFolderExists(folderName: AppFile.MoodsFolderFullPath.appending("fuck") as String))
-        //print(AppFile.getDomcumentAllFolder())//AppFile.getFileListInFolderWithPath(path: AppFile.ImagesFolderFullPath as String))
-        
         // Do any additional setup after loading the view.
     }
     
@@ -58,6 +57,20 @@ class MyTabBar: UITabBarController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    private func setDefaultData() {
+        let defaults = UserDefaults.standard
+        let username = defaults.string(forKey: "USERNAME")
+      
+        if (username == nil) {
+            defaults.set(USERNAME, forKey: "USERNAME")
+        }
+        
+        let sentence = defaults.string(forKey: "SENTENCE")
+        if (sentence == nil) {
+            defaults.set(SENTENCE, forKey: "SENTENCE")
+        }
     }
     
     //set Setting Button
@@ -188,6 +201,8 @@ extension MyTabBar: UIViewControllerTransitioningDelegate {
             let secondVC = segue.destination as! SettingScreen
             secondVC.transitioningDelegate = self
             secondVC.modalPresentationStyle = .custom
+            secondVC.tellHomePageChangeHeadPhoto = self.viewControllers?[0] as? TellHomePageChangeHeadPhoto
+            secondVC.tellHomePageChangeUserDate = self.viewControllers?[0] as? TellHomePageChangeUserDate
         }
        
     }

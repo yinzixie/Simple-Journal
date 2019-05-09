@@ -8,10 +8,22 @@
 
 import UIKit
 
+protocol TellHomePageChangeUserDate {
+    func updateData()
+}
+protocol TellHomePageChangeHeadPhoto {
+    func updatePic()
+}
+
 class SettingScreen: UIViewController {
    // @IBOutlet var ShowPicPickerChooseButton: UIButton!
    // @IBOutlet var ImagePickerButton: UIButton!
     @IBOutlet var HeadPhoto: UIImageView!
+    @IBOutlet var Namelabel: UILabel!
+    @IBOutlet var SentenceLabel: UILabel!
+    
+    var tellHomePageChangeUserDate:TellHomePageChangeUserDate?
+    var tellHomePageChangeHeadPhoto:TellHomePageChangeHeadPhoto?
     
     //变暗
    // var transparentView = UIView()
@@ -24,7 +36,7 @@ class SettingScreen: UIViewController {
         super.viewDidLoad()
         
         setHeadPhoto()
-        
+        setUserData()
        /* pickImageTableView.isScrollEnabled = false
         pickImageTableView.delegate = self
         pickImageTableView.dataSource = self
@@ -35,6 +47,15 @@ class SettingScreen: UIViewController {
         
         // Do any additional setup after loading the view.
         
+    }
+    
+    private func setUserData() {
+        let defaults = UserDefaults.standard
+        let username = defaults.string(forKey: "USERNAME")
+        let sentence = defaults.string(forKey: "SENTENCE")
+        
+        Namelabel.text = username
+        SentenceLabel.text = sentence
     }
     
     private func setHeadPhoto() {
@@ -80,6 +101,59 @@ class SettingScreen: UIViewController {
         }
     }
 
+    @IBAction func changeName(_ sender: Any) {
+        let changeNameAlert = UIAlertController(title: "Change name", message: "Type your new name", preferredStyle: .alert)
+        
+        changeNameAlert.addTextField(configurationHandler: { (textField) -> Void in
+            textField.placeholder = "Attention:can't be empty!"
+        })
+        
+        //3. Grab the value from the text field, and print it when the user clicks OK.
+        changeNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak changeNameAlert] (action) -> Void in
+            let newName = changeNameAlert?.textFields![0].text
+            if(newName != "") {
+                let defaults = UserDefaults.standard
+                defaults.set(newName, forKey: "USERNAME")
+                self.Namelabel.text = newName
+                self.tellHomePageChangeUserDate?.updateData()
+            }
+        }))
+        
+        //cancel button
+        changeNameAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("User canceled add new mood action")
+        }))
+        
+        // 4. Present the alert.
+        self.present(changeNameAlert, animated: true, completion: nil)
+    }
+    
+    @IBAction func changeSentence(_ sender: Any) {
+        let changeSentenceAlert = UIAlertController(title: "Change sign", message: "Type your custom sign", preferredStyle: .alert)
+        
+        changeSentenceAlert.addTextField(configurationHandler: { (textField) -> Void in
+            textField.placeholder = "Attention:can't be empty!"
+        })
+        
+        //3. Grab the value from the text field, and print it when the user clicks OK.
+        changeSentenceAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak changeSentenceAlert] (action) -> Void in
+            let news = changeSentenceAlert?.textFields![0].text
+            if(news != "") {
+                let defaults = UserDefaults.standard
+                defaults.set(news, forKey: "SENTENCE")
+                self.SentenceLabel.text = news
+                self.tellHomePageChangeUserDate?.updateData()
+            }
+        }))
+        
+        //cancel button
+        changeSentenceAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("User canceled change sentence action")
+        }))
+        
+        // 4. Present the alert.
+        self.present(changeSentenceAlert, animated: true, completion: nil)
+    }
     
     @IBAction func BackToTabView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -169,6 +243,7 @@ extension SettingScreen:UIImagePickerControllerDelegate, UINavigationControllerD
         if let pickImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             AppFile.saveHeadPhoto(image: pickImage)
             setHeadPhoto()
+            tellHomePageChangeHeadPhoto?.updatePic()
         }
         
         picker.dismiss(animated: true, completion: nil)

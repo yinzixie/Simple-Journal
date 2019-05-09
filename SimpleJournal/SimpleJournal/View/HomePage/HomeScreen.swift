@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class HomeScreen: UIViewController,TellHomePageCacheRefresh {
+class HomeScreen: UIViewController,TellHomePageCacheRefresh{
    
     var database : SQLiteDatabase = SQLiteDatabase(databaseName:"MyDatabase")
     
@@ -18,6 +18,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
     
     @IBOutlet var HeadPhoto: UIImageView!
     @IBOutlet var UserName: UILabel!
+    @IBOutlet var SentenceLabel: UILabel!
     @IBOutlet var HomeTable: UITableView!
     @IBOutlet var TotalyPostLabel: UILabel!
     @IBOutlet var SharedLabel: UILabel!
@@ -78,6 +79,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
         
         //set label
         setLabel()
+        setUserData()
         
         HomeTable.refreshControl = refresher
        // refreshAction.attributedTitle = NSAttributedString.init(string: "正在下拉刷新")  // 修改文字内容
@@ -116,6 +118,15 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh {
         super.viewWillAppear(animated)
         navigationController?.setToolbarHidden(true, animated: false)
     }*/
+    
+    private func setUserData() {
+        let defaults = UserDefaults.standard
+        let username = defaults.string(forKey: "USERNAME")
+        let sentence = defaults.string(forKey: "SENTENCE")
+        
+        UserName.text = username
+        SentenceLabel.text = sentence
+    }
     
     private func setLabel() {
         var today_num: Int = 0
@@ -267,6 +278,14 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
         action.backgroundColor = .lightGray
         return action
     }
+}
+
+extension HomeScreen:TellHomePageChangeUserDate,TellHomePageChangeHeadPhoto {
+    func updateData() {
+        setUserData()
+    }
     
-   
+    func updatePic() {
+        setHeadPhoto()
+    }
 }
