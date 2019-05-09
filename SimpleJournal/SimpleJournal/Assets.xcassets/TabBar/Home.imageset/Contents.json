@@ -6,12 +6,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "tab_unselect_gray@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tab_unselect_gray@3x.png",
+      "filename" : "Home.png",
       "scale" : "3x"
     }
   ],

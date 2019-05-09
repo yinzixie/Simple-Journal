@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "sharp_add_circle_outline_black_18dp-1.png",
       "scale" : "1x"
     },
     {
@@ -11,7 +10,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "sharp_add_circle_outline_black_18dp.png",
+      "filename" : "Settings.png",
       "scale" : "3x"
     }
   ],

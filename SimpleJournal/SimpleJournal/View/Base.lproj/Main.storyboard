@@ -774,7 +774,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="41s-J9-fZ9"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="XJw-eC-bcq"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="Home" id="XJw-eC-bcq">
+                        <color key="badgeColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="s8J-Dx-klO"/>
                     <connections>
                         <outlet property="HeadPhoto" destination="cts-4z-kWF" id="K4Z-yf-Vto"/>
@@ -865,7 +867,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EPk-fV-bqG">
                                         <rect key="frame" x="20" y="37" width="43" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="se1-JX-LZE">
@@ -933,6 +935,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                     </tabBar>
                     <connections>
                         <outlet property="MytabBar" destination="V0e-mz-ch3" id="cef-aF-TbE"/>
@@ -1154,7 +1157,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KXJ-ZU-lYU"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Management" id="8RH-K7-8d7">
+                    <tabBarItem key="tabBarItem" title="Management" image="Management" id="8RH-K7-8d7">
                         <color key="badgeColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="f5h-h8-Ayl"/>
@@ -1575,7 +1578,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VlM-yZ-xvw"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Canlendar" id="pQx-xQ-zv7"/>
+                    <tabBarItem key="tabBarItem" title="Canlendar" image="Calendar@96*96" id="pQx-xQ-zv7"/>
                     <connections>
                         <outlet property="CalendarTable" destination="kuD-4K-iWc" id="UwQ-vT-5dy"/>
                         <outlet property="DatePicker" destination="OiO-ko-XvN" id="dfx-B2-KlP"/>
@@ -1633,7 +1636,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dV-Lz-edj">
                                         <rect key="frame" x="169.66666666666666" y="23" width="16" height="28"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                        <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="textColor" red="0.26837734157871646" green="0.45536854189157083" blue="0.73200696243523322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="journal(s) in this period" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qc8-NL-I4p">
@@ -1675,7 +1678,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DeZ-Lj-paj"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Statistic" id="AAB-An-1NO"/>
+                    <tabBarItem key="tabBarItem" title="Statistic" image="Statitic" id="AAB-An-1NO"/>
                     <connections>
                         <outlet property="FromDateTextField" destination="peJ-al-em8" id="HBC-al-JWN"/>
                         <outlet property="PieChartView" destination="L26-Fw-cTC" id="jkT-gO-RlU"/>
@@ -1786,19 +1789,24 @@
     <resources>
         <image name="1" width="510" height="722"/>
         <image name="Calendar" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="Calendar@96*96" width="32" height="32"/>
         <image name="Edit" width="85.333335876464844" height="85.333335876464844"/>
+        <image name="Home" width="32" height="32"/>
         <image name="Location" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="Management" width="32" height="32"/>
         <image name="Mood" width="170.66667175292969" height="170.66667175292969"/>
         <image name="MoodNone" width="100" height="75"/>
         <image name="Pin" width="32" height="32"/>
         <image name="Plus@512*512" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="Statitic" width="32" height="32"/>
         <image name="Weather" width="170.66667175292969" height="170.66667175292969"/>
         <image name="delete" width="166.66667175292969" height="166.66667175292969"/>
         <image name="icons8-分享-500" width="120" height="120"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UUU-zW-Arw"/>
-        <segue reference="9ga-dO-Z2N"/>
+        <segue reference="9iK-n4-8oj"/>
         <segue reference="wJD-lk-3IK"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
 </document>

@@ -75,7 +75,7 @@ class MyTabBar: UITabBarController {
     
     //set Setting Button
     private func setSettingButton() {
-        SettingButton.setBackgroundImage(UIImage(named:"setting"), for:.normal)
+        SettingButton.setBackgroundImage(UIImage(named:"Settings"), for:.normal)
         //add button to screen
         self.view.insertSubview(SettingButton, aboveSubview: self.tabBar)
         
