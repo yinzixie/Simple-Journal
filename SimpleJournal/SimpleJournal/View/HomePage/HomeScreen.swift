@@ -16,6 +16,10 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh{
     
     var IsRefreshFromSelf = false
     
+    let transition = CircularTransition()
+
+    var ChoosenButton = UIButton.init(type: .custom)
+    
     @IBOutlet var HeadPhoto: UIImageView!
     @IBOutlet var UserName: UILabel!
     @IBOutlet var SentenceLabel: UILabel!
@@ -23,6 +27,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh{
     @IBOutlet var TotalyPostLabel: UILabel!
     @IBOutlet var SharedLabel: UILabel!
     @IBOutlet var TodayPostLabel: UILabel!
+    @IBOutlet var SettingButton: UIButton!
     
     lazy var refresher: UIRefreshControl = {
         let refreshController = UIRefreshControl()
@@ -195,6 +200,13 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh{
             }
             DisplayPage.journal = journals[indexPath.row]
             print("Going to show journal details")
+        }else if (segue.identifier == "goToSettingScreenSegue") {
+            ChoosenButton = SettingButton
+            let secondVC = segue.destination as! SettingScreen
+            secondVC.transitioningDelegate = self
+            secondVC.modalPresentationStyle = .custom
+            secondVC.tellHomePageChangeHeadPhoto = self
+            secondVC.tellHomePageChangeUserDate = self
         }
     }
 }
@@ -288,4 +300,24 @@ extension HomeScreen:TellHomePageChangeUserDate,TellHomePageChangeHeadPhoto {
     func updatePic() {
         setHeadPhoto()
     }
+}
+
+extension HomeScreen: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .present
+        transition.startingPoint = ChoosenButton.center
+        transition.circleColor = ChoosenButton.backgroundColor ?? UIColor.white
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.transitionMode = .dismiss
+        transition.startingPoint = ChoosenButton.center
+        transition.circleColor = ChoosenButton.backgroundColor ??  UIColor.white
+        return transition
+    }
+    
+    
 }

@@ -19,7 +19,7 @@ class MyTabBar: UITabBarController {
     @IBOutlet var MytabBar: UITabBar!
     
     let CreateButton = UIButton.init(type: .custom)
-    let SettingButton = UIButton.init(type: .custom)
+    //let SettingButton = UIButton.init(type: .custom)
     
     var ChoosenButton = UIButton.init(type: .custom)
     
@@ -38,7 +38,7 @@ class MyTabBar: UITabBarController {
         MoodList.UpdateMoods()
         //set button
         setCretateNewJournalButton()
-        setSettingButton()
+        //setSettingButton()
         disableCentreTabBarIteam()
         // Do any additional setup after loading the view.
     }
@@ -51,8 +51,8 @@ class MyTabBar: UITabBarController {
         CreateButton.layer.cornerRadius = 32
         
         //
-        SettingButton.frame = CGRect.init(x: self.view.bounds.width-50 , y: 50*screen.screenh/CGFloat(screen.Xscreenh), width: 32, height: 32)
-        SettingButton.layer.cornerRadius = 16
+        //SettingButton.frame = CGRect.init(x: self.view.bounds.width-50 , y: 50*screen.screenh/CGFloat(screen.Xscreenh), width: 32, height: 32)
+        //SettingButton.layer.cornerRadius = 16
     }
     
     override func didReceiveMemoryWarning() {
@@ -74,14 +74,14 @@ class MyTabBar: UITabBarController {
     }
     
     //set Setting Button
-    private func setSettingButton() {
+    /*private func setSettingButton() {
         SettingButton.setBackgroundImage(UIImage(named:"Settings"), for:.normal)
         //add button to screen
         self.view.insertSubview(SettingButton, aboveSubview: self.tabBar)
         
         //set trigger event go to create journal screen when realse button
         SettingButton.addTarget(self, action: #selector(goToSettingScreen), for: .touchUpInside)
-    }
+    }*/
     
     @objc func goToSettingScreen() {
     //jump to admin page through segue"goToSettingScreen"
@@ -196,14 +196,15 @@ extension MyTabBar: UIViewControllerTransitioningDelegate {
             secondVC.transitioningDelegate = self
             secondVC.modalPresentationStyle = .custom
             secondVC.EditMode = "Create"
-        }else if segue.identifier == "goToSettingScreenSegue" {
+        }
+        /*else if segue.identifier == "goToSettingScreenSegue" {
             ChoosenButton = SettingButton
             let secondVC = segue.destination as! SettingScreen
             secondVC.transitioningDelegate = self
             secondVC.modalPresentationStyle = .custom
             secondVC.tellHomePageChangeHeadPhoto = self.viewControllers?[0] as? TellHomePageChangeHeadPhoto
             secondVC.tellHomePageChangeUserDate = self.viewControllers?[0] as? TellHomePageChangeUserDate
-        }
+        }*/
        
     }
     
