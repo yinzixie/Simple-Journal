@@ -105,7 +105,7 @@ class HomeScreen: UIViewController,TellHomePageCacheRefresh{
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         //water wave
-       var headerView = ZFJWaveView(frame: CGRect(x: CGFloat(0), y: CGFloat(-20), width: CGFloat(self.view.frame.size.width), height: CGFloat(240) + 70*screen.screenh/CGFloat(screen.Xscreenh)))
+        let headerView = ZFJWaveView(frame: CGRect(x: CGFloat(0), y: CGFloat(-20), width: CGFloat(self.view.frame.size.width), height: CGFloat(240) + 70*screen.screenh/CGFloat(screen.Xscreenh)))
         headerView.backgroundColor =  UIColor(red: 0/255, green: 141/255, blue: 206/255, alpha: 1.0)//UIColor(red: CGFloat(1.000), green: CGFloat(0.318), blue: CGFloat(0.129), alpha: CGFloat(1.00))
         headerView.waveBlock = {(_ currentY: CGFloat) -> Void in
             //print(currentY)
@@ -266,10 +266,17 @@ extension HomeScreen: UITableViewDataSource, UITableViewDelegate {
     func deleteAction(at indexPath: IndexPath)->UIContextualAction {
         let action = UIContextualAction(style:.normal, title: "Delete") {(action, view, completion) in
             
-            #warning("弹出确认窗口")
-            self.IsRefreshFromSelf = true
-            JournalListCache.deleteJournal(journal: self.journals[indexPath.row], indexPathInTable: indexPath)
-            completion(true)
+            //弹出确认窗口
+                let alert = UIAlertController(title: "Warning", message: "This action cannot be reversed.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: {
+                    action in
+                    
+                    self.IsRefreshFromSelf = true
+                    JournalListCache.deleteJournal(journal: self.journals[indexPath.row], indexPathInTable: indexPath)
+                    completion(true)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
         }
         
         action.image = UIImage(named:"delete@250*250")?.resizeImage(60, opaque: false)

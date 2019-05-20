@@ -145,18 +145,24 @@ extension CalendarScreen: UITableViewDataSource, UITableViewDelegate {
     
     func deleteAction(at indexPath: IndexPath)->UIContextualAction {
         let action = UIContextualAction(style:.normal, title: "Delete") {(action, view, completion) in
+        
+            //弹出确认窗口
+            let alert = UIAlertController(title: "Warning", message: "This action cannot be reversed.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: {
+                action in
+                self.IsRefreshFromSelf = true
+                JournalListCache.deleteJournal(journal: self.DisplayJournals[indexPath.row].journal, indexPathInTable: self.DisplayJournals[indexPath.row].indexPath)
+                
+                self.getDisplayResult(date:self.DatePicker.date)
+                
+                self.CalendarTable.beginUpdates()
+                self.CalendarTable.deleteRows(at: [indexPath], with: .fade)
+                self.CalendarTable.endUpdates()
+                completion(true)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
-            #warning("弹出确认窗口")
-            self.IsRefreshFromSelf = true
-            JournalListCache.deleteJournal(journal: self.DisplayJournals[indexPath.row].journal, indexPathInTable: self.DisplayJournals[indexPath.row].indexPath)
-            
-            self.getDisplayResult(date:self.DatePicker.date)
-            
-            self.CalendarTable.beginUpdates()
-            self.CalendarTable.deleteRows(at: [indexPath], with: .fade)
-            self.CalendarTable.endUpdates()
-            
-            completion(true)
         }
         
         action.image = UIImage(named:"delete@250*250")?.resizeImage(60, opaque: false)

@@ -1,10 +1,5 @@
 //
 //  ZFJWaveView.swift
-//  ZFJWaveViewSwift
-//
-//  Created by ZFJ on 2017/1/9.
-//  Copyright © 2017年 ZFJ. All rights reserved.
-//
 
 import UIKit
 

@@ -382,17 +382,19 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Map" id="fwH-OU-WK5">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="plain" id="jw4-j5-tiL">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jw4-j5-tiL">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wlt-Bm-7T5">
                                                 <rect key="frame" x="16" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="Cancel"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="cancleButton:" destination="H6E-gx-J0x" eventType="touchUpInside" id="T9Q-pO-KuD"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Choose" style="plain" id="odN-Db-DPS">
+                                        <barButtonItem key="rightBarButtonItem" title="Choose" id="odN-Db-DPS">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qnl-Fh-58O">
                                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -837,7 +839,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eOI-2n-auk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2126" y="86"/>
+            <point key="canvasLocation" x="-1393" y="86"/>
         </scene>
         <!--Setting-->
         <scene sceneID="wYm-7R-7bJ">

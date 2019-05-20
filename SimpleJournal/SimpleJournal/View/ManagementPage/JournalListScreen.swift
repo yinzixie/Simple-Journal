@@ -194,19 +194,28 @@ extension JournalListScreen: UITableViewDataSource, UITableViewDelegate {
     
     @objc func deleteJournal(sender: UIButton) {
         print("Press mangement table cell's delete button ")
-        let IndexPathInFulltable = DisplayJournals[sender.tag].indexPath
         
-        let indexPathForSelfTable = IndexPath(row: sender.tag, section: 0)
-        
-        IsRefreshFromSelf = true
-        print(IndexPathInFulltable)
-        
-        JournalListCache.deleteJournal(journal: DisplayJournals[sender.tag].journal, indexPathInTable:IndexPathInFulltable)
-        
-        JournalList.beginUpdates()
-        JournalList.deleteRows(at: [indexPathForSelfTable], with: .fade)
-        JournalList.endUpdates()
-        JournalList.reloadData()
+        //弹出确认窗口
+        let alert = UIAlertController(title: "Warning", message: "This action cannot be reversed.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Proceed", style: .default, handler: {
+            action in
+            
+            let IndexPathInFulltable = self.DisplayJournals[sender.tag].indexPath
+            
+            let indexPathForSelfTable = IndexPath(row: sender.tag, section: 0)
+            
+            self.IsRefreshFromSelf = true
+            //print(IndexPathInFulltable)
+            
+            JournalListCache.deleteJournal(journal: self.DisplayJournals[sender.tag].journal, indexPathInTable:IndexPathInFulltable)
+            
+            self.JournalList.beginUpdates()
+            self.JournalList.deleteRows(at: [indexPathForSelfTable], with: .fade)
+            self.JournalList.endUpdates()
+            self.JournalList.reloadData() //this cause some display issues
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func editJournal(sender: UIButton) {

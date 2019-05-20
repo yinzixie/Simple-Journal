@@ -10,6 +10,6 @@ import Foundation
 import UIKit
 
 public class WeatherList {
-    static let Weathers = ["Rain"]
+    static let Weathers = ["Rain","CloudDay","SleetDay","SunnyDay","WindyDay"]
     
 }
